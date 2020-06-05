@@ -1,4 +1,8 @@
 {
+	"imageManipulator": {
+		"type": "ImageMagick",
+		"path": "..."
+	},
 	"pages": [
 		{
 			"name": "256",
