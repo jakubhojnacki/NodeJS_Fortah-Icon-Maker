@@ -64,7 +64,9 @@
 
 		run() {
 			this.showHeader();
+			this.check();
 			this.readSettings();
+			this.checkSettings();
 			this.createImageManipulator();
 			this.processSymbols();
 			this.showFooter();
@@ -75,16 +77,61 @@
 			console.log('-'.repeat(79));
 		}		
 
+		check() {
+			if (!this.templatesFolderPath)
+				throw "Empty templates folder path";
+			if (!this.symbolsFolderPath)
+				throw "Empty symbols folder path";
+			if (!this.iconsFolderPath)
+				throw "Empty icons folder path";
+			if (!this.temporaryFolderPath)
+				throw "Empty temporary folder path";
+			if (!this.settingsPath)
+				throw "Empty settings path";
+		}
+
 		readSettings() {
 			const settingsData = fileSystem.readFileSync(this.settingsPath);
 			this.settings = JSON.parse(settingsData);
+		}
+
+		checkSettings() {
+			if (!this.settings.imageManipulator)
+				throw "Image manipulator settings are empty";
+			if (!this.settings.imageManipulator.type)
+				throw "Image manipulator type is empty in settings";
+			if (!this.settings.imageManipulator.path)
+				throw "Image manipulator path is empty in settings";
+			if (!this.settings.pages)
+				throw "Pages settings are empty";
+			let pageIndex = 0;
+			for (const page of this.settings.pages) {
+				if (!page.name)
+					throw `Page ${pageIndex} name is empty in settings`;
+				if (!page.template)
+					throw `Page ${pageIndex} template is empty in settings`;
+				if (!page.template.background)
+					throw `Page ${pageIndex} template background is empty in settings`;
+				if (!page.template.foreground)
+					throw `Page ${pageIndex} template foreground is empty in settings`;
+				if (!page.symbol)
+					throw `Page ${pageIndex} symbol is empty in settings`;
+				if (!page.symbol.extension)
+					throw `Page ${pageIndex} symbol extension is empty in settings`;
+				if (!page.symbol.resizeTo)
+					throw `Page ${pageIndex} symbol resize to is empty in settings`;
+				if (!page.symbol.xOffset)
+					throw `Page ${pageIndex} symbol x offset is empty in settings`;
+				if (!page.symbol.yOffset)
+					throw `Page ${pageIndex} symbol y offset is empty in settings`;
+			}
 		}
 
 		createImageManipulator() {
 			const imageManipulatorType = this.settings.imageManipulator.type.trim().toLowerCase();
 			switch (imageManipulatorType) {
 				case "imagemagick": 
-					this.imageManipulator = new imageMagick();
+					this.imageManipulator = new imageMagick(this.settings.imageManipulator.path);
 					break;
 				default:
 					throw `Unknown image manipulator type: ${this.settings.imageManipulator.type}`;
@@ -110,18 +157,16 @@
 			console.log(`${pSymbolFileInfo.name}`);
 			let mergedFileInfos = [];
 			for (const page of this.settings.pages) {
-			/*^^^
 				const pageFileInfo = this.extract(pSymbolFileInfo, page);
 				const resizedFileInfo = this.resize(pageFileInfo, page);
 				const mergedFileInfo = this.merge(resizedFileInfo, page);
 				mergedFileInfos.push(mergedFileInfo);
-			^^^*/
 			}
 			this.combine(mergedFileInfos, pSymbolFileInfo);
 		}
 
 		extract(pSymbolFileInfo, pPage) {
-			const pageFileName = `${pSymbolFileInfo.baseName}${pPage.index}${pPage.symbol.extension}`;
+			const pageFileName = `Page${pPage.index}.${pPage.symbol.extension}`;
 			const pageFileInfo = fileInfo.fromFolderPathAndFileName(this.temporaryFolderPath, pageFileName);
 			if (fileSystem.existsSync(pageFileInfo.path))
 				fileSystem.unlinkSync(pageFileInfo.path);
@@ -130,18 +175,18 @@
 		}
 
 		resize(pPageFileInfo, pPage) {
-			const resizedFileName = `${pPageFileInfo.baseName}R${pPageFileInfo.extension}`;
+			const resizedFileName = `${pPageFileInfo.baseName}R.${pPageFileInfo.extension}`;
 			const resizedFileInfo = fileInfo.fromFolderPathAndFileName(this.temporaryFolderPath, resizedFileName);
 			if (fileSystem.existsSync(resizedFileInfo.path))
 				fileSystem.unlinkSync(resizedFileInfo.path);
-			this.imageManipulator.extract(pPageFileInfo.path, pPage.symbol.resizeTo, pPage.symbol.resizeTo, resizedFileInfo.path);
+			this.imageManipulator.resize(pPageFileInfo.path, pPage.symbol.resizeTo, pPage.symbol.resizeTo, resizedFileInfo.path);
 			return resizedFileInfo;
 		}
 
 		merge(pResizedFileInfo, pPage) {
 			const backgroundFileInfo = fileInfo.fromFolderPathAndFileName(this.templatesFolderPath, pPage.template.background);
 			const foregroundFileInfo = fileInfo.fromFolderPathAndFileName(this.templatesFolderPath, pPage.template.foreground);
-			const mergedFileName = `${pResizedFileInfo.baseName}M${pResizedFileInfo.extension}`;
+			const mergedFileName = `${pResizedFileInfo.baseName}M.${pResizedFileInfo.extension}`;
 			const mergedFileInfo = fileInfo.fromFolderPathAndFileName(this.temporaryFolderPath, mergedFileName);
 			const imagePages = [
 				new imagePage(backgroundFileInfo, 0, 0),
@@ -181,11 +226,19 @@
 		set name(pValue) {
 			this.mName = pValue;
 			this.extension = path.extname(this.name);
-			this.baseName = path.basename(this.name, this.extension);
+			this.baseName = path.basename(this.name, "." + this.extension);
 		}
 
 		get extension() { return this.mExtension; }
-		set extension(pValue) { this.mExtension = pValue; }
+		set extension(pValue) { 
+			if (pValue.length > 0)
+				if (pValue.charAt(0) === ".")
+					if (pValue.length > 1)
+						pValue = pValue.substr(1);
+					else
+						pValue = "";
+			this.mExtension = pValue; 
+		}
 
 		get baseName() { return this.mBaseName; }
 		set baseName(pValue) { this.mBaseName = pValue; }
@@ -226,25 +279,23 @@
 	}
 
 	class imageMagick {
-		get executablesPath() { return this.mPath; }
-		set executablesPath(value) { this.mPath = value; }
+		get path() { return this.mPath; }
+		set path(value) { this.mPath = value; }
 
-		get convertPath() { return path.join(this.executablesPath, "convert"); }
-
-		constructor(pExecutablesPath) {
-			this.executablesPath = pExecutablesPath;
+		constructor(pPath) {
+			this.path = pPath;
 		}
 		
 		extract(pSourcePath, pSourceIndex, pDestinationPath) {
-			this.convert([pSourcePath, `[${pSourceIndex}]`, pDestinationPath]);
+			this.run(["convert", pSourcePath, `[${pSourceIndex}]`, pDestinationPath]);
 		}
 
 		resize(pSourcePath, pNewWidth, pNewHeight, pDestinationPath) {
-			this.convert([pSourcePath], "-resize", `${pNewWidth}x${pNewHeight}`, pDestinationPath);
+			this.run(["convert", pSourcePath, "-resize", `${pNewWidth}x${pNewHeight}`, pDestinationPath]);
 		}
 
 		merge(pPages, pDestinationPath) {
-			let parameters = [];
+			let parameters = ["convert"];
 			for (const page of pPages) {
 				parameters.push("-page");
 				parameters.push(`+${page.xOffset}+${page.yOffset}`);
@@ -253,35 +304,29 @@
 			parameters.push("-layers");
 			parameters.push("coalesce");
 			parameters.push(pDestinationPath);
-			this.convert(parameters);
+			this.run(parameters);
 		}
 
 		combine(pSourcePaths, pDestinationPath) {
-			let parameters = [];
+			let parameters = ["convert"];
 			for (const sourcePath of pSourcePaths)
 				parameters.push(sourcePath);
 			parameters.push(pDestinationPath);
-			this.convert(parameters);
+			this.run(parameters);
 		}
 
-		convert(pParameters) {
-			this.run(this.convertPath, pParameters);
-		}
-
-		run(pCommand, pParameters) {
-			this.showCommand(pCommand, pParameters);
-			/*^^^
+		run(pParameters) {
+			//^^^this.showCommand(pParameters);
 			const childProcess = require("child_process");
-			const result = childProcess.spawnSync(pCommand, pArguments);
+			const result = childProcess.spawnSync(this.path, pParameters);
 			if (result.error)
 				throw result.error.message;
-			^^^*/
 			//^^^console.log( `stderr: ${ls.stderr.toString()}` );
 			//^^^console.log( `stdout: ${ls.stdout.toString()}` );
 		}
 
-		showCommand(pCommand, pParameters) {
-			let text = pCommand;
+		showCommand(pParameters) {
+			let text =`"${this.path}"`;
 			for (const parameter of pParameters) {
 				if (text.length > 0)
 					text += " ";
