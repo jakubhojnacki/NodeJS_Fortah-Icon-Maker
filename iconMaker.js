@@ -51,6 +51,9 @@
 		get noOfIconsProcessed() { return this.mNoOfIconsProcessed; }
 		set noOfIconsProcessed(value) { this.mNoOfIconsProcessed = value; }
 
+		get diagnosticMode() { return this.mDiagnosticMode; }
+		set diagnosticMode(value) { this.mDiagnosticMode = value; }
+
 		constructor(pTemplatesFolderPath, pSymbolsFolderPath, pIconsFolderPath, pTemporaryFolderPath, pSettingsPath) {
 			this.templatesFolderPath = pTemplatesFolderPath;
 			this.symbolsFolderPath = pSymbolsFolderPath;
@@ -60,6 +63,7 @@
 			this.settings = null;
 			this.imageManipulator = null;
 			this.noOfIconsProcessed = 0;
+			this.diagnosticMode = true;
 		}
 
 		run() {
@@ -131,7 +135,7 @@
 			const imageManipulatorType = this.settings.imageManipulator.type.trim().toLowerCase();
 			switch (imageManipulatorType) {
 				case "imagemagick": 
-					this.imageManipulator = new imageMagick(this.settings.imageManipulator.path);
+					this.imageManipulator = new imageMagick(this.settings.imageManipulator.path, this.diagnosticMode);
 					break;
 				default:
 					throw `Unknown image manipulator type: ${this.settings.imageManipulator.type}`;
@@ -163,6 +167,7 @@
 				mergedFileInfos.push(mergedFileInfo);
 			}
 			this.combine(mergedFileInfos, pSymbolFileInfo);
+			this.noOfIconsProcessed++;
 		}
 
 		extract(pSymbolFileInfo, pPage) {
@@ -282,12 +287,16 @@
 		get path() { return this.mPath; }
 		set path(value) { this.mPath = value; }
 
-		constructor(pPath) {
+		get diagnosticMode() { return this.mDiagnosticMode; }
+		set diagnosticMode(value) { this.mDiagnosticMode = value; }
+
+		constructor(pPath, pDiagnosticMode) {
 			this.path = pPath;
+			this.diagnosticMode = pDiagnosticMode;
 		}
 		
 		extract(pSourcePath, pSourceIndex, pDestinationPath) {
-			this.run(["convert", pSourcePath, `[${pSourceIndex}]`, pDestinationPath]);
+			this.run(["convert", `${pSourcePath}[${pSourceIndex}]`, pDestinationPath]);
 		}
 
 		resize(pSourcePath, pNewWidth, pNewHeight, pDestinationPath) {
@@ -303,6 +312,8 @@
 			}
 			parameters.push("-layers");
 			parameters.push("coalesce");
+			parameters.push("-delete");
+			parameters.push("0--2");
 			parameters.push(pDestinationPath);
 			this.run(parameters);
 		}
@@ -316,13 +327,12 @@
 		}
 
 		run(pParameters) {
-			//^^^this.showCommand(pParameters);
+			if (this.diagnosticMode)
+				this.showCommand(pParameters);
 			const childProcess = require("child_process");
 			const result = childProcess.spawnSync(this.path, pParameters);
 			if (result.error)
 				throw result.error.message;
-			//^^^console.log( `stderr: ${ls.stderr.toString()}` );
-			//^^^console.log( `stdout: ${ls.stdout.toString()}` );
 		}
 
 		showCommand(pParameters) {
