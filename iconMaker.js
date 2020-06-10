@@ -63,7 +63,7 @@
 			this.settings = null;
 			this.imageManipulator = null;
 			this.noOfIconsProcessed = 0;
-			this.diagnosticMode = true;
+			this.diagnosticMode = false;
 		}
 
 		run() {
@@ -157,17 +157,24 @@
 			return extension === ".ico";
 		}
 
+		symbolHasBeenProcessed(pSymbolFileInfo) {
+			const iconFileInfo = fileInfo.fromFolderPathAndFileName(this.iconsFolderPath, pSymbolFileInfo.name);
+			return fileSystem.existsSync(iconFileInfo.path);
+		}
+
 		processSymbol(pSymbolFileInfo) {
 			console.log(`${pSymbolFileInfo.name}`);
-			let mergedFileInfos = [];
-			for (const page of this.settings.pages) {
-				const pageFileInfo = this.extract(pSymbolFileInfo, page);
-				const resizedFileInfo = this.resize(pageFileInfo, page);
-				const mergedFileInfo = this.merge(resizedFileInfo, page);
-				mergedFileInfos.push(mergedFileInfo);
-			}
-			this.combine(mergedFileInfos, pSymbolFileInfo);
-			this.noOfIconsProcessed++;
+			if (!this.symbolHasBeenProcessed(pSymbolFileInfo)) {
+				let mergedFileInfos = [];
+				for (const page of this.settings.pages) {
+					const pageFileInfo = this.extract(pSymbolFileInfo, page);
+					const resizedFileInfo = this.resize(pageFileInfo, page);
+					const mergedFileInfo = this.merge(resizedFileInfo, page);
+					mergedFileInfos.push(mergedFileInfo);
+				}
+				this.combine(mergedFileInfos, pSymbolFileInfo);
+				this.noOfIconsProcessed++;
+			}	
 		}
 
 		extract(pSymbolFileInfo, pPage) {
