@@ -21,9 +21,9 @@
 		static get info() { 
 			return {
 				name: "Icon Maker",
-				version: "2.0.0.0",
+				version: "2.1.0.0",
 				publisher: "JHJ (R)",
-				date: "June 2020" 
+				date: "November 2020" 
 			}; 
 		}
 
@@ -116,8 +116,6 @@
 					throw `Page ${pageIndex} template is empty in settings`;
 				if (!page.template.background)
 					throw `Page ${pageIndex} template background is empty in settings`;
-				if (!page.template.foreground)
-					throw `Page ${pageIndex} template foreground is empty in settings`;
 				if (!page.symbol)
 					throw `Page ${pageIndex} symbol is empty in settings`;
 				if (!page.symbol.extension)
@@ -163,7 +161,8 @@
 		}
 
 		processSymbol(pSymbolFileInfo) {
-			console.log(`${pSymbolFileInfo.name}`);
+			console.log(`"${pSymbolFileInfo.name}"...`);
+			let processed = false;
 			if (!this.symbolHasBeenProcessed(pSymbolFileInfo)) {
 				let mergedFileInfos = [];
 				for (const page of this.settings.pages) {
@@ -174,7 +173,10 @@
 				}
 				this.combine(mergedFileInfos, pSymbolFileInfo);
 				this.noOfIconsProcessed++;
-			}	
+				processed = true;
+			}
+			const processedText = processed ? "created" : "already present";
+			console.log(`    ${processedText}`);
 		}
 
 		extract(pSymbolFileInfo, pPage) {
@@ -197,14 +199,16 @@
 
 		merge(pResizedFileInfo, pPage) {
 			const backgroundFileInfo = fileInfo.fromFolderPathAndFileName(this.templatesFolderPath, pPage.template.background);
-			const foregroundFileInfo = fileInfo.fromFolderPathAndFileName(this.templatesFolderPath, pPage.template.foreground);
 			const mergedFileName = `${pResizedFileInfo.baseName}M.${pResizedFileInfo.extension}`;
 			const mergedFileInfo = fileInfo.fromFolderPathAndFileName(this.temporaryFolderPath, mergedFileName);
 			const imagePages = [
 				new imagePage(backgroundFileInfo, 0, 0),
-				new imagePage(pResizedFileInfo, pPage.symbol.xOffset, pPage.symbol.yOffset),
-				new imagePage(foregroundFileInfo, 0, 0)
+				new imagePage(pResizedFileInfo, pPage.symbol.xOffset, pPage.symbol.yOffset)				
 			];
+			if (pPage.template.foreground) {
+				const foregroundFileInfo = fileInfo.fromFolderPathAndFileName(this.templatesFolderPath, pPage.template.foreground);
+				imagePages.push(new imagePage(foregroundFileInfo, 0, 0));
+			}
 			if (fileSystem.existsSync(mergedFileInfo.path))
 				fileSystem.unlinkSync(mergedFileInfo.path);
 			this.imageManipulator.merge(imagePages, mergedFileInfo.path);
