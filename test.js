@@ -1,5 +1,5 @@
 (function () {
-	const subfolder = "Folders";
+	const subfolder = "Stop";
 	const templatesFolderPath = `./${subfolder}/Templates`;
 	const symbolsFolderPath = `./${subfolder}/Symbols`;
 	const iconsFolderPath = `./${subfolder}/Icons`;

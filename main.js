@@ -21,9 +21,9 @@
 		static get info() { 
 			return {
 				name: "Icon Maker",
-				version: "2.1.0.0",
+				version: "2.2.0.0",
 				publisher: "JHJ (R)",
-				date: "November 2020" 
+				date: "December 2020" 
 			}; 
 		}
 
@@ -114,18 +114,12 @@
 					throw `Page ${pageIndex} name is empty in settings`;
 				if (!page.template)
 					throw `Page ${pageIndex} template is empty in settings`;
-				if (!page.template.background)
-					throw `Page ${pageIndex} template background is empty in settings`;
+				if ((!page.template.foreground) && (!page.template.background))
+					throw `Page ${pageIndex} template foreground and background are both empty in settings`;
 				if (!page.symbol)
 					throw `Page ${pageIndex} symbol is empty in settings`;
 				if (!page.symbol.extension)
 					throw `Page ${pageIndex} symbol extension is empty in settings`;
-				if (!page.symbol.resizeTo)
-					throw `Page ${pageIndex} symbol resize to is empty in settings`;
-				if (!page.symbol.xOffset)
-					throw `Page ${pageIndex} symbol x offset is empty in settings`;
-				if (!page.symbol.yOffset)
-					throw `Page ${pageIndex} symbol y offset is empty in settings`;
 			}
 		}
 
@@ -192,19 +186,23 @@
 			const resizedFileName = `${pPageFileInfo.baseName}R.${pPageFileInfo.extension}`;
 			const resizedFileInfo = fileInfo.fromFolderPathAndFileName(this.temporaryFolderPath, resizedFileName);
 			if (fileSystem.existsSync(resizedFileInfo.path))
-				fileSystem.unlinkSync(resizedFileInfo.path);
-			this.imageManipulator.resize(pPageFileInfo.path, pPage.symbol.resizeTo, pPage.symbol.resizeTo, resizedFileInfo.path);
+                fileSystem.unlinkSync(resizedFileInfo.path);
+            if (pPage.symbol.resizeTo)
+                this.imageManipulator.resize(pPageFileInfo.path, pPage.symbol.resizeTo, pPage.symbol.resizeTo, resizedFileInfo.path);
+            else
+                fileSystem.renameSync(pPageFileInfo.path, resizedFileInfo.path);
 			return resizedFileInfo;
 		}
 
 		merge(pResizedFileInfo, pPage) {
-			const backgroundFileInfo = fileInfo.fromFolderPathAndFileName(this.templatesFolderPath, pPage.template.background);
 			const mergedFileName = `${pResizedFileInfo.baseName}M.${pResizedFileInfo.extension}`;
 			const mergedFileInfo = fileInfo.fromFolderPathAndFileName(this.temporaryFolderPath, mergedFileName);
-			const imagePages = [
-				new imagePage(backgroundFileInfo, 0, 0),
-				new imagePage(pResizedFileInfo, pPage.symbol.xOffset, pPage.symbol.yOffset)				
-			];
+            const imagePages = [];
+            if (pPage.template.background) {
+                const backgroundFileInfo = fileInfo.fromFolderPathAndFileName(this.templatesFolderPath, pPage.template.background);
+                imagePages.push(new imagePage(backgroundFileInfo, 0, 0));
+            }
+			imagePages.push(new imagePage(pResizedFileInfo, pPage.symbol.xOffset, pPage.symbol.yOffset));	
 			if (pPage.template.foreground) {
 				const foregroundFileInfo = fileInfo.fromFolderPathAndFileName(this.templatesFolderPath, pPage.template.foreground);
 				imagePages.push(new imagePage(foregroundFileInfo, 0, 0));
