@@ -1,11 +1,11 @@
 @echo off
 
-set subfolder=Files
-set templatesFolderPath=.\%subfolder%\Templates
-set symbolsFolderPath=.\%subfolder%\Symbols
-set iconsFolderPath=.\%subfolder%\Icons
-set temporaryFolderPath=.\Temp
-set settingsPath=.\%subfolder%\settings.json
+set subfolder=Folders
+set templatesFolderPath=.\res\%subfolder%\Templates
+set symbolsFolderPath=.\res\%subfolder%\Symbols
+set iconsFolderPath=.\res\%subfolder%\Icons
+set temporaryFolderPath=.\res\Temp
+set settingsPath=.\res\%subfolder%\settings.json
 
 node "./main.js" "%templatesFolderPath%" "%symbolsFolderPath%" "%iconsFolderPath%" "%temporaryFolderPath%" "%settingsPath%"
 
