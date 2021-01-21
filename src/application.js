@@ -1,4 +1,6 @@
 const fs = require("fs");
+const path = require("path");
+const FileInfo = require("./fileInfo");
 const ImageMagick = require("./imageMagick");
 const ImagePage = require("./imagePage");
 const { Terminal, TerminalLine, TerminalLabel, TerminalField } = require("./terminal");
@@ -7,9 +9,9 @@ class Application {
 	static get info() { 
 		return {
 			name: "Icon Maker",
-			version: "2.2.0.0",
+			version: "3.0.0.0",
 			publisher: "JHJ (R)",
-			date: "December 2020" 
+			date: "January 2021" 
 		}; 
 	}
 
@@ -37,7 +39,7 @@ class Application {
 		this.mSettingsPath = pSettingsPath;
 		this.mSettings = null;
 		this.mImageManipulator = null;
-		this.mTerminal = new Terminal();
+		this.mTerminal = new Terminal(null, 25);
 		this.mIconsCreatedField = null;
 		this.mIconsOmittedField = null;
 		this.mDiagnosticMode = false;
@@ -65,9 +67,9 @@ class Application {
         this.terminal.addControl(new TerminalField("Temporary Folder Path", this.temporaryFolderPath));
         this.terminal.addControl(new TerminalField("Settings Path", this.settingsPath));
         this.terminal.addControl(new TerminalLine());
-        this.iconField = this.terminal.addControl(new TerminalField("Folder", ""));
         this.iconsCreatedField = this.terminal.addControl(new TerminalField("Icons Created", 0));
-        this.iconsOmittedField = this.terminal.addControl(new TerminalField("Icons Created", 0));
+        this.iconsOmittedField = this.terminal.addControl(new TerminalField("Icons Omitted", 0));
+        this.iconField = this.terminal.addControl(new TerminalField("Icon", ""));
         this.terminal.addControl(new TerminalLine());
         
         this.terminal.draw();
@@ -131,7 +133,7 @@ class Application {
 		for (const folderEntry of folderEntries)
 			if (folderEntry.isFile())
 				if (this.fileIsASymbol(folderEntry.name)) {
-					const symbolFileInfo = fileInfo.fromFolderPathAndFileName(this.symbolsFolderPath, folderEntry.name);
+					const symbolFileInfo = FileInfo.fromFolderPathAndFileName(this.symbolsFolderPath, folderEntry.name);
 					this.processSymbol(symbolFileInfo); 
 				}
 	}
@@ -142,7 +144,7 @@ class Application {
 	}
 
 	symbolHasBeenProcessed(pSymbolFileInfo) {
-		const iconFileInfo = fileInfo.fromFolderPathAndFileName(this.iconsFolderPath, pSymbolFileInfo.name);
+		const iconFileInfo = FileInfo.fromFolderPathAndFileName(this.iconsFolderPath, pSymbolFileInfo.name);
 		return fs.existsSync(iconFileInfo.path);
 	}
 
@@ -169,40 +171,40 @@ class Application {
 
 	extract(pSymbolFileInfo, pPage) {
 		const pageFileName = `Page${pPage.index}.${pPage.symbol.extension}`;
-		const pageFileInfo = fileInfo.fromFolderPathAndFileName(this.temporaryFolderPath, pageFileName);
+		const pageFileInfo = FileInfo.fromFolderPathAndFileName(this.temporaryFolderPath, pageFileName);
 		if (fs.existsSync(pageFileInfo.path))
-			fileSystem.unlinkSync(pageFileInfo.path);
+			fs.unlinkSync(pageFileInfo.path);
 		this.imageManipulator.extract(pSymbolFileInfo.path, pPage.index, pageFileInfo.path);
 		return pageFileInfo;
 	}
 
 	resize(pPageFileInfo, pPage) {
 		const resizedFileName = `${pPageFileInfo.baseName}R.${pPageFileInfo.extension}`;
-		const resizedFileInfo = fileInfo.fromFolderPathAndFileName(this.temporaryFolderPath, resizedFileName);
-		if (fileSystem.existsSync(resizedFileInfo.path))
-			fileSystem.unlinkSync(resizedFileInfo.path);
+		const resizedFileInfo = FileInfo.fromFolderPathAndFileName(this.temporaryFolderPath, resizedFileName);
+		if (fs.existsSync(resizedFileInfo.path))
+			fs.unlinkSync(resizedFileInfo.path);
 		if (pPage.symbol.resizeTo)
 			this.imageManipulator.resize(pPageFileInfo.path, pPage.symbol.resizeTo, pPage.symbol.resizeTo, resizedFileInfo.path);
 		else
-			fileSystem.renameSync(pPageFileInfo.path, resizedFileInfo.path);
+			fs.renameSync(pPageFileInfo.path, resizedFileInfo.path);
 		return resizedFileInfo;
 	}
 
 	merge(pResizedFileInfo, pPage) {
 		const mergedFileName = `${pResizedFileInfo.baseName}M.${pResizedFileInfo.extension}`;
-		const mergedFileInfo = fileInfo.fromFolderPathAndFileName(this.temporaryFolderPath, mergedFileName);
+		const mergedFileInfo = FileInfo.fromFolderPathAndFileName(this.temporaryFolderPath, mergedFileName);
 		const imagePages = [];
 		if (pPage.template.background) {
-			const backgroundFileInfo = fileInfo.fromFolderPathAndFileName(this.templatesFolderPath, pPage.template.background);
+			const backgroundFileInfo = FileInfo.fromFolderPathAndFileName(this.templatesFolderPath, pPage.template.background);
 			imagePages.push(new ImagePage(backgroundFileInfo, 0, 0));
 		}
 		imagePages.push(new ImagePage(pResizedFileInfo, pPage.symbol.xOffset, pPage.symbol.yOffset));	
 		if (pPage.template.foreground) {
-			const foregroundFileInfo = fileInfo.fromFolderPathAndFileName(this.templatesFolderPath, pPage.template.foreground);
+			const foregroundFileInfo = FileInfo.fromFolderPathAndFileName(this.templatesFolderPath, pPage.template.foreground);
 			imagePages.push(new ImagePage(foregroundFileInfo, 0, 0));
 		}
-		if (fileSystem.existsSync(mergedFileInfo.path))
-			fileSystem.unlinkSync(mergedFileInfo.path);
+		if (fs.existsSync(mergedFileInfo.path))
+			fs.unlinkSync(mergedFileInfo.path);
 		this.imageManipulator.merge(imagePages, mergedFileInfo.path);
 		return mergedFileInfo;
 	}
@@ -211,13 +213,14 @@ class Application {
 		let mergedFilePaths = [];
 		for (const mergedFileInfo of pMergedFileInfos)
 			mergedFilePaths.push(mergedFileInfo.path);
-		const iconFileInfo = fileInfo.fromFolderPathAndFileName(this.iconsFolderPath, pSymbolFileInfo.name);
-		if (fileSystem.existsSync(iconFileInfo.path))
-			fileSystem.unlinkSync(iconFileInfo.path);
+		const iconFileInfo = FileInfo.fromFolderPathAndFileName(this.iconsFolderPath, pSymbolFileInfo.name);
+		if (fs.existsSync(iconFileInfo.path))
+			fs.unlinkSync(iconFileInfo.path);
 		this.imageManipulator.combine(mergedFilePaths, iconFileInfo.path);
 	}
 
 	finalise() {
+		this.iconField.update("");
 		this.terminal.drawText("Completed.");
 	}		
 }

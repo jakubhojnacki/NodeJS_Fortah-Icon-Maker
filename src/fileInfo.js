@@ -1,3 +1,5 @@
+const path = require("path");
+
 class FileInfo {
 	get path() { return this.mPath; }
 	set path(pValue) { 
@@ -34,13 +36,13 @@ class FileInfo {
 	}
 
 	static fromPath(pPath) {
-		let newFileInfo = new fileInfo();
+		let newFileInfo = new FileInfo();
 		newFileInfo.path = pPath;
 		return newFileInfo;
 	}
 
 	static fromFolderPathAndFileName(pFolderPath, pFileName) {
-		return fileInfo.fromPath(path.join(pFolderPath, pFileName));
+		return FileInfo.fromPath(path.join(pFolderPath, pFileName));
 	}
 }
 

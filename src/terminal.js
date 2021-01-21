@@ -66,10 +66,9 @@ class Terminal {
 
     flush(pFlush, pNewLine) {
         if ((pFlush != null ? pFlush : true) && (this.buffer)) {
-            if (pNewLine) {
+            if (pNewLine)
                 console.log(this.buffer);
-                this.currentRow++;
-            } else
+            else
                 process.stdout.write(this.buffer);
             this.buffer = "";
         }
