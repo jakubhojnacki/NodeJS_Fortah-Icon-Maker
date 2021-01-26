@@ -1,7 +1,8 @@
 const fs = require("fs");
 const path = require("path");
 const FileInfo = require("./fileInfo");
-const ImageMagick = require("./imageMagick");
+const GraphicsMagick = require("./imageMagick");
+const ImageMagickShell = require("./imageMagickShell");
 const ImagePage = require("./imagePage");
 const { Terminal, TerminalLine, TerminalLabel, TerminalField } = require("./terminal");
 
@@ -120,8 +121,11 @@ class Application {
 	createImageManipulator() {
 		const imageManipulatorType = this.settings.imageManipulator.type.trim().toLowerCase();
 		switch (imageManipulatorType) {
-			case "imagemagick": 
-				this.imageManipulator = new ImageMagick(this.settings.imageManipulator.path, this.diagnosticMode);
+			case "imagemagicks":
+				this.imageManipulator = new ImageMagick();
+				break;
+			case "imagemagickshell": 
+				this.imageManipulator = new ImageMagickShell(this.settings.imageManipulator.path, this.diagnosticMode);
 				break;
 			default:
 				throw `Unknown image manipulator type: ${this.settings.imageManipulator.type}`;
