@@ -1,16 +1,17 @@
 const fs = require("fs");
 const path = require("path");
 const FileInfo = require("./fileInfo");
-const GraphicsMagick = require("./imageMagick");
+const ImageMagick = require("./imageMagick");
 const ImageMagickShell = require("./imageMagickShell");
 const ImagePage = require("./imagePage");
+const SystemToolkit = require("./systemToolkit");
 const { Terminal, TerminalLine, TerminalLabel, TerminalField } = require("./terminal");
 
 class Application {
 	static get info() { 
 		return {
 			name: "Icon Maker",
-			version: "3.0.0.0",
+			version: "3.1.0.0",
 			publisher: "JHJ (R)",
 			date: "January 2021" 
 		}; 
@@ -20,9 +21,12 @@ class Application {
 	get symbolsFolderPath() { return this.mSymbolsFolderPath; }
 	get iconsFolderPath() { return this.mIconsFolderPath; }
 	get temporaryFolderPath() { return this.mTemporaryFolderPath; }
-	get settingsPath() { return this.mSettingsPath; }
-	get settings() { return this.mSettings; }
-	set settings(value) { this.mSettings = value; }
+	get globalSettingsPath() { return this.mGlobalSettingsPath; }
+	get globalSettings() { return this.mGlobalSettings; }
+	set globalSettings(value) { this.mGlobalSettings = value; }
+	get localSettingsPath() { return this.mLocalSettingsPath; }
+	get localSettings() { return this.mLocalSettings; }
+	set localSettings(pValue) { this.mLocalSettings = pValue; }
 	get imageManipulator() { return this.mImageManipulator; }
 	set imageManipulator(value) { this.mImageManipulator = value; }
 	get terminal() { return this.mTerminal; }
@@ -30,30 +34,38 @@ class Application {
 	set iconsCreatedField(pValue) { this.mIconsCreatedField = pValue; }
 	get iconsOmittedField() { return this.mIconsOmittedField; }
 	set iconsOmittedField(pValue) { this.mIconsOmittedField = pValue; }
+	get operatingSystem() { return this.mOperatingSystem; }
 	get diagnosticMode() { return this.mDiagnosticMode; }
 
-	constructor(pTemplatesFolderPath, pSymbolsFolderPath, pIconsFolderPath, pTemporaryFolderPath, pSettingsPath) {
+	constructor(pTemplatesFolderPath, pSymbolsFolderPath, pIconsFolderPath, pTemporaryFolderPath, pGlobalSettingsPath, pLocalSettingsPath) {
 		this.mTemplatesFolderPath = pTemplatesFolderPath;
 		this.mSymbolsFolderPath = pSymbolsFolderPath;
 		this.mIconsFolderPath = pIconsFolderPath;
 		this.mTemporaryFolderPath = pTemporaryFolderPath;
-		this.mSettingsPath = pSettingsPath;
-		this.mSettings = null;
+		this.mGlobalSettingsPath = pGlobalSettingsPath;
+		this.mGlobalSettings = null;
+		this.mLocalSettingsPath = pLocalSettingsPath;
+		this.mLocalSettings = null;
 		this.mImageManipulator = null;
 		this.mTerminal = new Terminal(null, 25);
 		this.mIconsCreatedField = null;
 		this.mIconsOmittedField = null;
+		this.mOperatingSystem = SystemToolkit.getOperatingSystem();
 		this.mDiagnosticMode = false;
 	}
 
-	run() {
-		this.initialise();
-		this.check();
-		this.readSettings();
-		this.checkSettings();
-		this.createImageManipulator();
-		this.processSymbols();
-		this.finalise();
+	async run() {
+		try {
+			this.initialise();
+			this.check();
+			this.readAndCheckGlobalSettings();
+			this.readAndCheckLocalSettings();
+			this.createImageManipulator();
+			await this.processSymbols();
+			this.finalise();
+		} catch (error) {
+			console.error(`ERROR!!! ${error}`);
+		}
 	}
 
 	initialise() {
@@ -66,7 +78,8 @@ class Application {
         this.terminal.addControl(new TerminalField("Symbols Folder Path", this.symbolsFolderPath));
         this.terminal.addControl(new TerminalField("Icons Folder Path", this.iconsFolderPath));
         this.terminal.addControl(new TerminalField("Temporary Folder Path", this.temporaryFolderPath));
-        this.terminal.addControl(new TerminalField("Settings Path", this.settingsPath));
+        this.terminal.addControl(new TerminalField("Global Settings Path", this.globalSettingsPath));
+        this.terminal.addControl(new TerminalField("Local Settings Path", this.localSettingsPath));
         this.terminal.addControl(new TerminalLine());
         this.iconsCreatedField = this.terminal.addControl(new TerminalField("Icons Created", 0));
         this.iconsOmittedField = this.terminal.addControl(new TerminalField("Icons Omitted", 0));
@@ -85,26 +98,34 @@ class Application {
 			throw "Empty icons folder path";
 		if (!this.temporaryFolderPath)
 			throw "Empty temporary folder path";
-		if (!this.settingsPath)
-			throw "Empty settings path";
+		if (!this.globalSettingsPath)
+			throw "Empty global settings path";
+		if (!this.localSettingsPath)
+			throw "Empty local settings path";
 	}
 
-	readSettings() {
-		const settingsData = fs.readFileSync(this.settingsPath);
-		this.settings = JSON.parse(settingsData);
+	readAndCheckGlobalSettings() {
+		const globalSettingsData = fs.readFileSync(this.globalSettingsPath);
+		this.globalSettings = JSON.parse(globalSettingsData);
+		this.checkGlobalSettings();
 	}
 
-	checkSettings() {
-		if (!this.settings.imageManipulator)
-			throw "Image manipulator settings are empty";
-		if (!this.settings.imageManipulator.type)
-			throw "Image manipulator type is empty in settings";
-		if (!this.settings.imageManipulator.path)
-			throw "Image manipulator path is empty in settings";
-		if (!this.settings.pages)
+	checkGlobalSettings() {
+		if (!this.globalSettings.imageManipulatorType)
+			throw "Image manipulator type is empty";
+	}
+
+	readAndCheckLocalSettings() {
+		const localSettingsData = fs.readFileSync(this.localSettingsPath);
+		this.localSettings = JSON.parse(localSettingsData);
+		this.checkLocalSettings();
+	}
+
+	checkLocalSettings() {
+		if (!this.localSettings.pages)
 			throw "Pages settings are empty";
 		let pageIndex = 0;
-		for (const page of this.settings.pages) {
+		for (const page of this.localSettings.pages) {
 			if (!page.name)
 				throw `Page ${pageIndex} name is empty in settings`;
 			if (!page.template)
@@ -119,26 +140,47 @@ class Application {
 	}
 
 	createImageManipulator() {
-		const imageManipulatorType = this.settings.imageManipulator.type.trim().toLowerCase();
+		const imageManipulatorType = this.globalSettings.imageManipulatorType.trim().toLowerCase();
 		switch (imageManipulatorType) {
-			case "imagemagicks":
-				this.imageManipulator = new ImageMagick();
+			case "imagemagick":
+				this.imageManipulator = this.createImageMagick(imageManipulatorType);
 				break;
-			case "imagemagickshell": 
-				this.imageManipulator = new ImageMagickShell(this.settings.imageManipulator.path, this.diagnosticMode);
+			case "imagemagickshell":
+				this.imageManipulator = this.createImageMagickShell(imageManipulatorType);
 				break;
 			default:
-				throw `Unknown image manipulator type: ${this.settings.imageManipulator.type}`;
+				throw `Unknown image manipulator type: ${imageManipulatorType}`;
 		}
 	}
 
-	processSymbols() {
+	createImageMagick(pImageManipulatorType) {
+		return new ImageMagick();
+	}
+
+	createImageMagickShell(pImageManipulatorType) {
+		if (!this.globalSettings.imageManipulators)
+			throw "Image manipulators settigns are empty";
+		const settings = this.globalSettings.imageManipulators.find(element => element.type.trim().toLowerCase() === pImageManipulatorType);
+		if (!settings)
+			throw `Image manipulator "${pImageManipulatorType}" settigns are empty`;
+		if (!settings.paths)
+			throw `Image manipulator "${pImageManipulatorType}" settigns paths are empty`;
+		const pathSettings = settings.paths.find(element => element.operatingSystem.trim().toLowerCase() === this.operatingSystem);
+		if (!pathSettings)
+			throw `Image manipulator "${pImageManipulatorType}" paths for "${this.operatingSystem}" are empty`;
+		const path = pathSettings.path;
+		if (!path)
+			throw `Image manipulator "${pImageManipulatorType}" path for "${this.operatingSystem}" is empty`;
+		return new ImageMagickShell(path, this.diagnosticMode);
+	}
+
+	async processSymbols() {
 		const folderEntries = fs.readdirSync(this.symbolsFolderPath, { withFileTypes: true });
 		for (const folderEntry of folderEntries)
 			if (folderEntry.isFile())
 				if (this.fileIsASymbol(folderEntry.name)) {
 					const symbolFileInfo = FileInfo.fromFolderPathAndFileName(this.symbolsFolderPath, folderEntry.name);
-					this.processSymbol(symbolFileInfo); 
+					await this.processSymbol(symbolFileInfo); 
 				}
 	}
 
@@ -147,20 +189,15 @@ class Application {
 		return extension === ".ico";
 	}
 
-	symbolHasBeenProcessed(pSymbolFileInfo) {
-		const iconFileInfo = FileInfo.fromFolderPathAndFileName(this.iconsFolderPath, pSymbolFileInfo.name);
-		return fs.existsSync(iconFileInfo.path);
-	}
-
-	processSymbol(pSymbolFileInfo) {
+	async processSymbol(pSymbolFileInfo) {
 		this.iconField.update(pSymbolFileInfo.name);
 		let created = false;
 		if (!this.symbolHasBeenProcessed(pSymbolFileInfo)) {
 			let mergedFileInfos = [];
-			for (const page of this.settings.pages) {
-				const pageFileInfo = this.extract(pSymbolFileInfo, page);
-				const resizedFileInfo = this.resize(pageFileInfo, page);
-				const mergedFileInfo = this.merge(resizedFileInfo, page);
+			for (const page of this.localSettings.pages) {
+				const pageFileInfo = await this.extract(pSymbolFileInfo, page);
+				const resizedFileInfo = await this.resize(pageFileInfo, page);
+				const mergedFileInfo = await this.merge(resizedFileInfo, page);
 				mergedFileInfos.push(mergedFileInfo);
 			}
 			this.combine(mergedFileInfos, pSymbolFileInfo);
@@ -173,28 +210,33 @@ class Application {
 			this.iconsOmittedField.update(this.iconsOmittedField.value + 1);
 	}
 
-	extract(pSymbolFileInfo, pPage) {
+	symbolHasBeenProcessed(pSymbolFileInfo) {
+		const iconFileInfo = FileInfo.fromFolderPathAndFileName(this.iconsFolderPath, pSymbolFileInfo.name);
+		return fs.existsSync(iconFileInfo.path);
+	}
+
+	async extract(pSymbolFileInfo, pPage) {
 		const pageFileName = `Page${pPage.index}.${pPage.symbol.extension}`;
 		const pageFileInfo = FileInfo.fromFolderPathAndFileName(this.temporaryFolderPath, pageFileName);
 		if (fs.existsSync(pageFileInfo.path))
 			fs.unlinkSync(pageFileInfo.path);
-		this.imageManipulator.extract(pSymbolFileInfo.path, pPage.index, pageFileInfo.path);
+		await this.imageManipulator.extract(pSymbolFileInfo.path, pPage.index, pageFileInfo.path);
 		return pageFileInfo;
 	}
 
-	resize(pPageFileInfo, pPage) {
+	async resize(pPageFileInfo, pPage) {
 		const resizedFileName = `${pPageFileInfo.baseName}R.${pPageFileInfo.extension}`;
 		const resizedFileInfo = FileInfo.fromFolderPathAndFileName(this.temporaryFolderPath, resizedFileName);
 		if (fs.existsSync(resizedFileInfo.path))
 			fs.unlinkSync(resizedFileInfo.path);
 		if (pPage.symbol.resizeTo)
-			this.imageManipulator.resize(pPageFileInfo.path, pPage.symbol.resizeTo, pPage.symbol.resizeTo, resizedFileInfo.path);
+			await this.imageManipulator.resize(pPageFileInfo.path, pPage.symbol.resizeTo, pPage.symbol.resizeTo, resizedFileInfo.path);
 		else
 			fs.renameSync(pPageFileInfo.path, resizedFileInfo.path);
 		return resizedFileInfo;
 	}
 
-	merge(pResizedFileInfo, pPage) {
+	async merge(pResizedFileInfo, pPage) {
 		const mergedFileName = `${pResizedFileInfo.baseName}M.${pResizedFileInfo.extension}`;
 		const mergedFileInfo = FileInfo.fromFolderPathAndFileName(this.temporaryFolderPath, mergedFileName);
 		const imagePages = [];
@@ -209,18 +251,18 @@ class Application {
 		}
 		if (fs.existsSync(mergedFileInfo.path))
 			fs.unlinkSync(mergedFileInfo.path);
-		this.imageManipulator.merge(imagePages, mergedFileInfo.path);
+		await this.imageManipulator.merge(imagePages, mergedFileInfo.path);
 		return mergedFileInfo;
 	}
 
-	combine(pMergedFileInfos, pSymbolFileInfo) {
+	async combine(pMergedFileInfos, pSymbolFileInfo) {
 		let mergedFilePaths = [];
 		for (const mergedFileInfo of pMergedFileInfos)
 			mergedFilePaths.push(mergedFileInfo.path);
 		const iconFileInfo = FileInfo.fromFolderPathAndFileName(this.iconsFolderPath, pSymbolFileInfo.name);
 		if (fs.existsSync(iconFileInfo.path))
 			fs.unlinkSync(iconFileInfo.path);
-		this.imageManipulator.combine(mergedFilePaths, iconFileInfo.path);
+		await this.imageManipulator.combine(mergedFilePaths, iconFileInfo.path);
 	}
 
 	finalise() {

@@ -1,18 +1,18 @@
-const imagemagick = include("imagemagick");
+const imagemagick = require("imagemagick");
 
 class ImageMagick {
     constructor() {
     }
 
-	extract(pSourcePath, pSourceIndex, pDestinationPath) {
-		imagemagick.convert([`${pSourcePath}[${pSourceIndex}]`, pDestinationPath]);
+	async extract(pSourcePath, pSourceIndex, pDestinationPath) {
+		await this.convert([`${pSourcePath}[${pSourceIndex}]`, pDestinationPath]);
 	}
 
-	resize(pSourcePath, pNewWidth, pNewHeight, pDestinationPath) {
-		imagemagick.convert([pSourcePath, "-resize", `${pNewWidth}x${pNewHeight}`, pDestinationPath]);
+	async resize(pSourcePath, pNewWidth, pNewHeight, pDestinationPath) {
+		await this.convert([pSourcePath, "-resize", `${pNewWidth}x${pNewHeight}`, pDestinationPath]);
 	}
 
-	merge(pPages, pDestinationPath) {
+	async merge(pPages, pDestinationPath) {
 		let parameters = [];
 		for (const page of pPages) {
 			parameters.push("-page");
@@ -24,16 +24,26 @@ class ImageMagick {
 		parameters.push("-delete");
 		parameters.push("0--2");
 		parameters.push(pDestinationPath);
-		imagemagick.convert(parameters);
+		await this.convert(parameters);
 	}
 
-	combine(pSourcePaths, pDestinationPath) {
+	async combine(pSourcePaths, pDestinationPath) {
 		let parameters = [];
 		for (const sourcePath of pSourcePaths)
 			parameters.push(sourcePath);
 		parameters.push(pDestinationPath);
-		imagemagick.convert(parameters);
+		await this.convert(parameters);
+	}
+
+	convert(pParameters) {
+		return new Promise((resolve, reject) => {
+			imagemagick.convert(pParameters, (error, stdout) => {
+				if (error)
+					reject();
+				resolve(stdout);
+			});
+		});
 	}
 }
 
-module.exports = GraphicsMagick;
+module.exports = ImageMagick;

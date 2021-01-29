@@ -1,8 +1,4 @@
 {
-	"imageManipulator": {
-		"type": "ImageMagickShell",
-		"path": "C:\\Program Files (x86)\\ImageMagick\\magick.exe"
-	},
 	"pages": [
 		{
 			"name": "256",
