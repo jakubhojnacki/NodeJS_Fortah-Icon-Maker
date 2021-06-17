@@ -37,7 +37,7 @@ class Application {
 	get operatingSystem() { return this.mOperatingSystem; }
 	get diagnosticMode() { return this.mDiagnosticMode; }
 
-	constructor(pTemplatesFolderPath, pSymbolsFolderPath, pIconsFolderPath, pTemporaryFolderPath, pGlobalSettingsPath, pLocalSettingsPath) {
+	constructor(pTemplatesFolderPath, pSymbolsFolderPath, pIconsFolderPath, pTemporaryFolderPath, pGlobalSettingsPath, pLocalSettingsPath, pDiagnosticMode) {
 		this.mTemplatesFolderPath = pTemplatesFolderPath;
 		this.mSymbolsFolderPath = pSymbolsFolderPath;
 		this.mIconsFolderPath = pIconsFolderPath;
@@ -51,11 +51,11 @@ class Application {
 		this.mIconsCreatedField = null;
 		this.mIconsOmittedField = null;
 		this.mOperatingSystem = SystemToolkit.getOperatingSystem();
-		this.mDiagnosticMode = false;
+		this.mDiagnosticMode = pDiagnosticMode;
 	}
 
 	async run() {
-		try {
+		// try {
 			this.initialise();
 			this.check();
 			this.readAndCheckGlobalSettings();
@@ -63,9 +63,9 @@ class Application {
 			this.createImageManipulator();
 			await this.processSymbols();
 			this.finalise();
-		} catch (error) {
-			console.error(`ERROR!!! ${error}`);
-		}
+		// } catch (error) {
+		// 	console.error(`ERROR!!! ${error.message}`);
+		// }
 	}
 
 	initialise() {
