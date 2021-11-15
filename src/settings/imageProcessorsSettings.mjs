@@ -41,4 +41,10 @@ export class ImageProcessorsSettings extends Array {
             }
         return this;
     }       
+
+    get(pType) {
+        const type = String.validate(pType);
+        let result = this.find((lItem) => { return lItem.type === type; });
+        return result ? result : new ImageProcessorSettings();
+    }
 }

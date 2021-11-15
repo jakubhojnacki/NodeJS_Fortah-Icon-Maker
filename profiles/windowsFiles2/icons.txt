@@ -1,0 +1,56 @@
+Archive.ico
+a.txt
+Audio.ico
+Audio Playlist.ico
+Backup.ico
+Certificate.ico
+Command.ico
+Configuration.ico
+CPlusPlus.ico
+CSS.ico
+CSV 01.ico
+Cursor.ico
+Database.ico
+Dynamics 365 BC AL.ico
+Dynamics 365 BC Application.ico
+Dynamics Licence.ico
+Dynamics NAV Backup.ico
+Dynamics NAV Database.ico
+Dynamics NAV Licence.ico
+Dynamics NAV Package.ico
+Dynamics NAV Source.ico
+Font.ico
+Git.ico
+Help.ico
+HTML.ico
+Icon.ico
+Image.ico
+Installation.ico
+JavaScript.ico
+JSON.ico
+KeePass.ico
+Library.ico
+Link.ico
+Log.ico
+Microsoft Access.ico
+Microsoft Excel.ico
+Microsoft OneNote.ico
+Microsoft Outlook.ico
+Microsoft PowerPoint.ico
+Microsoft Visio.ico
+Microsoft Word.ico
+Microsoft Word Template.ico
+Password.ico
+PDF.ico
+PowerShell.ico
+Remote.ico
+Script.ico
+SQL.ico
+Temporary.ico
+Text.ico
+TypeScript.ico
+Video.ico
+Visio.ico
+Web Link.ico
+XML.ico
+XSLT.ico

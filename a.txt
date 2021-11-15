@@ -1,0 +1,12 @@
+a.txt
+doc
+jsconfig.json
+node_modules
+__old
+package.json
+package-lock.json
+profiles
+res
+settings.json
+src
+test

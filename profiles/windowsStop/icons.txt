@@ -1,0 +1,10 @@
+DynamicsBc1501.ico
+DynamicsBc1502.ico
+DynamicsBc1503.ico
+DynamicsBc1504.ico
+DynamicsBc1505.ico
+DynamicsNavClassic.ico
+DynamicsNav.ico
+icons.txt
+Service.ico
+SQL.ico
