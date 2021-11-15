@@ -1,26 +1,26 @@
 /**
- * @module "IconsSizesSettings" class
- * @description Class representing an array of icons sizes settings
+ * @module "ImageProcessorsSettings" class
+ * @description Class representing an array of image processors settings
  */
 
 "use strict"
 
-import { IconsSizeSettings } from "../settings/iconsSizeSettings.mjs";
+import { ImageProcessorSettings } from "../settings/imageProcessorSettings.mjs";
 
-export class IconsSizesSettings extends Array {
+export class ImageProcessorsSettings extends Array {
     constructor() {
         super();
     }
 
     static validate(pValue) {
-        if ((pValue) && (pValue instanceof IconsSizesSettings))
+        if ((pValue) && (pValue instanceof ImageProcessorsSettings))
             return pValue
         else
             return new IconsSizesSettings();
     }
 
     validate(pValidator) {
-        pValidator.setComponent(IconsSizesSettings.name);
+        pValidator.setComponent(ImageProcessorsSettings.name);
         for (const item of this)
             item.validate(pValidator);
         pValidator.restoreComponent();
@@ -36,7 +36,7 @@ export class IconsSizesSettings extends Array {
     fromData(pData) {
         if (Array.isArray(pData))
             for (const dataItem of pData) {
-                const item = ( new IconsSizeSettings()).fromData(dataItem);
+                const item = ( new ImageProcessorSettings()).fromData(dataItem);
                 this.push(item);
             }
         return this;

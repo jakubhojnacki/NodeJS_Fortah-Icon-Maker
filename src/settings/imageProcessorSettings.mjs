@@ -1,11 +1,11 @@
 /**
- * @module "ImageManipulatorSettings" class
- * @description Settings describing one image manipulator
+ * @module "ImageProcessorSettings" class
+ * @description Settings describing one image processor
  */
 
 "use strict";
 
-export class ImageManipulatorSettings {
+export class ImageProcessorSettings {
     get type() { return this.mType; }
     set type(pValue) { this.mType = String.validate(pValue); }
     get directoryPath() { return this.mDirectoryPath; }
@@ -17,9 +17,8 @@ export class ImageManipulatorSettings {
     }
 
     validate(pValidator) {
-        pValidator.setComponent(ImageManipulatorSettings.name);
+        pValidator.setComponent(ImageProcessorSettings.name);
         pValidator.testNotEmpty("type", this.type);
-        pValidator.testNotEmpty("directoryPath", this.directoryPath);
         pValidator.restoreComponent();
     }
 

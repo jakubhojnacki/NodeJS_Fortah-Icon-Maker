@@ -6,7 +6,7 @@
 "use strict";
 
 import { IconsSettings } from "../settings/iconsSettings.mjs";
-import { ImageManipulatorSettings } from "../settings/imageManipulatorSettings.mjs";
+import { ImageProcessorsSettings } from "../settings/imageProcessorsSettings.mjs";
 import { ProfilesSettings } from "../settings/profilesSettings.mjs";
 import { SettingsBase } from "core-library";
 
@@ -15,21 +15,21 @@ export class Settings extends SettingsBase {
     set icons(pValue) { this.mIcons = pValue ? pValue : new IconsSettings(); }
     get profiles() { return this.mProfiles; }
     set profiles(pValue) { this.mProfiles = pValue ? pValue : new ProfilesSettings(); }
-    get imageManipulator() { return this.mImageManipulator; }
-    set imageManipulator(pValue) { this.mImageManipulator = pValue ? pValue : new ImageManipulatorSettings(); }
+    get imageProcessors() { return this.mImageProcessors; }
+    set imageProcessors(pValue) { this.mImageProcessors = pValue ? pValue : new ImageProcessorsSettings(); }
 
-    constructor(pIcons, pProfiles, pImageManipulator, pDiagnostics) {
+    constructor(pIcons, pProfiles, pImageProcessors, pDiagnostics) {
         super(pDiagnostics);
         this.icons = pIcons;
         this.profiles = pProfiles;
-        this.imageManipulator = pImageManipulator;
+        this.imageProcessors = pImageProcessors;
     }
 
     validate(pValidator) {
         pValidator.setComponent(Settings.name);
         this.icons.validate(pValidator);
         this.profiles.validate(pValidator);
-        this.imageManipulator.validate(pValidator);
+        this.imageProcessors.validate(pValidator);
         pValidator.restoreComponent();
     }
 
@@ -37,7 +37,7 @@ export class Settings extends SettingsBase {
         let data = super.toData();
         data.icons = this.icons.toData();
         data.profiles = this.profiles.toData();
-        data.imageManipulators = this.imageManipulator.toData();
+        data.imageProcessors = this.imageProcessors.toData();
         return data;
     }
 
@@ -46,7 +46,7 @@ export class Settings extends SettingsBase {
         if (pData != null) {
             this.icons = (new IconsSettings()).fromData(pData.icons);
             this.profiles = ( new ProfilesSettings()).fromData(pData.profiles);
-            this.imageManipulators = ( new ImageManipulatorsSettings()).fromData(pData.imageManipulators);
+            this.imageProcessors = ( new ImageProcessorsSettings()).fromData(pData.imageProcessors);
         }
         return this;
     }    

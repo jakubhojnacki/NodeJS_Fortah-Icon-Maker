@@ -7,16 +7,14 @@ import { Enum } from "core-library";
 import { EnumItem } from "core-library";
 
 export class ArgName {
-    static get templatesDirectoryPath() { return "TemplatesDirectoryPath"; }
-    static get symbolsDirectoryPath() { return "SymbolsDirectoryPath"; }
-    static get iconsDirectoryPath() { return "IconsDirectoryPath"; }
-    static get temporaryDirectoryPath() { return "TemporaryDirectoryPath"; }
+    static get profile() { return "Profile"; }
+    static get imageProcessor() { return "ImageProcessor"; }
+    static get outputDirectoryPath() { return "OutputDirectoryPath"; }
 
     static get values() { return [
-        new EnumItem(ArgName.templatesDirectoryPath),
-        new EnumItem(ArgName.symbolsDirectoryPath),
-        new EnumItem(ArgName.iconsDirectoryPath),
-        new EnumItem(ArgName.temporaryDirectoryPath)
+        new EnumItem(ArgName.profile),
+        new EnumItem(ArgName.imageProcessor),
+        new EnumItem(ArgName.outputDirectoryPath)
     ]; }
 
     static parse(pText) {

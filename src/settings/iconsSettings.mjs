@@ -33,7 +33,6 @@ export class IconsSettings {
     }
 
     fromData(pData) {
-        super.fromData(pData);
         if (pData != null) {
             this.directoryPath = pData.directoryPath;
             this.sizes = ( new IconsSizesSettings()).fromData(pData.sizes);

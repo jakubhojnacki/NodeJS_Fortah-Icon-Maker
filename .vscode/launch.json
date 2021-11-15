@@ -10,7 +10,8 @@
             ],
             "program": "${workspaceFolder}/src/main.mjs",
             "args": [
-            ]
+            ],
+            "console": "internalConsole"
         }
     ]
 }

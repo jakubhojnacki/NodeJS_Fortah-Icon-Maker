@@ -33,12 +33,16 @@
         ]
     },
     "profiles": {
-        "directoryPath": "/res",
-        "name": "WindowsFolders"
+        "directoryPath": "/res"
     },
-    "imageManipulator": 
-    {
-        "type": "ImageMagickModule"
-    }
+    "imageProcessors": [
+        {
+            "type": "ImageMagickModule"
+        },
+        {
+            "type": "ImageMagickShell",
+            "path": "/usr/bin/imagemagick"
+        }
+    ]
 }
 
