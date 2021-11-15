@@ -1,40 +1,40 @@
 /**
- * @module "ImageManipulatorSettings" class
- * @description Settings describing one image manipulator
+ * @module "IconsSizeSettings" class
+ * @description Class representing one icons size settings
  */
 
-"use strict";
+"use strict"
 
-export class ImageManipulatorSettings {
-    get type() { return this.mType; }
-    set type(pValue) { this.mType = String.validate(pValue); }
+export class IconsSizeSettings {
+    get size() { return this.mSize; }
+    set size(pValue) { this.mSize = Number.validateAsInteger(pValue); }
     get directoryPath() { return this.mDirectoryPath; }
     set directoryPath(pValue) { this.mDirectoryPath = String.validate(pValue); }
 
-    constructor(pType, pDirectoryPath) {
-        this.type = pType;
+    constructor(pSize, pDirectoryPath) {
+        this.size = pSize;
         this.directoryPath = pDirectoryPath;
     }
 
     validate(pValidator) {
-        pValidator.setComponent(ImageManipulatorSettings.name);
-        pValidator.testNotEmpty("type", this.type);
+        pValidator.setComponent(IconsSizeSettings.name);
+        pValidator.testNotEmpty("size", this.size);
         pValidator.testNotEmpty("directoryPath", this.directoryPath);
         pValidator.restoreComponent();
     }
 
     toData() {
-        let data = super.toData();
-        data.type = this.type;
+        let data = {}
+        data.size = this.size;
         data.directoryPath = this.directoryPath;
         return data;
     }
 
     fromData(pData) {
         if (pData != null) {
-            this.type = pData.type;
+            this.size = pData.size;
             this.directoryPath = pData.directoryPath;
         }
         return this;
-    }       
+    }        
 }

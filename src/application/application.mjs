@@ -7,19 +7,15 @@ import { ArgName } from "../application/argName.mjs";
 import { ArgTemplateFactory } from "../application/argTemplateFactory.mjs";
 import { ConsoleApplication } from "console-library";
 import { Logic } from "../logic/logic.mjs";
+import { Settings } from "../settings/settings.mjs";
 
 export class Application extends ConsoleApplication {
-    constructor() {
-        super();
-        this.argTemplates = ( new ArgTemplateFactory()).create();
+    constructor(pRootDirectoryPath) {
+        super(pRootDirectoryPath, ( new ArgTemplateFactory()).create(), new Settings());
     }    
 
     async runLogic() {
-        const templatesDirectoryPath = this.args.get(ArgName.templatesDirectoryPath);
-        const symbolsDirectoryPath = this.args.get(ArgName.symbolsDirectoryPath, false);
-        const iconsDirectoryPath = this.args.get(ArgName.iconsDirectoryPath, false);
-        const temporaryDirectoryPath = this.args.get(ArgName.temporaryDirectoryPath, false); 
-        const logic = new Logic(this, templatesDirectoryPath, symbolsDirectoryPath, iconsDirectoryPath, temporaryDirectoryPath);
+        const logic = new Logic(this);
         logic.run();
     }
 }

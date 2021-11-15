@@ -1,19 +1,44 @@
 {
-    "imageManipulators": [
-        {
-            "type": "ImageMagickModule"
-        },
-        {
-            "type": "ImageMagickShell",
-            "linuxPath": "/usr/bin/imagemagick",
-            "windowsPath": "C:\\Program Files (x86)\\ImageMagick\\magick.exe"
-        }
-    ],
+    "icons": {
+        "directoryPath": "/home/Multimedia/Icons",
+        "sizes": [
+            {
+                "size": 256,
+                "directoryPath": "{0}/0256"
+            },
+            {
+                "size": 128,
+                "directoryPath": "{0}/0128"
+            },
+            {
+                "size": 64,
+                "directoryPath": "{0}/0256"
+            },
+            {
+                "size": 48,
+                "directoryPath": "{0}/0048"
+            },
+            {
+                "size": 32,
+                "directoryPath": "{0}/0032"
+            },
+            {
+                "size": 24,
+                "directoryPath": "{0}/0024"
+            },
+            {
+                "size": 16,
+                "directoryPath": "{0}/0016"
+            }
+        ]
+    },
     "profiles": {
         "directoryPath": "/res",
-        "iconsSubDirectory": "Icons",
-        "symbolsSubDirectory": "Symbols",
-        "templatesSubDirectory": "Templates"
+        "name": "WindowsFolders"
+    },
+    "imageManipulator": 
+    {
+        "type": "ImageMagickModule"
     }
 }
 
