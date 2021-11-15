@@ -1,0 +1,21 @@
+{
+    "name": "icon-maker",
+    "displayName": "Icon Maker",
+    "description": "Makes icons - for folders and files - out of images",
+    "version": "3.2.0",
+    "author": "Jakub Hojnacki <jakubhojnacki@gmail.com>",
+    "date": "November 2021",
+    "type": "module",
+    "main": "./src/main.mjs",
+    "license": "ISC",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jakubhojnacki/directory-date-finder.git"
+    },
+    "dependencies": {
+        "console-library": "file:../../lib/console-library",
+        "core-library": "file:../../lib/core-library",
+        "file-system-library": "file:../lib/file-system-library",
+        "image-library": "file:../../lib/image-library"
+    }
+}

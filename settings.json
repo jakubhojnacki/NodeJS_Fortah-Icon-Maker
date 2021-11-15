@@ -1,0 +1,40 @@
+{
+    "imageManipulators": {
+        "available": [
+            {
+                "type": "ImageMagickModule"
+            },
+            {
+                "type": "ImageMagickShell",
+                "paths": [
+                    {
+                        "system": "Windows",
+                        "path": "C:\\Program Files (x86)\\ImageMagick\\magick.exe"
+                    },
+                    {
+                        "system": "Linux",
+                        "path": "/usr/bin/imagemagick"
+                    }
+                ]
+            }
+        ],
+        "current": "ImageMagickShell"
+    },
+    "profiles": {
+        "directory": "/res",
+        "subdirectories": {
+            "icons": "Icons",
+            "symbols": "Symbols",
+            "templates": "Templates"
+        },
+        "available": [
+            "WindowsFolders",
+            "WindowsFiles1",
+            "WindowsFiles2",
+            "WindowsStartService",
+            "WindowsStopService"
+        ],
+        "current": "Folders"
+    }
+}
+
