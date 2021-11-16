@@ -1,103 +1,127 @@
 {
 	"pages": [
 		{
-			"name": "256",
-			"index": 0,
+			"size": 256,
 			"template": {
 				"background": "0256b.png",
 				"foreground": "0256f.png"
 			},
 			"symbol": {
-				"extension": "png",
 				"resizeTo": 192,
 				"xOffset": 0,
 				"yOffset": 0
 			}
 		},
 		{
-			"name": "128",
-			"index": 1,
+			"size": 128,
 			"template": {
 				"background": "0128b.png",
 				"foreground": "0128f.png"
 			},
 			"symbol": {
-				"extension": "png",
 				"resizeTo": 96,
 				"xOffset": 0,
 				"yOffset": 0
 			}
 		},
 		{
-			"name": "64",
-			"index": 2,
+			"size": 64,
 			"template": {
 				"background": "0064b.png",
 				"foreground": "0064f.png"
 			},
 			"symbol": {
-				"extension": "png",
 				"resizeTo": 48,
 				"xOffset": 0,
 				"yOffset": 0
 			}
 		},
 		{
-			"name": "48",
-			"index": 3,
+			"size": 48,
 			"template": {
 				"background": "0048b.png",
 				"foreground": "0048f.png"
 			},
 			"symbol": {
-				"extension": "png",
 				"resizeTo": 36,
 				"xOffset": 0,
 				"yOffset": 0
 			}
 		},
 		{
-			"name": "32",
-			"index": 4,
+			"size": 32,
 			"template": {
 				"background": "0032b.png",
 				"foreground": "0032f.png"
 			},
 			"symbol": {
-				"extension": "png",
 				"resizeTo": 24,
 				"xOffset": 0,
 				"yOffset": 0
 			}
 		},
 		{
-			"name": "24",
-			"index": 5,
+			"size": 24,
 			"template": {
 				"background": "0024b.png",
 				"foreground": "0024f.png"
 			},
 			"symbol": {
-				"extension": "png",
 				"resizeTo": 18,
 				"xOffset": 0,
 				"yOffset": 0
 			}
 		},
 		{
-			"name": "16",
-			"index": 6,
+			"size": 16,
 			"template": {
 				"background": "0016b.png",
 				"foreground": "0016f.png"
 			},
 			"symbol": {
-				"extension": "png",
 				"resizeTo": 12,
 				"xOffset": 0,
 				"yOffset": 0
 			}
 		}
+	],
+	"icons": [
+		{
+            "name": "Dynamics BC 15 01",
+            "image": ""
+        },
+		{
+			"name": "Dynamics BC 15 02",
+			"image": ""
+		},
+		{
+            "name": "Dynamics BC 15 03",
+            "image": ""
+        },
+		{
+            "name": "Dynamics BC 15 04",
+            "image": ""
+        },
+		{
+            "name": "Dynamics BC 15 05",
+            "image": ""
+        },
+		{
+            "name": "Dynamics NAV Classic",
+            "image": ""
+        },
+		{
+            "name": "Dynamics NAV",
+            "image": ""
+        },
+		{
+            "name": "Service",
+            "image": ""
+        },
+		{
+            "name": "SQL",
+            "image": ""
+        }
 	]
 }
 

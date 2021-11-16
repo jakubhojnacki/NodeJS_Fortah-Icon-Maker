@@ -1,0 +1,127 @@
+{
+	"pages": [
+		{
+			"size": 256,
+			"template": {
+				"back": "0256b.png",
+				"fore": "0256f.png"
+			},
+			"symbol": {
+				"size": 192,
+				"xOffset": 0,
+				"yOffset": 0
+			}
+		},
+		{
+			"size": 128,
+			"template": {
+				"back": "0128b.png",
+				"fore": "0128f.png"
+			},
+			"symbol": {
+				"size": 96,
+				"xOffset": 0,
+				"yOffset": 0
+			}
+		},
+		{
+			"size": 64,
+			"template": {
+				"back": "0064b.png",
+				"fore": "0064f.png"
+			},
+			"symbol": {
+				"size": 48,
+				"xOffset": 0,
+				"yOffset": 0
+			}
+		},
+		{
+			"size": 48,
+			"template": {
+				"back": "0048b.png",
+				"fore": "0048f.png"
+			},
+			"symbol": {
+				"size": 36,
+				"xOffset": 0,
+				"yOffset": 0
+			}
+		},
+		{
+			"size": 32,
+			"template": {
+				"back": "0032b.png",
+				"fore": "0032f.png"
+			},
+			"symbol": {
+				"size": 24,
+				"xOffset": 0,
+				"yOffset": 0
+			}
+		},
+		{
+			"size": 24,
+			"template": {
+				"back": "0024b.png",
+				"fore": "0024f.png"
+			},
+			"symbol": {
+				"size": 18,
+				"xOffset": 0,
+				"yOffset": 0
+			}
+		},
+		{
+			"size": 16,
+			"template": {
+				"back": "0016b.png",
+				"fore": "0016f.png"
+			},
+			"symbol": {
+				"size": 12,
+				"xOffset": 0,
+				"yOffset": 0
+			}
+		}
+	],
+	"icons": [
+		{
+            "name": "Dynamics BC 15 01",
+            "image": ""
+        },
+		{
+			"name": "Dynamics BC 15 02",
+			"image": ""
+		},
+		{
+            "name": "Dynamics BC 15 03",
+            "image": ""
+        },
+		{
+            "name": "Dynamics BC 15 04",
+            "image": ""
+        },
+		{
+            "name": "Dynamics BC 15 05",
+            "image": ""
+        },
+		{
+            "name": "Dynamics NAV Classic",
+            "image": ""
+        },
+		{
+            "name": "Dynamics NAV",
+            "image": ""
+        },
+		{
+            "name": "Service",
+            "image": ""
+        },
+		{
+            "name": "SQL",
+            "image": ""
+        }
+	]
+}
+
