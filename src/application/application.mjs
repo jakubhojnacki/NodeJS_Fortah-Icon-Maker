@@ -3,9 +3,12 @@
  * @description Main application class
  */
 
+import { ArgName } from "../application/argName.mjs";
 import { ArgTemplateFactory } from "../application/argTemplateFactory.mjs";
 import { ConsoleApplication } from "console-library";
 import { ConsoleProgress } from "console-library";
+import { ImageProcessorFactory } from "image-library";
+import { ImageProcessorType } from "image-library";
 import { Logic } from "../logic/logic.mjs";
 import { Settings } from "../settings/settings.mjs";
 
@@ -19,13 +22,24 @@ export class Application extends ConsoleApplication {
     }    
 
     async runLogic() {
-        const logic = new Logic(this);
+        const iconLibrariesPath = this.settings.paths.iconLibraries.trim();
+        const profileName = this.args.get(ArgName.profile).trim();
+        const profilesPath = this.settings.paths.profiles.trim();
+        const imageProcessorType = ImageProcessorType.parse(this.args.get(ArgName.imageProcessor));
+        const imageProcessorSettings = this.settings.imageProcessors.get(imageProcessorType);
+        const imageProcessor = (new ImageProcessorFactory()).create(imageProcessorSettings.type, imageProcessorSettings.path);
+        const temporaryPath = this.settings.paths.temporary;
+        const outputPath = this.args.get(ArgName.outputDirectoryPath);
+
+        const logic = new Logic(this, iconLibrariesPath, profileName, profilesPath, imageProcessor, temporaryPath, outputPath);
+
         const __this = this;
         logic.onInitialise = (lEventArgs) => { __this.onLogicInitialise(lEventArgs); }
         logic.onIcon = (lEventArgs) => { __this.onLogicIcon(lEventArgs); }
-        logic.onPage = (lEventArgs) => { __this.onLogicPage(lEventArgs); }
+        logic.onIconPage = (lEventArgs) => { __this.onLogicIconPage(lEventArgs); }
         logic.onFinalise = (lEventArgs) => { __this.onLogicFinalise(lEventArgs); }
-        logic.run();
+
+        await logic.run();
     }
 
     onLogicInitialise(pEventArgs) {
@@ -35,11 +49,11 @@ export class Application extends ConsoleApplication {
     }
 
     onLogicIcon(pEventArgs) {
-        this.progress.move(0, pEventArgs.icon.toString());
+        this.progress.move(0, pEventArgs.logic.icon.toString());
     }
 
-    onLogicPage(pEventArgs) {
-        this.progress.move(1, `${pEventArgs.icon.toString()} ${pEventArgs.page.size}x${pEventArgs.page.size}`);
+    onLogicIconPage(pEventArgs) {
+        this.progress.move(1, `${pEventArgs.logic.icon.toString()} ${pEventArgs.logic.iconPage.size}x${pEventArgs.logic.iconPage.size}`);
     }
 
     onLogicFinalise(pProgres) {

@@ -3,79 +3,120 @@
  * @description Contains main logic of the application
  */
 
+import FileSystem from "fs";
 import Path from "path";
 
-import { ArgName } from "../application/argName.mjs";
 import { FileSystemItem } from "file-system-library";
 import { FileSystemItemType } from "file-system-library";
+import { FileSystemToolkit } from "file-system-library";
 import { IconLibrary } from "../iconLibraries/iconLibrary.mjs";
 import { ImagePage } from "image-library";
-import { ImageProcessorFactory } from "image-library";
 import { LogicEventArgs } from "../logic/logicEventArgs.mjs";
 import { LogicIconEventArgs } from "../logic/logicIconEventArgs.mjs";
 import { LogicIconPageEventArgs } from "../logic/logicIconPageEventArgs.mjs";
 import { Profile } from "../profiles/profile.mjs";
+import { Validator } from "core-library";
 
 export class Logic {
     get application() { return this.mApplication; }
     set application(pValue) { this.mApplication = pValue; }
-
-    get profile() { return this.mProfile; }
-    set profile(pValue) { this.mProfile = pValue; }
+    
+    get iconLibrariesPath() { return this.mIconLibrariesPath; }
+    set iconLibrariesPath(pValue) { this.mIconLibrariesPath = String.verify(pValue); }
     get iconLibrary() { return this.mIconLibrary; }
     set iconLibrary(pValue) { this.mIconLibrary = pValue; }
+    get icon() { return this.mIcon; }
+    set icon(pValue) { this.mIcon = pValue; }
+    get iconPage() { return this.mIconPage; }
+    set iconPage(pValue) { this.mIconPage = pValue; }
+
+	get profileName() { return this.mProfileName; }
+    set profileName(pValue) { this.mProfileName = String.verify(pValue); }
+    get profilesPath() { return this.mProfilesPath; }
+    set profilesPath(pValue) { this.mProfilesPath = String.verify(pValue); }
+    get profile() { return this.mProfile; }
+    set profile(pValue) { this.mProfile = pValue; }
+    get profilePage() { return this.mProfilePage; }
+    set profilePage(pValue) { this.mProfilePage = pValue; }
+
     get imageProcessor() { return this.mImageProcessor; }
     set imageProcessor(pValue) { this.mImageProcessor = pValue; }
-	
+    get imagePages() { return this.mImagePages; }
+    set imagePages(pValue) { this.mImagePages = pValue; }
+    
+    get temporaryPath() { return this.mTemporaryPath; }
+    set temporaryPath(pValue) { this.mTemporaryPath = String.verify(pValue); }
+    get temporaryImagePath() { return this.mTemporaryImagePath; }
+    set temporaryImagePath(pValue) { this.mTemporaryImagePath = pValue; }
+    
+    get outputPath() { return this.mOutputPath; }
+    set outputPath(pValue) { this.mOutputPath = String.verify(pValue); }
+
     get onInitialise() { return this.mOnInitialise; }
     set onInitialise(pValue) { this.mOnInitialise = pValue; }
     get onIcon() { return this.mOnIcon; }
     set onIcon(pValue) { this.mOnIcon = pValue; }
-    get onPage() { return this.mOnPage; }
-    set onPage(pValue) { this.mOnPage = pValue; }
+    get onIconPage() { return this.mOnPage; }
+    set onIconPage(pValue) { this.mOnPage = pValue; }
     get onFinalise() { return this.mOnFinalise; }
     set onFinalise(pValue) { this.mOnFinalise = pValue; }
 
-	constructor(pApplication) {
+	constructor(pApplication, pIconLibrariesPath, pProfileName, pProfilesPath, pImageProcessor, pTemporaryPath, pOutputPath) {
         this.application = pApplication;
-
-        this.profile = null;
+        
+        this.iconLibrariesPath = pIconLibrariesPath;
         this.iconLibrary = null;
-        this.imageProcessor = null;
+        this.icon = null;
+        this.iconPage = null;
+
+        this.profileName = pProfileName;
+        this.profilesPath = pProfilesPath;
+        this.profile = null;
+        this.profilePage = null;
+
+        this.imageProcessor = pImageProcessor;
+        this.imagePages = null;
+
+        this.temporaryPath = pTemporaryPath;
+        this.temporaryImagePath = null;
+
+        this.outputPath = pOutputPath;
 
         this.onInitialise = null;
         this.onIcon = null;
-        this.onPage = null;
+        this.onIconPage = null;
         this.onFinalise = null;
     }
 
-    run() {
-        this.initialise();
-        this.process();
-        this.finalise();
+    async run() {
+        if (this.validate()) {
+            this.initialise();
+            await this.process();
+            this.finalise();
+        }
 	}
 
+    validate() {
+        const validator = new Validator();
+        validator.setComponent(Logic.name);
+        validator.testNotEmpty("iconLibrariesPath", this.iconLibrariesPath);
+        validator.testNotEmpty("profileName", this.profileName);
+        validator.testNotEmpty("profilesPath", this.profilesPath);
+        validator.testNotEmpty("imageProcessor", this.imageProcessor);
+        validator.testNotEmpty("temporaryPath", this.temporaryPath);
+        validator.testNotEmpty("outputPath", this.outputPath);
+        validator.restoreComponent();
+        const success = validator.success;
+        if (!success)
+            for (const errorMessage of validator.errorMessages)
+                this.application.console.writeLine(errorMessage.toString());
+        return success;
+    }
+
     initialise() {
-        this.initialiseProfile();
-        this.initialiseIconLibrary();
-        this.initialiseImageProcessor();
+        this.profile = new Profile(this.profilesPath, this.profileName);
+        this.iconLibrary = new IconLibrary(this.iconLibrariesPath, this.profile.iconLibrary);
         this.triggerOnInitialise();
-    }
-
-    initialiseProfile() {
-        const profileName = this.application.args.get(ArgName.profile);
-        const profilesPath = this.application.settings.paths.profiles.trim();
-        this.profile = new Profile(profilesPath, profileName);
-    }
-
-    initialiseIconLibrary() {
-        const iconLibrariesPath = this.application.settings.paths.iconLibraries;
-        this.iconLibrary = new IconLibrary(iconLibrariesPath, this.profile.iconLibrary);
-    }
-
-    initialiseImageProcessor() {
-        const imageProcessorSettings = this.application.settings.imageProcessors.get(this.application.settings.imageProcessor, null);
-        this.imageProcessor = (new ImageProcessorFactory()).create(imageProcessorSettings.type, imageProcessorSettings.path);
     }
 
     triggerOnInitialise() {
@@ -85,74 +126,88 @@ export class Logic {
         }
     }
 
-    process() {
+    async process() {
         for (const icon of this.iconLibrary.icons) {
-            this.triggerOnIcon(icon);
-            for (const page of this.iconLibrary.pages) {
-                this.triggerOnPage(icon, page);
-                this.createIconPage(icon, page);
+            this.icon = icon;
+            this.triggerOnIcon();            
+            for (const iconPage of this.iconLibrary.pages) {
+                this.iconPage = iconPage;
+                this.triggerOnIconPage();
+                await this.createImage();
+                break; //TODO - Remove
             }
-            this.mergeIconPages();
+            //TODO - Remove
         }
     }
 
-    triggerOnIcon(pIcon) {
+    triggerOnIcon() {
         if (this.onIcon)
-            this.onIcon(new LogicIconEventArgs(this, pIcon));
+            this.onIcon(new LogicIconEventArgs(this, this.icon));
     }
     
-    triggerOnPage(pIcon, pPage) {
-        if (this.onPage)
-            this.onPage(new LogicIconPageEventArgs(this, pIcon, pPage));
+    triggerOnIconPage() {
+        if (this.onIconPage)
+            this.onIconPage(new LogicIconPageEventArgs(this, this.icon, this.iconPage));
     }
 
-    createIconPage(pIcon, pPage) {
-        const profilePage = this.profile.pages.get(pPage.size);
-        if (profilePage) {
-            const imagePages = [];
-            this.appendProfileImagePage(profilePage, profilePage.template.back, imagePages);
-            this.appendIconImagePage(pIcon, pPage, profilePage, imagePages);
-            this.appendProfileImagePage(profilePage, profilePage.template.fore, imagePages);
-            //TODO - Not implemented
+    async createImage() {
+        this.profilePage = this.profile.pages.get(this.iconPage.size);
+        if (this.profilePage) {
+            this.initialiseImage();
+            this.createProfileImagePage(this.profilePage.template.back);
+            await this.createIconImagePage();
+            this.createProfileImagePage(this.profilePage.template.fore);
+            await this.finaliseImage();
         }
     }
 
-    appendProfileImagePage(pProfilePage, pImage, pImagePages) {
+    initialiseImage() {
+        this.imagePages = [];
+        this.temporaryImagePath = null;
+    }
+
+    createProfileImagePage(pImage) {
         let result = false;
         if (pImage) {
-            const path = Path.join(this.profile.path, pProfilePage.template.back);
+            const path = Path.join(this.profile.path, this.profilePage.template.back);
             const file = new FileSystemItem(FileSystemItemType.file, path);
-            pImagePages.push(new ImagePage(file, pProfilePage.symbol.xOffset, pProfilePage.symbol.yOffset));
+            this.imagePages.push(new ImagePage(file, this.profilePage.symbol.xOffset, this.profilePage.symbol.yOffset));
             result = true;
         }
         return result;
     }
 
-    appendIconImagePage(pIcon, pPage, pProfilePage, pImagePages) {
+    async createIconImagePage() {
         let result = false;
         let path = null;
-        if (pProfilePage.size != pProfilePage.symbol.size) {
+        if (this.profilePage.size != this.profilePage.symbol.size) {
             const largestPage = this.iconLibrary.pages.getLargest();
             if (largestPage) {
-                const sourcePath = Path.join(this.iconLibrary.path, largestPage.path, pIcon.path); //TODO - Optimise
-                const path = "???"; //TODO - Not implemented
-                this.imageProcessor.resize(sourcePath, destinationPath);
+                const sourcePath = Path.join(this.iconLibrary.path, largestPage.path, this.icon.path);
+                this.temporaryImagePath = Path.join(this.temporaryPath, this.icon.path);
+                await this.imageProcessor.resize(sourcePath, this.temporaryImagePath);
+                path = this.temporaryImagePath;
                 result = true;
             }
         }
         if (!result) {
-            path = Path.join(this.iconLibrary.path, pPage.path, pIcon.path); //TODO - Optimise
+            path = Path.join(this.iconLibrary.path, this.iconPage.path, this.icon.path);
             result = true;
         }
         if (result) {
             const file = new FileSystemItem(FileSystemItemType.file, path);
-            pImagePages.push(new ImagePage(file, pProfilePage.symbol.xOffset, pProfilePage.symbol.yOffset));
+            this.imagePages.push(new ImagePage(file, this.profilePage.symbol.xOffset, this.profilePage.symbol.yOffset));
         }
         return result;
     }
 
-    mergeIconPages() {
-        //TODO - Not implemented
+    async finaliseImage() {
+        const directoryPath = Path.join(this.outputPath, this.iconPage.path);
+        FileSystemToolkit.createDirectoryIfDoesntExist(directoryPath);
+        const filePath = Path.join(directoryPath, this.icon.path);
+        await this.imageProcessor.merge(this.imagePages, filePath);
+        if (this.temporaryImagePath)
+            FileSystemToolkit.deleteIfExists(this.temporaryImagePath);
     }
 
     finalise() {

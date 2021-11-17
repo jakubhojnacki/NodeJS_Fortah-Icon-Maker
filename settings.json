@@ -1,7 +1,8 @@
 {
     "paths": {
         "iconLibraries": "./iconLibraries",
-        "profiles": "./profiles"
+        "profiles": "./profiles",
+        "temporary": "./temp"
     },
     "imageProcessors": [
         {

@@ -8,12 +8,12 @@
 export class ImageProcessorSettings {
     get type() { return this.mType; }
     set type(pValue) { this.mType = String.verify(pValue); }
-    get directoryPath() { return this.mDirectoryPath; }
-    set directoryPath(pValue) { this.mDirectoryPath = String.verify(pValue); }
+    get path() { return this.mPath; }
+    set path(pValue) { this.mPath = String.verify(pValue); }
 
-    constructor(pType, pDirectoryPath) {
+    constructor(pType, pPath) {
         this.type = pType;
-        this.directoryPath = pDirectoryPath;
+        this.path = pPath;
     }
 
     validate(pValidator) {
@@ -25,14 +25,14 @@ export class ImageProcessorSettings {
     toData() {
         let data = super.toData();
         data.type = this.type;
-        data.directoryPath = this.directoryPath;
+        data.path = this.path;
         return data;
     }
 
     fromData(pData) {
         if (pData != null) {
             this.type = pData.type;
-            this.directoryPath = pData.directoryPath;
+            this.path = pData.path;
         }
         return this;
     }       
