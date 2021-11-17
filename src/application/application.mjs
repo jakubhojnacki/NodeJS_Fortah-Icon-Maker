@@ -10,8 +10,12 @@ import { Logic } from "../logic/logic.mjs";
 import { Settings } from "../settings/settings.mjs";
 
 export class Application extends ConsoleApplication {
+    get progress() { return this.mProgress; }
+    set progress(pValue) { this.mProgress = pValue; }
+
     constructor(pRootDirectoryPath) {
         super(pRootDirectoryPath, ( new ArgTemplateFactory()).create(), new Settings());
+        this.progress = null;
     }    
 
     async runLogic() {
@@ -20,18 +24,25 @@ export class Application extends ConsoleApplication {
         logic.onInitialise() = (lEventArgs) => { __this.onLogicInitialise(lEventArgs); }
         logic.onIcon() = (lEventArgs) => { __this.onLogicIcon(lEventArgs); }
         logic.onPage() = (lEventArgs) => { __this.onLogicPage(lEventArgs); }
+        logic.onFinalise() = (lEventArgs) => { __this.onLogicFinalise(lEventArgs); }
         logic.run();
     }
 
     onLogicInitialise(pEventArgs) {
-        //TODO - Initialise progress here
+        const __this = this;
+        this.progress = new ConsoleProgress(null, null, null, "[", "#", "]", 20, this.console.width);
+        this.progress.reset(pEventArgs.count, "Creating icons...");
     }
 
     onLogicIcon(pEventArgs) {
-        //TODO - Update progress
+        this.application.progress.move(0, pEventArgs.icon.toString());
     }
 
     onLogicPage(pEventArgs) {
-        //TODO - Update progress
+        this.application.progress.move(0, `${pEventArgs.icon.toString()} ${pEventArgs.page.size}x${pEventArgs.page.size}`);
+    }
+
+    onLogicFinalise(pProgres) {
+        this.progress.complete("Done");        
     }
 }

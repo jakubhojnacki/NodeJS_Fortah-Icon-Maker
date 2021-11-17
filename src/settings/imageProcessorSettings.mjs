@@ -7,9 +7,9 @@
 
 export class ImageProcessorSettings {
     get type() { return this.mType; }
-    set type(pValue) { this.mType = String.validate(pValue); }
+    set type(pValue) { this.mType = String.verify(pValue); }
     get directoryPath() { return this.mDirectoryPath; }
-    set directoryPath(pValue) { this.mDirectoryPath = String.validate(pValue); }
+    set directoryPath(pValue) { this.mDirectoryPath = String.verify(pValue); }
 
     constructor(pType, pDirectoryPath) {
         this.type = pType;

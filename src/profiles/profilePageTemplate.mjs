@@ -7,9 +7,9 @@
 
 export class ProfilePageTemplate {
     get back() { return this.mBack; }
-    set back(pValue) { this.mBack = String.validate(pValue); }
+    set back(pValue) { this.mBack = String.verify(pValue); }
     get fore() { return this.mFore; }
-    set fore(pValue) { this.mFore = String.validate(pValue); }
+    set fore(pValue) { this.mFore = String.verify(pValue); }
 
     constructor(pBack, pFore) {
         this.back = pBack;

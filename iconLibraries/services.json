@@ -1,0 +1,72 @@
+{
+    "path": "/home/Multimedia/Icons",
+    "sizes": [
+        {
+            "size": 256,
+            "path": "0256"
+        },
+        {
+            "size": 128,
+            "path": "0128"
+        },
+        {
+            "size": 64,
+            "path": "0064"
+        },
+        {
+            "size": 48,
+            "path": "0048"
+        },
+        {
+            "size": 32,
+            "path": "0032"
+        },
+        {
+            "size": 24,
+            "path": "0024"
+        },
+        {
+            "size": 16,
+            "path": "0016"
+        }
+    ],
+	"icons": [
+		{
+            "name": "Dynamics BC 15 01",
+            "path": "Dynamics/Dynamics BC 15 01.ico"
+        },
+		{
+			"name": "Dynamics BC 15 02",
+			"path": "Dynamics/Dynamics BC 15 04.ico"
+		},
+		{
+            "name": "Dynamics BC 15 03",
+            "path": "Dynamics/Dynamics BC 15 05.ico"
+        },
+		{
+            "name": "Dynamics BC 15 04",
+            "path": "Dynamics/Dynamics BC 15 06.ico"
+        },
+		{
+            "name": "Dynamics BC 15 05",
+            "path": "Dynamics/Dynamics BC 15 07.ico"
+        },
+		{
+            "name": "Dynamics NAV Classic",
+            "path": "Dynamics/Dynamics NAV 2013 Role-Tailored Client.ico"
+        },
+		{
+            "name": "Dynamics NAV",
+            "path": "Dynamics/Dynamics NAV 2018 01.ico"
+        },
+		{
+            "name": "Service",
+            "path": "Settings and Tools/Gear 02.ico"
+        },
+		{
+            "name": "SQL",
+            "path": "Development/Database 03.ico"
+        }
+	]
+}
+

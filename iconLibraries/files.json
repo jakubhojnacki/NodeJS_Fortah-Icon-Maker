@@ -1,0 +1,255 @@
+{
+    "path": "/home/Multimedia/Icons",
+    "sizes": [
+        {
+            "size": 256,
+            "path": "0256"
+        },
+        {
+            "size": 128,
+            "path": "0128"
+        },
+        {
+            "size": 64,
+            "path": "0064"
+        },
+        {
+            "size": 48,
+            "path": "0048"
+        },
+        {
+            "size": 32,
+            "path": "0032"
+        },
+        {
+            "size": 24,
+            "path": "0024"
+        },
+        {
+            "size": 16,
+            "path": "0016"
+        }
+    ],
+	"icons": [
+		{
+            "name": "Archive",
+            "path": "Archiving/ZIP 10.png"
+        },
+		{
+			"name": "Audio",
+            "path": "Music/Sound 06.ico"
+        },
+		{
+			"name": "Audio Playlist",
+            "path": "Music/Disk 01.ico"
+        },
+		{
+			"name": "Backup",
+            "path": "Storage/Storage 05.ico"
+        },
+		{
+			"name": "Certificate",
+            "path": "Security/Certificate 14.ico"
+        },
+		{
+			"name": "Command",
+            "path": "System/Shell 04.ico"
+        },
+		{
+			"name": "Configuration",
+            "path": "Settings and Tools/Tools 12.ico"
+        },
+		{
+			"name": "CPlusPlus",
+            "path": "Development/CPlusPlus 01.ico"
+        },
+		{
+			"name": "CSS",
+            "path": "Development/CSS 01.ico"
+        },
+		{
+			"name": "CSV",
+            "path": "Development/CSV 01.ico"
+        },
+		{
+            "name": "Cursor",
+            "path": "Hardware/Mouse 04.ico"
+        },
+		{
+            "name": "Database",
+            "path": "Development/Database 03.ico"
+        },
+		{
+            "name": "Dynamics 365 BC AL",
+            "path": "Dynamics/Dynamics BC 15 01.ico"
+        },
+		{
+            "name": "Dynamics 365 BC Application",
+            "path": "Dynamics/Dynamics BC 15 04.ico"
+        },
+		{
+            "name": "Dynamics Licence",
+            "path": "Dynamics/Dynamics BC 15 05.ico"
+        },
+		{
+            "name": "Dynamics NAV Backup",
+            "path": "Dynamics/Dynamics NAV 2018 02.ico"
+        },
+		{
+            "name": "Dynamics NAV Database",
+            "path": "Dynamics/Dynamics NAV 2018 05.ico"
+        },
+		{
+            "name": "Dynamics NAV Licence",
+            "path": "Dynamics/Dynamics NAV 2018 04.ico"
+        },
+		{
+            "name": "Dynamics NAV Package",
+            "path": "Dynamics/Dynamics NAV 2018 03.ico"
+        },
+		{
+            "name": "Dynamics NAV Source",
+            "path": "Dynamics/Dynamics NAV 2018 01.ico"
+        },
+		{
+            "name": "Font",
+            "path": "Symbols/Font 01.ico"
+        },
+		{
+            "name": "Git",
+            "path": "Applications/Git 01.ico"
+        },
+		{
+            "name": "Help",
+            "path": "System/Help 01.ico"
+        },
+		{
+            "name": "HTML",
+            "path": "Development/HTML 01.ico"
+        },
+		{
+            "name": "Icon",
+            "path": "Graphics/Icon 04.ico"
+        },
+		{
+            "name": "Image",
+            "path": "Graphics/Picture 15.ico"
+        },
+		{
+            "name": "Installation",
+            "path": "Settings and Tools/Setup 01.ico"
+        },
+		{
+            "name": "JavaScript",
+            "path": "Development/JavaScript 01.ico"
+        },
+		{
+            "name": "JSON",
+            "path": "Development/JSON 01.ico"
+        },
+		{
+            "name": "KeePass",
+            "path": "Applications/Kee Pass 01.ico"
+        },
+		{
+            "name": "Library",
+            "path": "Settings and Tools/Gear 02.ico"
+        },
+		{
+            "name": "Link",
+            "path": "Symbols/Link 01.ico"
+        },
+		{
+            "name": "Log",
+            "path": "Office/Notebook 11.ico"
+        },
+		{
+            "name": "Microsoft Access",
+            "path": "Applications/Access 04.ico"
+        },
+		{
+            "name": "Microsoft Excel",
+            "path": "Applications/Excel 04.ico"
+        },
+		{
+            "name": "Microsoft OneNote",
+            "path": "Applications/OneNote 04.ico"
+        },
+		{
+            "name": "Microsoft Outlook",
+            "path": "Applications/Outlook 04.ico"
+        },
+		{
+            "name": "Microsoft PowerPoint",
+            "path": "Applications/PowerPoint 04.ico"
+        },
+		{
+            "name": "Microsoft Visio",
+            "path": "Applications/Visio 03.ico"
+        },
+		{
+            "name": "Microsoft Word",
+            "path": "Applications/Word 04.ico"
+        },
+		{
+            "name": "Microsoft Word Template",
+            "path": "Applications/Word 04.ico"
+        },
+		{
+            "name": "Password",
+            "path": "Security/Lock 11.ico"
+        },
+		{
+            "name": "PDF",
+            "path": "Postscript/PDF 02.ico"
+        },
+		{
+            "name": "PowerShell",
+            "path": "Applications/PowerShell 01.ico"
+        },
+		{
+            "name": "Remote",
+            "path": "Internet and Network/Remote Desktop 02.ico"
+        },
+		{
+            "name": "Script",
+            "path": "Development/Script 04.ico"
+        },
+		{
+            "name": "SQL",
+            "path": "Development/Database 03.ico"
+        },
+		{
+            "name": "Temporary",
+            "path": "Bins/10 Bin.ico"
+        },
+		{
+            "name": "Text",
+            "path": "Applications/Notepad 01.ico"
+        },
+		{
+            "name": "TypeScript",
+            "path": "Development/TypeScript 01.ico"
+        },
+		{
+            "name": "Video",
+            "path": "Video/Reel 01.ico"
+        },
+		{
+            "name": "Visio",
+            "path": "Applications/Visio 03.ico"
+        },
+		{
+            "name": "Web Link",
+            "path": "Internet and Network/Communication 07.ico"
+        },
+		{
+            "name": "XML",
+            "path": "Development/Structure 01.ico"
+        },
+		{
+            "name": "XSLT",
+            "path": "Development/Structure 02.ico"
+        }
+	]
+}

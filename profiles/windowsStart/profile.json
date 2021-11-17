@@ -85,43 +85,6 @@
 			}
 		}
 	],
-	"icons": [
-		{
-            "name": "Dynamics BC 15 01",
-            "image": ""
-        },
-		{
-			"name": "Dynamics BC 15 02",
-			"image": ""
-		},
-		{
-            "name": "Dynamics BC 15 03",
-            "image": ""
-        },
-		{
-            "name": "Dynamics BC 15 04",
-            "image": ""
-        },
-		{
-            "name": "Dynamics BC 15 05",
-            "image": ""
-        },
-		{
-            "name": "Dynamics NAV Classic",
-            "image": ""
-        },
-		{
-            "name": "Dynamics NAV",
-            "image": ""
-        },
-		{
-            "name": "Service",
-            "image": ""
-        },
-		{
-            "name": "SQL",
-            "image": ""
-        }
-	]
+	"iconLibrary": "services"
 }
 

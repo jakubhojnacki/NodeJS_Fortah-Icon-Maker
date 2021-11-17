@@ -9,9 +9,9 @@ import { ProfilePageTemplate } from "../profiles/profilePageTemplate.mjs";
 
 export class ProfilePage {
     get size() { return this.mSize; }
-    set size(pValue) { this.mSize = Number.validateAsInteger(pValue); }
+    set size(pValue) { this.mSize = Number.verifyAsInteger(pValue); }
     get template() { return this.mTemplate; }
-    set template(pValue) { this.mTemplate = pValue ? pValue : new ProfilePageTemplate(); }
+    set template(pValue) { this.mTemplate = Object.verify(pValue, () => { return new ProfilePageTemplate(); }); }
 
     constructor(pSize, pTemplate) {
         this.size = pSize;

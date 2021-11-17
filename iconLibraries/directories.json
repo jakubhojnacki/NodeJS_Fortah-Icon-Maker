@@ -1,0 +1,723 @@
+{
+    "path": "/home/Multimedia/Icons",
+    "sizes": [
+        {
+            "size": 256,
+            "path": "0256"
+        },
+        {
+            "size": 128,
+            "path": "0128"
+        },
+        {
+            "size": 64,
+            "path": "0064"
+        },
+        {
+            "size": 48,
+            "path": "0048"
+        },
+        {
+            "size": 32,
+            "path": "0032"
+        },
+        {
+            "size": 24,
+            "path": "0024"
+        },
+        {
+            "size": 16,
+            "path": "0016"
+        }
+    ],
+    "icons": [
+        {
+            "name": "Access",
+            "path": "Applications/Access 01.png"
+        },
+        {
+            "name": "AL",
+            "path": ""
+        },
+        {
+            "name": "Animation",
+            "path": ""
+        },
+        {
+            "name": "Application",
+            "path": ""
+        },
+        {
+            "name": "Archive",
+            "path": ""
+        },
+        {
+            "name": "Assorted",
+            "path": ""
+        },
+        {
+            "name": "Attraction",
+            "path": ""
+        },
+        {
+            "name": "Azure",
+            "path": ""
+        },
+        {
+            "name": "Backup",
+            "path": ""
+        },
+        {
+            "name": "Bin",
+            "path": ""
+        },
+        {
+            "name": "Book",
+            "path": ""
+        },
+        {
+            "name": "Bootstrap",
+            "path": ""
+        },
+        {
+            "name": "Bus",
+            "path": ""
+        },
+        {
+            "name": "Car",
+            "path": ""
+        },
+        {
+            "name": "Catalogue",
+            "path": ""
+        },
+        {
+            "name": "Certificate",
+            "path": ""
+        },
+        {
+            "name": "Chart",
+            "path": ""
+        },
+        {
+            "name": "Command",
+            "path": ""
+        },
+        {
+            "name": "Communication",
+            "path": ""
+        },
+        {
+            "name": "Company",
+            "path": ""
+        },
+        {
+            "name": "Construction",
+            "path": ""
+        },
+        {
+            "name": "Cursor",
+            "path": ""
+        },
+        {
+            "name": "Customer",
+            "path": ""
+        },
+        {
+            "name": "CV",
+            "path": ""
+        },
+        {
+            "name": "Data",
+            "path": ""
+        },
+        {
+            "name": "Desktop",
+            "path": ""
+        },
+        {
+            "name": "Development",
+            "path": ""
+        },
+        {
+            "name": "Device",
+            "path": ""
+        },
+        {
+            "name": "Document",
+            "path": ""
+        },
+        {
+            "name": "Download",
+            "path": ""
+        },
+        {
+            "name": "DVD",
+            "path": ""
+        },
+        {
+            "name": "Dynamics 365 01",
+            "path": ""
+        },
+        {
+            "name": "Dynamics 365 02",
+            "path": ""
+        },
+        {
+            "name": "Dynamics 365 03",
+            "path": ""
+        },
+        {
+            "name": "Dynamics 365 04",
+            "path": ""
+        },
+        {
+            "name": "Dynamics 365 05",
+            "path": ""
+        },
+        {
+            "name": "Dynamics 365 06",
+            "path": ""
+        },
+        {
+            "name": "Dynamics 365 07",
+            "path": ""
+        },
+        {
+            "name": "Dynamics 365 08",
+            "path": ""
+        },
+        {
+            "name": "Dynamics BC 14 01",
+            "path": ""
+        },
+        {
+            "name": "Dynamics BC 14 02",
+            "path": ""
+        },
+        {
+            "name": "Dynamics BC 14 03",
+            "path": ""
+        },
+        {
+            "name": "Dynamics BC 14 04",
+            "path": ""
+        },
+        {
+            "name": "Dynamics BC 14 05",
+            "path": ""
+        },
+        {
+            "name": "Dynamics BC 15 01",
+            "path": ""
+        },
+        {
+            "name": "Dynamics BC 15 02",
+            "path": ""
+        },
+        {
+            "name": "Dynamics BC 15 03",
+            "path": ""
+        },
+        {
+            "name": "Dynamics BC 15 04",
+            "path": ""
+        },
+        {
+            "name": "Dynamics BC 15 05",
+            "path": ""
+        },
+        {
+            "name": "Dynamics NAV Classic",
+            "path": ""
+        },
+        {
+            "name": "Dynamics NAV",
+            "path": ""
+        },
+        {
+            "name": "Electron 01",
+            "path": ""
+        },
+        {
+            "name": "Electron 02",
+            "path": ""
+        },
+        {
+            "name": "Electron 03",
+            "path": ""
+        },
+        {
+            "name": "Environment",
+            "path": ""
+        },
+        {
+            "name": "Favourite",
+            "path": ""
+        },
+        {
+            "name": "Font",
+            "path": ""
+        },
+        {
+            "name": "FR",
+            "path": ""
+        },
+        {
+            "name": "Fun",
+            "path": ""
+        },
+        {
+            "name": "Game",
+            "path": ""
+        },
+        {
+            "name": "Git",
+            "path": ""
+        },
+        {
+            "name": "Graphics",
+            "path": ""
+        },
+        {
+            "name": "Guitar",
+            "path": ""
+        },
+        {
+            "name": "Help",
+            "path": ""
+        },
+        {
+            "name": "Home",
+            "path": ""
+        },
+        {
+            "name": "Host",
+            "path": ""
+        },
+        {
+            "name": "Icon",
+            "path": ""
+        },
+        {
+            "name": "IIS",
+            "path": ""
+        },
+        {
+            "name": "Important",
+            "path": ""
+        },
+        {
+            "name": "Inetpub",
+            "path": ""
+        },
+        {
+            "name": "Install",
+            "path": ""
+        },
+        {
+            "name": "Internet",
+            "path": ""
+        },
+        {
+            "name": "IT",
+            "path": ""
+        },
+        {
+            "name": "JavaScript",
+            "path": ""
+        },
+        {
+            "name": "Jet",
+            "path": ""
+        },
+        {
+            "name": "Landscape",
+            "path": ""
+        },
+        {
+            "name": "Language",
+            "path": ""
+        },
+        {
+            "name": "Laptop",
+            "path": ""
+        },
+        {
+            "name": "Licence",
+            "path": ""
+        },
+        {
+            "name": "Light",
+            "path": ""
+        },
+        {
+            "name": "Lightwave",
+            "path": ""
+        },
+        {
+            "name": "Link",
+            "path": ""
+        },
+        {
+            "name": "Logon",
+            "path": ""
+        },
+        {
+            "name": "Lyrics",
+            "path": ""
+        },
+        {
+            "name": "Mail",
+            "path": ""
+        },
+        {
+            "name": "Manual",
+            "path": ""
+        },
+        {
+            "name": "Map",
+            "path": ""
+        },
+        {
+            "name": "Media",
+            "path": ""
+        },
+        {
+            "name": "Menu Start",
+            "path": ""
+        },
+        {
+            "name": "Miscellaneous",
+            "path": ""
+        },
+        {
+            "name": "Mobile",
+            "path": ""
+        },
+        {
+            "name": "Mouse",
+            "path": ""
+        },
+        {
+            "name": "Movie",
+            "path": ""
+        },
+        {
+            "name": "Multimedia",
+            "path": ""
+        },
+        {
+            "name": "Music",
+            "path": ""
+        },
+        {
+            "name": "Network",
+            "path": ""
+        },
+        {
+            "name": "NodeJS",
+            "path": ""
+        },
+        {
+            "name": "Note",
+            "path": ""
+        },
+        {
+            "name": "Office",
+            "path": ""
+        },
+        {
+            "name": "Old",
+            "path": ""
+        },
+        {
+            "name": "OneDrive",
+            "path": ""
+        },
+        {
+            "name": "Organiser",
+            "path": ""
+        },
+        {
+            "name": "Packager",
+            "path": ""
+        },
+        {
+            "name": "Pdf",
+            "path": ""
+        },
+        {
+            "name": "Performance",
+            "path": ""
+        },
+        {
+            "name": "Phone",
+            "path": ""
+        },
+        {
+            "name": "Photo",
+            "path": ""
+        },
+        {
+            "name": "Picture",
+            "path": ""
+        },
+        {
+            "name": "Place",
+            "path": ""
+        },
+        {
+            "name": "PL",
+            "path": ""
+        },
+        {
+            "name": "Postscript",
+            "path": ""
+        },
+        {
+            "name": "Power",
+            "path": ""
+        },
+        {
+            "name": "PowerShell",
+            "path": ""
+        },
+        {
+            "name": "Presentation",
+            "path": ""
+        },
+        {
+            "name": "Printing",
+            "path": ""
+        },
+        {
+            "name": "Procedures",
+            "path": ""
+        },
+        {
+            "name": "Program Files",
+            "path": ""
+        },
+        {
+            "name": "Program Files (x86)",
+            "path": ""
+        },
+        {
+            "name": "Project",
+            "path": ""
+        },
+        {
+            "name": "Qt",
+            "path": ""
+        },
+        {
+            "name": "Rail",
+            "path": ""
+        },
+        {
+            "name": "Remote",
+            "path": ""
+        },
+        {
+            "name": "Repository",
+            "path": ""
+        },
+        {
+            "name": "Rubik",
+            "path": ""
+        },
+        {
+            "name": "Screenshot",
+            "path": ""
+        },
+        {
+            "name": "Script",
+            "path": ""
+        },
+        {
+            "name": "Searching",
+            "path": ""
+        },
+        {
+            "name": "Security",
+            "path": ""
+        },
+        {
+            "name": "Server",
+            "path": ""
+        },
+        {
+            "name": "Service",
+            "path": ""
+        },
+        {
+            "name": "Setup",
+            "path": ""
+        },
+        {
+            "name": "SharePoint",
+            "path": ""
+        },
+        {
+            "name": "Shell",
+            "path": ""
+        },
+        {
+            "name": "Shopping",
+            "path": ""
+        },
+        {
+            "name": "Snippet",
+            "path": ""
+        },
+        {
+            "name": "SQL",
+            "path": ""
+        },
+        {
+            "name": "Start Menu",
+            "path": ""
+        },
+        {
+            "name": "Storage",
+            "path": ""
+        },
+        {
+            "name": "Subject",
+            "path": ""
+        },
+        {
+            "name": "Subtitle",
+            "path": ""
+        },
+        {
+            "name": "Swimming",
+            "path": ""
+        },
+        {
+            "name": "Symbol",
+            "path": ""
+        },
+        {
+            "name": "System",
+            "path": ""
+        },
+        {
+            "name": "Task",
+            "path": ""
+        },
+        {
+            "name": "Telerik",
+            "path": ""
+        },
+        {
+            "name": "Template",
+            "path": ""
+        },
+        {
+            "name": "Temporary",
+            "path": ""
+        },
+        {
+            "name": "Terminal",
+            "path": ""
+        },
+        {
+            "name": "Text",
+            "path": ""
+        },
+        {
+            "name": "The 365 People",
+            "path": ""
+        },
+        {
+            "name": "Timesheet",
+            "path": ""
+        },
+        {
+            "name": "Tool",
+            "path": ""
+        },
+        {
+            "name": "Train",
+            "path": ""
+        },
+        {
+            "name": "Training",
+            "path": ""
+        },
+        {
+            "name": "Travel",
+            "path": ""
+        },
+        {
+            "name": "UK",
+            "path": ""
+        },
+        {
+            "name": "Update",
+            "path": ""
+        },
+        {
+            "name": "User",
+            "path": ""
+        },
+        {
+            "name": "Users",
+            "path": ""
+        },
+        {
+            "name": "Utility",
+            "path": ""
+        },
+        {
+            "name": "Video",
+            "path": ""
+        },
+        {
+            "name": "Virtual",
+            "path": ""
+        },
+        {
+            "name": "Visual Studio Code",
+            "path": ""
+        },
+        {
+            "name": "Visual Studio",
+            "path": ""
+        },
+        {
+            "name": "VPN",
+            "path": ""
+        },
+        {
+            "name": "Wallpaper",
+            "path": ""
+        },
+        {
+            "name": "Web",
+            "path": ""
+        },
+        {
+            "name": "Website",
+            "path": ""
+        },
+        {
+            "name": "Windows",
+            "path": ""
+        },
+        {
+            "name": "Work",
+            "path": ""
+        },
+        {
+            "name": "XML",
+            "path": ""
+        },
+        {
+            "name": "ZIP",
+            "path": ""
+        }
+    ]
+}

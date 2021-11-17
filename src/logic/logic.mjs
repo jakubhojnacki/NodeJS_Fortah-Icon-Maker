@@ -3,7 +3,8 @@
  * @description Contains main logic of the application
  */
 
-import { IconLibrary } from "../iconLibrary/iconLibrary.mjs";
+import { ArgName } from "../application/argName.mjs";
+import { IconLibrary } from "../iconLibraries/iconLibrary.mjs";
 import { ImageProcessorFactory } from "image-library";
 import { LogicEventArgs } from "../logic/logicEventArgs.mjs";
 import { LogicIconEventArgs } from "../logic/logicIconEventArgs.mjs";
@@ -13,10 +14,11 @@ import { Profile } from "../profiles/profile.mjs";
 export class Logic {
     get application() { return this.mApplication; }
     set application(pValue) { this.mApplication = pValue; }
-    get iconLibrary() { return this.mIconLibrary; }
-    set iconLibrary(pValue) { this.mIconLibrary = pValue; }
+
     get profile() { return this.mProfile; }
     set profile(pValue) { this.mProfile = pValue; }
+    get iconLibrary() { return this.mIconLibrary; }
+    set iconLibrary(pValue) { this.mIconLibrary = pValue; }
     get imageProcessor() { return this.mImageProcessor; }
     set imageProcessor(pValue) { this.mImageProcessor = pValue; }
 	
@@ -32,8 +34,8 @@ export class Logic {
 	constructor(pApplication) {
         this.application = pApplication;
 
-        this.iconLibrary = null;
         this.profile = null;
+        this.iconLibrary = null;
         this.imageProcessor = null;
 
         this.onInitialise = null;
@@ -49,21 +51,40 @@ export class Logic {
 	}
 
     initialise() {
-        this.iconLibrary = new IconLibrary(this.application.settings.iconLibrary);
-        this.profile = new Profile(this.application.settings.profiles);
+        this.initialiseProfile();
+        this.initialiseIconLibrary();
+        this.initialiseImageProcessor();
+        this.triggerOnInitialise();
+    }
+
+    initialiseProfile() {
+        const profileName = this.application.args.get(ArgName.profile);
+        this.profile = new Profile(this.application.settings.paths.profiles, profileName);
+    }
+
+    initialiseIconLibrary() {
+        this.iconLibrary = new IconLibrary(this.application.settings.paths.iconLibraries, this.profile.imageLibrary);
+    }
+
+    initialiseImageProcessor() {
         const imageProcessorSettings = settings.imageProcessors.get(this.application.settings.imageProcessor, null);
         this.imageProcessor = (new ImageProcessorFactory()).create(imageProcessorSettings.type, imageProcessorSettings.path);
-        if (this.onInitialise)
-            this.onInitialise(new LogicEventArgs(this));
+    }
+
+    triggerOnInitialise() {
+        if (this.onInitialise) {
+            const count = this.iconLibrary.icons.length * this.profile.pages.length; 
+            this.onInitialise(new LogicEventArgs(this, count));
+        }
     }
 
     process() {
-        for (const icon of this.profile.icons) {
+        for (const icon of this.iconLibrary.icons) {
             if (this.onIcon)
                 this.onIcon(new LogicIconEventArgs(this, icon));
             for (const page of this.profile.pages) {
                 if (this.onPage)
-                    this.onPage(new LogicIconPageEventArgs(his, icon, page));
+                    this.onPage(new LogicIconPageEventArgs(this, icon, page));
                 this.createIcon();
                 this.merge();
             }
