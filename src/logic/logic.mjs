@@ -59,15 +59,17 @@ export class Logic {
 
     initialiseProfile() {
         const profileName = this.application.args.get(ArgName.profile);
-        this.profile = new Profile(this.application.settings.paths.profiles, profileName);
+        const profilesPath = this.application.settings.paths.profiles.trim();
+        this.profile = new Profile(profilesPath, profileName);
     }
 
     initialiseIconLibrary() {
-        this.iconLibrary = new IconLibrary(this.application.settings.paths.iconLibraries, this.profile.imageLibrary);
+        const iconLibrariesPath = this.application.settings.paths.iconLibraries;
+        this.iconLibrary = new IconLibrary(iconLibrariesPath, this.profile.iconLibrary);
     }
 
     initialiseImageProcessor() {
-        const imageProcessorSettings = settings.imageProcessors.get(this.application.settings.imageProcessor, null);
+        const imageProcessorSettings = this.application.settings.imageProcessors.get(this.application.settings.imageProcessor, null);
         this.imageProcessor = (new ImageProcessorFactory()).create(imageProcessorSettings.type, imageProcessorSettings.path);
     }
 
@@ -80,15 +82,23 @@ export class Logic {
 
     process() {
         for (const icon of this.iconLibrary.icons) {
-            if (this.onIcon)
-                this.onIcon(new LogicIconEventArgs(this, icon));
+            this.triggerOnIcon(icon);
             for (const page of this.profile.pages) {
-                if (this.onPage)
-                    this.onPage(new LogicIconPageEventArgs(this, icon, page));
+                this.triggerOnPage(icon, page);
                 this.createIcon();
                 this.merge();
             }
         }
+    }
+
+    triggerOnIcon(pIcon) {
+        if (this.onIcon)
+            this.onIcon(new LogicIconEventArgs(this, pIcon));
+    }
+    
+    triggerOnPage(pIcon, pPage) {
+        if (this.onPage)
+            this.onPage(new LogicIconPageEventArgs(this, pIcon, pPage));
     }
 
     createIcon() {

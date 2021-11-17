@@ -5,6 +5,9 @@
 
 "use strict"
 
+import FileSystem from "fs";
+import Path from "path";
+
 import { IconLibraryIcons } from "../iconLibraries/iconLibraryIcons.mjs";
 import { IconLibrarySizes } from "../iconLibraries/iconLibrarySizes.mjs";
 
@@ -24,9 +27,10 @@ export class IconLibrary {
 
     fromData(pData) {
         if (pData != null) {
-            this.path = data.path;
-            this.sizes = (new IconLibrarySizes()).fromData(data.sizes);
-            this.icons = (new IconLibraryIcons()).fromData(data.icons);
+            this.path = pData.path;
+            this.sizes = (new IconLibrarySizes()).fromData(pData.sizes);
+            this.icons = (new IconLibraryIcons()).fromData(pData.icons);
         }
+        return this;
     }
 }

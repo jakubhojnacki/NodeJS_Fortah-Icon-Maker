@@ -1,7 +1,7 @@
 {
     "paths": {
-        "iconLibraries": "/iconLibraries",
-        "profiles": "/profiles"
+        "iconLibraries": "./iconLibraries",
+        "profiles": "./profiles"
     },
     "imageProcessors": [
         {

@@ -18,5 +18,6 @@ export class IconLibrarySizes extends Array {
                 const item = (new IconLibrarySize()).fromData(dataItem);
                 this.push(item);
             }        
+        return this;
     }
 }

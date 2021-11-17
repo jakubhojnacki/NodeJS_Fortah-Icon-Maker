@@ -5,6 +5,8 @@
 
 "use strict"
 
+import { LogicEventArgs } from "../logic/logicEventArgs.mjs";
+
 export class LogicIconEventArgs extends LogicEventArgs {
     get icon() { return this.mIcon; }
     set icon(pValue) { this.mIcon = pValue; }

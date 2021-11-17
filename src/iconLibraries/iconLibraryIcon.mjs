@@ -21,6 +21,7 @@ export class IconLibraryIcon {
             this.name = pData.name;
             this.path = pData.path;
         }
+        return this;
     }
 
     toString() {

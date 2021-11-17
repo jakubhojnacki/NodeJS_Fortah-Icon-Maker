@@ -33,39 +33,39 @@
 	"icons": [
 		{
             "name": "Dynamics BC 15 01",
-            "path": "Dynamics/Dynamics BC 15 01.ico"
+            "path": "Dynamics/Dynamics BC 15 01.png"
         },
 		{
 			"name": "Dynamics BC 15 02",
-			"path": "Dynamics/Dynamics BC 15 04.ico"
+			"path": "Dynamics/Dynamics BC 15 04.png"
 		},
 		{
             "name": "Dynamics BC 15 03",
-            "path": "Dynamics/Dynamics BC 15 05.ico"
+            "path": "Dynamics/Dynamics BC 15 05.png"
         },
 		{
             "name": "Dynamics BC 15 04",
-            "path": "Dynamics/Dynamics BC 15 06.ico"
+            "path": "Dynamics/Dynamics BC 15 06.png"
         },
 		{
             "name": "Dynamics BC 15 05",
-            "path": "Dynamics/Dynamics BC 15 07.ico"
+            "path": "Dynamics/Dynamics BC 15 07.png"
         },
 		{
             "name": "Dynamics NAV Classic",
-            "path": "Dynamics/Dynamics NAV 2013 Role-Tailored Client.ico"
+            "path": "Dynamics/Dynamics NAV 2013 Role-Tailored Client.png"
         },
 		{
             "name": "Dynamics NAV",
-            "path": "Dynamics/Dynamics NAV 2018 01.ico"
+            "path": "Dynamics/Dynamics NAV 2018 01.png"
         },
 		{
             "name": "Service",
-            "path": "Settings and Tools/Gear 02.ico"
+            "path": "Settings and Tools/Gear 02.png"
         },
 		{
             "name": "SQL",
-            "path": "Development/Database 03.ico"
+            "path": "Development/Database 03.png"
         }
 	]
 }

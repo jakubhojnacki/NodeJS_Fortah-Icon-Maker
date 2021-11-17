@@ -6,33 +6,33 @@
 "use strict";
 
 export class PathsSettings {
-    get imageLibraries() { return this.mImageLibraries; }
-    set imageLibraries(pValue) { this.mImageLibraries = String.verify(pValue); }
+    get iconLibraries() { return this.mIconLibraries; }
+    set iconLibraries(pValue) { this.mIconLibraries = String.verify(pValue); }
     get profiles() { return this.mProfiles; }
     set profiles(pValue) { this.mProfiles = String.verify(pValue); }
 
-    constructor(pImageLibraries, pProfiles) {
-        this.imageLibraries = pImageLibraries;
+    constructor(pIconLibraries, pProfiles) {
+        this.iconLibraries = pIconLibraries;
         this.profiles = pProfiles;
     }
 
     validate(pValidator) {
         pValidator.setComponent(PathsSettings.name);
-        pValidator.testNotEmpty("imageLibraries", this.imageLibraries);
+        pValidator.testNotEmpty("iconLibraries", this.iconLibraries);
         pValidator.testNotEmpty("profiles", this.profiles);
         pValidator.restoreComponent();
     }
 
     toData() {
         let data = {};
-        data.imageLibraries = this.imageLibraries;
+        data.iconLibraries = this.iconLibraries;
         data.profiles = this.profiles;
         return data;
     }
 
     fromData(pData) {
         if (pData != null) {
-            this.imageLibraries = pData.imageLibraries;
+            this.iconLibraries = pData.iconLibraries;
             this.profiles = pData.profiles;
         }
         return this;

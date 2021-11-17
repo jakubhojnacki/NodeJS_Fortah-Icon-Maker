@@ -21,5 +21,6 @@ export class IconLibrarySize {
             this.size = pData.size;
             this.path = pData.path;
         }
+        return this;
     }
 }

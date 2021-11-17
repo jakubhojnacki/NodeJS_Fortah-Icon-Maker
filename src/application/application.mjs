@@ -3,9 +3,9 @@
  * @description Main application class
  */
 
-import { ArgName } from "../application/argName.mjs";
 import { ArgTemplateFactory } from "../application/argTemplateFactory.mjs";
 import { ConsoleApplication } from "console-library";
+import { ConsoleProgress } from "console-library";
 import { Logic } from "../logic/logic.mjs";
 import { Settings } from "../settings/settings.mjs";
 
@@ -21,28 +21,33 @@ export class Application extends ConsoleApplication {
     async runLogic() {
         const logic = new Logic(this);
         const __this = this;
-        logic.onInitialise() = (lEventArgs) => { __this.onLogicInitialise(lEventArgs); }
-        logic.onIcon() = (lEventArgs) => { __this.onLogicIcon(lEventArgs); }
-        logic.onPage() = (lEventArgs) => { __this.onLogicPage(lEventArgs); }
-        logic.onFinalise() = (lEventArgs) => { __this.onLogicFinalise(lEventArgs); }
+        logic.onInitialise = (lEventArgs) => { __this.onLogicInitialise(lEventArgs); }
+        logic.onIcon = (lEventArgs) => { __this.onLogicIcon(lEventArgs); }
+        logic.onPage = (lEventArgs) => { __this.onLogicPage(lEventArgs); }
+        logic.onFinalise = (lEventArgs) => { __this.onLogicFinalise(lEventArgs); }
         logic.run();
     }
 
     onLogicInitialise(pEventArgs) {
         const __this = this;
-        this.progress = new ConsoleProgress(null, null, null, "[", "#", "]", 20, this.console.width);
+        this.progress = new ConsoleProgress(null, null, (lProgress) => { __this.onProgressUpdate(lProgress); }, "[", "#", "]", 20, this.console.width);
         this.progress.reset(pEventArgs.count, "Creating icons...");
     }
 
     onLogicIcon(pEventArgs) {
-        this.application.progress.move(0, pEventArgs.icon.toString());
+        this.progress.move(0, pEventArgs.icon.toString());
     }
 
     onLogicPage(pEventArgs) {
-        this.application.progress.move(0, `${pEventArgs.icon.toString()} ${pEventArgs.page.size}x${pEventArgs.page.size}`);
+        this.progress.move(1, `${pEventArgs.icon.toString()} ${pEventArgs.page.size}x${pEventArgs.page.size}`);
     }
 
     onLogicFinalise(pProgres) {
         this.progress.complete("Done");        
+        this.console.newLine();
+    }
+
+    onProgressUpdate(pProgres) {
+        pProgres.render(this.console);
     }
 }
