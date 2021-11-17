@@ -11,13 +11,16 @@ import Path from "path";
 import { ProfilePages } from "../profiles/profilePages.mjs";
 
 export class Profile {
+    get path() { return this.mPath; }
+    set path(pValue) { this.mPath = String.verify(pValue); }
     get pages() { return this.mPages; }
     set pages(pValue) { this.mPages = pValue; }
     get iconLibrary() { return this.mIconLibrary; }
     set iconLibrary(pValue) { this.mIconLibrary = String.verify(pValue); }
 
     constructor(pPath, pName) {
-        const dataPath = Path.join(pPath, pName, "profile.json");
+        this.path = Path.join(pPath, pName);
+        const dataPath = Path.join(this.path, "profile.json");
         const data = JSON.parse(FileSystem.readFileSync(dataPath));
         this.pages = (new ProfilePages()).fromData(data.pages);
         this.iconLibrary = data.iconLibrary;

@@ -15,7 +15,7 @@
     "dependencies": {
         "console-library": "file:../../lib/console-library",
         "core-library": "file:../../lib/core-library",
-        "file-system-library": "file:../lib/file-system-library",
+        "file-system-library": "file:../../lib/file-system-library",
         "image-library": "file:../../lib/image-library"
     }
 }

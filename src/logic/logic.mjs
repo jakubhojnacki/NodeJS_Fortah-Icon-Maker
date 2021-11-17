@@ -3,8 +3,13 @@
  * @description Contains main logic of the application
  */
 
+import Path from "path";
+
 import { ArgName } from "../application/argName.mjs";
+import { FileSystemItem } from "file-system-library";
+import { FileSystemItemType } from "file-system-library";
 import { IconLibrary } from "../iconLibraries/iconLibrary.mjs";
+import { ImagePage } from "image-library";
 import { ImageProcessorFactory } from "image-library";
 import { LogicEventArgs } from "../logic/logicEventArgs.mjs";
 import { LogicIconEventArgs } from "../logic/logicIconEventArgs.mjs";
@@ -83,11 +88,11 @@ export class Logic {
     process() {
         for (const icon of this.iconLibrary.icons) {
             this.triggerOnIcon(icon);
-            for (const page of this.profile.pages) {
+            for (const page of this.iconLibrary.pages) {
                 this.triggerOnPage(icon, page);
-                this.createIcon();
-                this.merge();
+                this.createIconPage(icon, page);
             }
+            this.mergeIconPages();
         }
     }
 
@@ -101,11 +106,52 @@ export class Logic {
             this.onPage(new LogicIconPageEventArgs(this, pIcon, pPage));
     }
 
-    createIcon() {
-        //TODO - Not implemented
+    createIconPage(pIcon, pPage) {
+        const profilePage = this.profile.pages.get(pPage.size);
+        if (profilePage) {
+            const imagePages = [];
+            this.appendProfileImagePage(profilePage, profilePage.template.back, imagePages);
+            this.appendIconImagePage(pIcon, pPage, profilePage, imagePages);
+            this.appendProfileImagePage(profilePage, profilePage.template.fore, imagePages);
+            //TODO - Not implemented
+        }
     }
 
-    merge() {
+    appendProfileImagePage(pProfilePage, pImage, pImagePages) {
+        let result = false;
+        if (pImage) {
+            const path = Path.join(this.profile.path, pProfilePage.template.back);
+            const file = new FileSystemItem(FileSystemItemType.file, path);
+            pImagePages.push(new ImagePage(file, pProfilePage.symbol.xOffset, pProfilePage.symbol.yOffset));
+            result = true;
+        }
+        return result;
+    }
+
+    appendIconImagePage(pIcon, pPage, pProfilePage, pImagePages) {
+        let result = false;
+        let path = null;
+        if (pProfilePage.size != pProfilePage.symbol.size) {
+            const largestPage = this.iconLibrary.pages.getLargest();
+            if (largestPage) {
+                const sourcePath = Path.join(this.iconLibrary.path, largestPage.path, pIcon.path); //TODO - Optimise
+                const path = "???"; //TODO - Not implemented
+                this.imageProcessor.resize(sourcePath, destinationPath);
+                result = true;
+            }
+        }
+        if (!result) {
+            path = Path.join(this.iconLibrary.path, pPage.path, pIcon.path); //TODO - Optimise
+            result = true;
+        }
+        if (result) {
+            const file = new FileSystemItem(FileSystemItemType.file, path);
+            pImagePages.push(new ImagePage(file, pProfilePage.symbol.xOffset, pProfilePage.symbol.yOffset));
+        }
+        return result;
+    }
+
+    mergeIconPages() {
         //TODO - Not implemented
     }
 

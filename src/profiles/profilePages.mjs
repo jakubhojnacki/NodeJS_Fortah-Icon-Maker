@@ -20,4 +20,8 @@ export class ProfilePages extends Array {
             }
         return this;
     }
+
+    get(pSize) {
+        return this.find((lItem) => { return lItem.size === pSize; });
+    }
 }

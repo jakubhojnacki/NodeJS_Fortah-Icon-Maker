@@ -9,13 +9,13 @@ import FileSystem from "fs";
 import Path from "path";
 
 import { IconLibraryIcons } from "../iconLibraries/iconLibraryIcons.mjs";
-import { IconLibrarySizes } from "../iconLibraries/iconLibrarySizes.mjs";
+import { IconLibraryPages } from "../iconLibraries/iconLibraryPages.mjs";
 
 export class IconLibrary {
     get path() { return this.mPath; }
     set path(pValue) { this.mPath = String.verify(pValue); }
-    get sizes() { return this.mSizes; }
-    set sizes(pValue) { this.mSizes = Object.verify(pValue, () => { return new IconLibrarySizes(); }); }
+    get pages() { return this.mPages; }
+    set pages(pValue) { this.mPages = Object.verify(pValue, () => { return new IconLibraryPages(); }); }
     get icons() { return this.mIcons; }
     set icons(pValue) { this.mIcons = Object.verify(pValue, () => { return new IconLibraryIcons(); }); }
 
@@ -28,7 +28,7 @@ export class IconLibrary {
     fromData(pData) {
         if (pData != null) {
             this.path = pData.path;
-            this.sizes = (new IconLibrarySizes()).fromData(pData.sizes);
+            this.pages = (new IconLibraryPages()).fromData(pData.pages);
             this.icons = (new IconLibraryIcons()).fromData(pData.icons);
         }
         return this;

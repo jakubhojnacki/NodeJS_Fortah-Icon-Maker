@@ -7,7 +7,7 @@
 				"foreground": "0256f.png"
 			},
 			"symbol": {
-				"resizeTo": 192,
+				"size": 192,
 				"xOffset": 0,
 				"yOffset": 0
 			}
@@ -19,7 +19,7 @@
 				"foreground": "0128f.png"
 			},
 			"symbol": {
-				"resizeTo": 96,
+				"size": 96,
 				"xOffset": 0,
 				"yOffset": 0
 			}
@@ -31,7 +31,7 @@
 				"foreground": "0064f.png"
 			},
 			"symbol": {
-				"resizeTo": 48,
+				"size": 48,
 				"xOffset": 0,
 				"yOffset": 0
 			}
@@ -43,7 +43,7 @@
 				"foreground": "0048f.png"
 			},
 			"symbol": {
-				"resizeTo": 36,
+				"size": 36,
 				"xOffset": 0,
 				"yOffset": 0
 			}
@@ -55,7 +55,7 @@
 				"foreground": "0032f.png"
 			},
 			"symbol": {
-				"resizeTo": 24,
+				"size": 24,
 				"xOffset": 0,
 				"yOffset": 0
 			}
@@ -67,7 +67,7 @@
 				"foreground": "0024f.png"
 			},
 			"symbol": {
-				"resizeTo": 18,
+				"size": 18,
 				"xOffset": 0,
 				"yOffset": 0
 			}
@@ -79,7 +79,7 @@
 				"foreground": "0016f.png"
 			},
 			"symbol": {
-				"resizeTo": 12,
+				"size": 12,
 				"xOffset": 0,
 				"yOffset": 0
 			}
