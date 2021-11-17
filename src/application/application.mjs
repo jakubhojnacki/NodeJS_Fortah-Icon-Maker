@@ -27,7 +27,7 @@ export class Application extends ConsoleApplication {
         const profilesPath = this.settings.paths.profiles.trim();
         const imageProcessorType = ImageProcessorType.parse(this.args.get(ArgName.imageProcessor));
         const imageProcessorSettings = this.settings.imageProcessors.get(imageProcessorType);
-        const imageProcessor = (new ImageProcessorFactory()).create(imageProcessorSettings.type, imageProcessorSettings.path);
+        const imageProcessor = (new ImageProcessorFactory()).create(imageProcessorSettings.type, imageProcessorSettings.path, this.rootDirectoryPath);
         const temporaryPath = this.settings.paths.temporary;
         const outputPath = this.args.get(ArgName.outputDirectoryPath);
 

@@ -10,7 +10,7 @@
         },
         {
             "type": "ImageMagickShell",
-            "path": "/usr/bin/imagemagick"
+            "path": "/usr/bin"
         }
     ]
 }

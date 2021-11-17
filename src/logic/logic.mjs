@@ -184,8 +184,9 @@ export class Logic {
             const largestPage = this.iconLibrary.pages.getLargest();
             if (largestPage) {
                 const sourcePath = Path.join(this.iconLibrary.path, largestPage.path, this.icon.path);
-                this.temporaryImagePath = Path.join(this.temporaryPath, this.icon.path);
-                await this.imageProcessor.resize(sourcePath, this.temporaryImagePath);
+                const iconName = FileSystemToolkit.getFileName(this.icon.path);
+                this.temporaryImagePath = Path.join(this.temporaryPath, iconName);
+                await this.imageProcessor.resize(sourcePath, this.temporaryImagePath, this.profilePage.symbol.size, this.profilePage.symbol.size);
                 path = this.temporaryImagePath;
                 result = true;
             }

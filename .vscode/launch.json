@@ -11,7 +11,7 @@
             "program": "${workspaceFolder}/src/main.mjs",
             "args": [
                 "-p", "windowsStart",
-                "-i", "imageMagickModule",
+                "-i", "imageMagickShell",
                 "-o", "${workspaceFolder}/output"
             ],
             "console": "integratedTerminal"
