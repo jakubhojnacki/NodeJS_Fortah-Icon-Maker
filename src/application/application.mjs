@@ -22,13 +22,13 @@ export class Application extends ConsoleApplication {
     }    
 
     async runLogic() {
-        const iconLibrariesPath = this.settings.paths.iconLibraries.trim();
+        const iconLibrariesPath = this.applyRootDirectoryPathToPath(this.settings.paths.iconLibraries.trim());
         const profileName = this.args.get(ArgName.profile).trim();
-        const profilesPath = this.settings.paths.profiles.trim();
+        const profilesPath = this.applyRootDirectoryPathToPath(this.settings.paths.profiles.trim());
         const imageProcessorType = ImageProcessorType.parse(this.args.get(ArgName.imageProcessor));
         const imageProcessorSettings = this.settings.imageProcessors.get(imageProcessorType);
         const imageProcessor = (new ImageProcessorFactory()).create(imageProcessorSettings.type, imageProcessorSettings.path, this.rootDirectoryPath);
-        const temporaryPath = this.settings.paths.temporary;
+        const temporaryPath = this.applyRootDirectoryPathToPath(this.settings.paths.temporary);
         const outputPath = this.args.get(ArgName.outputDirectoryPath);
 
         const logic = new Logic(this, iconLibrariesPath, profileName, profilesPath, imageProcessor, temporaryPath, outputPath);
@@ -40,6 +40,10 @@ export class Application extends ConsoleApplication {
         logic.onFinalise = (lEventArgs) => { __this.onLogicFinalise(lEventArgs); }
 
         await logic.run();
+    }
+
+    applyRootDirectoryPathToPath(pPath) {
+        return pPath.replace("{0}", this.rootDirectoryPath);
     }
 
     onLogicInitialise(pEventArgs) {
