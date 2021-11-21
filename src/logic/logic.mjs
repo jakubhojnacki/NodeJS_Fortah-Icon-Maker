@@ -136,7 +136,7 @@ export class Logic {
                 await this.createImage();
                 break; //TODO - Remove
             }
-            //TODO - Remove
+            break; //TODO - Remove           
         }
     }
 
@@ -208,7 +208,7 @@ export class Logic {
         const filePath = Path.join(directoryPath, this.icon.path);
         await this.imageProcessor.merge(this.imagePages, filePath);
         if (this.temporaryImagePath)
-            FileSystemToolkit.deleteIfExists(this.temporaryImagePath);
+            FileSystemToolkit.deleteFileIfExists(this.temporaryImagePath);
     }
 
     finalise() {

@@ -8,7 +8,6 @@ import { ArgTemplateFactory } from "../application/argTemplateFactory.mjs";
 import { ConsoleApplication } from "console-library";
 import { ConsoleProgress } from "console-library";
 import { ImageProcessorFactory } from "image-library";
-import { ImageProcessorType } from "image-library";
 import { Logic } from "../logic/logic.mjs";
 import { Settings } from "../settings/settings.mjs";
 
@@ -25,9 +24,7 @@ export class Application extends ConsoleApplication {
         const iconLibrariesPath = this.applyRootDirectoryPathToPath(this.settings.paths.iconLibraries.trim());
         const profileName = this.args.get(ArgName.profile).trim();
         const profilesPath = this.applyRootDirectoryPathToPath(this.settings.paths.profiles.trim());
-        const imageProcessorType = ImageProcessorType.parse(this.args.get(ArgName.imageProcessor));
-        const imageProcessorSettings = this.settings.imageProcessors.get(imageProcessorType);
-        const imageProcessor = (new ImageProcessorFactory()).create(imageProcessorSettings.type, imageProcessorSettings.path, this.rootDirectoryPath);
+        const imageProcessor = (new ImageProcessorFactory()).create(this.settings.imageProcessor.type, this.settings.imageProcessor.path, this.rootDirectoryPath);
         const temporaryPath = this.applyRootDirectoryPathToPath(this.settings.paths.temporary);
         const outputPath = this.args.get(ArgName.outputDirectoryPath);
 
@@ -50,6 +47,7 @@ export class Application extends ConsoleApplication {
         const __this = this;
         this.progress = new ConsoleProgress(null, null, (lProgress) => { __this.onProgressUpdate(lProgress); }, "[", "#", "]", 20, this.console.width);
         this.progress.reset(pEventArgs.count, "Creating icons...");
+        this.newLineOnError = true;
     }
 
     onLogicIcon(pEventArgs) {

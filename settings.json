@@ -4,14 +4,9 @@
         "profiles": "{0}/profiles",
         "temporary": "{0}/temp"
     },
-    "imageProcessors": [
-        {
-            "type": "ImageMagickModule"
-        },
-        {
-            "type": "ImageMagickShell",
-            "path": "/usr/bin"
-        }
-    ]
+    "imageProcessor": {
+        "type": "ImageMagickShell",
+        "path": "/usr/bin"
+    }
 }
 

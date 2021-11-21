@@ -6,32 +6,32 @@
 "use strict";
 
 import { PathsSettings } from "../settings/pathsSettings.mjs";
-import { ImageProcessorsSettings } from "../settings/imageProcessorsSettings.mjs";
+import { ImageProcessorSettings } from "../settings/imageProcessorSettings.mjs";
 import { SettingsBase } from "core-library";
 
 export class Settings extends SettingsBase {
     get paths() { return this.mPaths; }
     set paths(pValue) { this.mPaths = Object.verify(pValue, () => { return new PathsSettings(); }); }
-    get imageProcessors() { return this.mImageProcessors; }
-    set imageProcessors(pValue) { this.mImageProcessors = Object.verify(pValue, () => { return new ImageProcessorsSettings(); }); }
+    get imageProcessor() { return this.mImageProcessor; }
+    set imageProcessor(pValue) { this.mImageProcessor = Object.verify(pValue, () => { return new ImageProcessorSettings(); }); }
 
     constructor(pPaths, pImageProcessors, pDiagnostics) {
         super(pDiagnostics);
         this.paths = pPaths;
-        this.imageProcessors = pImageProcessors;
+        this.imageProcessor = pImageProcessors;
     }
 
     validate(pValidator) {
         pValidator.setComponent(Settings.name);
         this.paths.validate(pValidator);
-        this.imageProcessors.validate(pValidator);
+        this.imageProcessor.validate(pValidator);
         pValidator.restoreComponent();
     }
 
     toData() {
         let data = super.toData();
         data.paths = this.paths.toData();
-        data.imageProcessors = this.imageProcessors.toData();
+        data.imageProcessor = this.imageProcessor.toData();
         return data;
     }
 
@@ -39,7 +39,7 @@ export class Settings extends SettingsBase {
         super.fromData(pData);
         if (pData != null) {
             this.paths = ( new PathsSettings()).fromData(pData.paths);
-            this.imageProcessors = ( new ImageProcessorsSettings()).fromData(pData.imageProcessors);
+            this.imageProcessor = ( new ImageProcessorSettings()).fromData(pData.imageProcessor);
         }
         return this;
     }    
