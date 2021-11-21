@@ -32,8 +32,7 @@ export class Application extends ConsoleApplication {
 
         const __this = this;
         logic.onInitialise = (lEventArgs) => { __this.onLogicInitialise(lEventArgs); }
-        logic.onIcon = (lEventArgs) => { __this.onLogicIcon(lEventArgs); }
-        logic.onIconPage = (lEventArgs) => { __this.onLogicIconPage(lEventArgs); }
+        logic.onImage = (lEventArgs) => { __this.onLogicImage(lEventArgs); }
         logic.onFinalise = (lEventArgs) => { __this.onLogicFinalise(lEventArgs); }
 
         await logic.run();
@@ -50,12 +49,8 @@ export class Application extends ConsoleApplication {
         this.newLineOnError = true;
     }
 
-    onLogicIcon(pEventArgs) {
-        this.progress.move(0, pEventArgs.logic.icon.toString());
-    }
-
-    onLogicIconPage(pEventArgs) {
-        this.progress.move(1, `${pEventArgs.logic.icon.toString()} ${pEventArgs.logic.iconPage.size}x${pEventArgs.logic.iconPage.size}`);
+    onLogicImage(pEventArgs) {
+        this.progress.move(1, pEventArgs.image.toString());
     }
 
     onLogicFinalise(pProgres) {
