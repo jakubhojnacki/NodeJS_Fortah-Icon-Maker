@@ -49,15 +49,15 @@ export class LogicImage {
         pValidator.testNotEmpty("Name", this.name);
         pValidator.testNotEmpty("Size", this.size);
         if (this.backPath)
-            if (!FileSystem.existsSync(this.backPath.path))
-                pValidator.addError("Back Image", "can't be found");
+            if (!FileSystem.existsSync(this.backPath))
+                pValidator.addError("Back Image", `"${this.backPath}" can't be found`);
         pValidator.testNotEmpty("Symbol Path", this.symbolPath);
         if (this.symbolPath)
-            if (!FileSystem.existsSync(this.symbolPath.path))
-                pValidator.addError("Symbol Image", "can't be found");
+            if (!FileSystem.existsSync(this.symbolPath))
+                pValidator.addError("Symbol Image", `"${this.symbolPath}" can't be found`);
         if (this.forePath)
-            if (!FileSystem.existsSync(this.forePath.path))
-                pValidator.addError("Fore Image", "can't be found");
+            if (!FileSystem.existsSync(this.forePath))
+                pValidator.addError("Fore Image", `"${this.forePath}" can't be found`);
         pValidator.testNotEmpty("Output Path", this.symbolPath);
     }
 

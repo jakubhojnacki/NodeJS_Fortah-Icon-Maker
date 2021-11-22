@@ -26,6 +26,9 @@ export class Logic {
     set symbolLibrariesPath(pValue) { this.mSymbolLibrariesPath = String.verify(pValue); }
     get symbolLibrary() { return this.mSymbolLibrary; }
     set symbolLibrary(pValue) { this.mSymbolLibrary = pValue; }
+    get symbolsPath() { return this.mSymbolsPath; }
+    set symbolsPath(pValue) { this.mSymbolsPath = String.verify(pValue); }
+
 	get profileName() { return this.mProfileName; }
     set profileName(pValue) { this.mProfileName = String.verify(pValue); }
     get profilesPath() { return this.mProfilesPath; }
@@ -53,11 +56,12 @@ export class Logic {
     get onFinalise() { return this.mOnFinalise; }
     set onFinalise(pValue) { this.mOnFinalise = pValue; }
 
-	constructor(pApplication, pSymbolLibrariesPath, pProfileName, pProfilesPath, pImageProcessor, pTemporaryPath, pOutputPath) {
+	constructor(pApplication, pSymbolLibrariesPath, pSymbolsPath, pProfileName, pProfilesPath, pImageProcessor, pTemporaryPath, pOutputPath) {
         this.application = pApplication;
         
         this.symbolLibrariesPath = pSymbolLibrariesPath;
         this.symbolLibrary = null;
+        this.symbolsPath = pSymbolsPath;
         this.profileName = pProfileName;
         this.profilesPath = pProfilesPath;
         this.profile = null;
@@ -111,6 +115,7 @@ export class Logic {
     }
 
     prepareImages() {
+        const symbolsPath = this.symbolLibrary.path ? this.symbolLibrary.path : this.symbolsPath;
         this.images = new Array();
         for (const symbol of this.symbolLibrary.symbols)
             for (const symbolPage of this.symbolLibrary.pages) {
@@ -123,19 +128,32 @@ export class Logic {
                         image.forePath = Path.join(this.profile.path, profilePage.template.fore);
                     let symbolPageToUse = symbolPage;
                     if (profilePage.size != profilePage.symbol.size) {
-                        const largestPage = this.symbolLibrary.pages.getLargest();
-                        if (largestPage) {
-                            symbolPageToUse = largestPage;
+                        const symbolPageFound = this.findSymbolPage(symbol, symbolsPath);
+                        if (symbolPageFound) {
+                            symbolPageToUse = symbolPageFound;
                             image.symbolSize = profilePage.symbol.size;
                             image.symbolXOffset = profilePage.symbol.xOffset;
                             image.symbolYOffset = profilePage.symbol.yOffset;
                         }
                     }
-                    image.symbolPath = Path.join(this.symbolLibrary.path, symbolPageToUse.path, symbol.path);
-                    image.outputPath = Path.join(this.outputPath, this.symbolPage.path, this.symbol.path);
+                    image.symbolPath = Path.join(symbolsPath, symbolPageToUse.path, symbol.path);
+                    image.outputPath = Path.join(this.outputPath, symbolPage.path, symbol.path);
                     this.images.push(image);
                 }
             }
+    }
+
+    findSymbolPage(pSymbol, pSymbolsPath) {
+        let symbolPageFound = null;
+        const symbolPages = this.symbolLibrary.pages.sort((lItem1, lItem2) => { return lItem1 > lItem2 ? -1 : (lItem1 < lItem2 ? 1 : 0); });
+        for (const symbolPage of symbolPages) {
+            const symbolPath = Path.join(pSymbolsPath, symbolPage.path, pSymbol.path);
+            if (FileSystem.existsSync(symbolPath)) {
+                symbolPageFound = symbolPage;
+                break;
+            }
+        }
+        return symbolPageFound;
     }
 
     validateImages() {
@@ -168,8 +186,10 @@ export class Logic {
         FileSystemToolkit.createDirectoryIfDoesntExist(outputDirectoryPath);
         const imagePages = pImage.imagePages;
         await this.imageProcessor.merge(imagePages, pImage.outputPath);
+        /*TODO - Uncomment
         if (this.temporaryImagePath)
             FileSystemToolkit.deleteFileIfExists(this.temporaryImagePath);
+        */
     }
 
     finalise() {

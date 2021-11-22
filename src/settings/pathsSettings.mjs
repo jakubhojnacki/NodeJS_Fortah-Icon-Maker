@@ -8,13 +8,16 @@
 export class PathsSettings {
     get symbolLibraries() { return this.mSymbolLibraries; }
     set symbolLibraries(pValue) { this.mSymbolLibraries = String.verify(pValue); }
+    get symbols() { return this.mSymbols; }
+    set symbols(pValue) { this.mSymbols = String.verify(pValue); }
     get profiles() { return this.mProfiles; }
     set profiles(pValue) { this.mProfiles = String.verify(pValue); }
     get temporary() { return this.mTemporary; }
     set temporary(pValue) { this.mTemporary = String.verify(pValue); }
 
-    constructor(pSymbolLibraries, pProfiles, pTemporary) {
+    constructor(pSymbolLibraries, pSymbols, pProfiles, pTemporary) {
         this.symbolLibraries = pSymbolLibraries;
+        this.symbols = pSymbols;
         this.profiles = pProfiles;
         this.temporary = pTemporary;
     }
@@ -30,6 +33,7 @@ export class PathsSettings {
     toData() {
         let data = {};
         data.symbolLibraries = this.symbolLibraries;
+        data.symbols = this.symbols;
         data.profiles = this.profiles;
         data.temporary = this.temporary;
         return data;
@@ -38,6 +42,7 @@ export class PathsSettings {
     fromData(pData) {
         if (pData != null) {
             this.symbolLibraries = pData.symbolLibraries;
+            this.symbols = pData.symbols;
             this.profiles = pData.profiles;
             this.temporary = pData.temporary;
         }

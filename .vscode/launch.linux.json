@@ -12,7 +12,7 @@
             "args": [
                 "-p", "windowsStart",
                 "-i", "imageMagickShell",
-                "-o", "C:\\Temp",
+                "-o", "/home/Temp",
                 "-de"
             ],
             "console": "integratedTerminal"

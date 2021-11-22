@@ -1,13 +1,13 @@
 {
     "paths": {
         "symbolLibraries": "./symbolLibraries",
-        "symbols": "C:\\Multimedia\\Icons (PNG)",
+        "symbols": "/home/Multimedia/Icons",
         "profiles": "./profiles",
-        "temporary": "C:\\Temp\\__Temp"
+        "temporary": "./temp"
     },
     "imageProcessor": {
         "type": "ImageMagickShell",
-        "path": "C:\\Program Files\\ImageMagick"
+        "path": "/usr/bin"
     }
 }
 

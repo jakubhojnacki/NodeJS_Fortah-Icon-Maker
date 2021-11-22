@@ -20,9 +20,4 @@ export class SymbolLibraryPages extends Array {
             }        
         return this;
     }
-
-    getLargest() {
-        const reversedItems = this.sort((lItem1, lItem2) => { return lItem1 > lItem2 ? -1 : (lItem1 < lItem2 ? 1 : 0); });
-        return reversedItems.length > 0 ? reversedItems[0] : null;
-    }    
 }
