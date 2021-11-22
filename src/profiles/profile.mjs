@@ -15,14 +15,14 @@ export class Profile {
     set path(pValue) { this.mPath = String.verify(pValue); }
     get pages() { return this.mPages; }
     set pages(pValue) { this.mPages = pValue; }
-    get iconLibrary() { return this.mIconLibrary; }
-    set iconLibrary(pValue) { this.mIconLibrary = String.verify(pValue); }
+    get symbolLibrary() { return this.mSymbolLibrary; }
+    set symbolLibrary(pValue) { this.mSymbolLibrary = String.verify(pValue); }
 
     constructor(pPath, pName) {
         this.path = Path.join(pPath, pName);
         const dataPath = Path.join(this.path, "profile.json");
         const data = JSON.parse(FileSystem.readFileSync(dataPath));
         this.pages = (new ProfilePages()).fromData(data.pages);
-        this.iconLibrary = data.iconLibrary;
+        this.symbolLibrary = data.symbolLibrary;
     }
 }

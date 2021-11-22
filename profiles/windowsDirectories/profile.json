@@ -85,5 +85,5 @@
 			}
 		}
     ],
-    "iconLibrary": "directories"
+    "symbolLibrary": "directories"
 }

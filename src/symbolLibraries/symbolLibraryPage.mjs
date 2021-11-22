@@ -1,11 +1,11 @@
 /**
- * @module "IconLibraryPage" class
- * @description Represents one icon library page
+ * @module "SymbolLibraryPage" class
+ * @description Represents one symbol library page
  */
 
 "use strict"
 
-export class IconLibraryPage {
+export class SymbolLibraryPage {
     get size() { return this.mSize; }
     set size(pValue) { this.mSize = Number.verifyAsInteger(pValue); }
     get path() { return this.mPath; }

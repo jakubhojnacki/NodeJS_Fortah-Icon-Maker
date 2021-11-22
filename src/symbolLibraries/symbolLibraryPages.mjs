@@ -1,13 +1,13 @@
 /**
- * @module "IconLibraryPages" class
- * @description An array of pages of icon library
+ * @module "SymbolLibraryPages" class
+ * @description An array of pages of symbol library
  */
 
 "use strict"
 
-import { IconLibraryPage } from "../iconLibraries/iconLibraryPage.mjs";
+import { SymbolLibraryPage } from "../symbolLibraries/symbolLibraryPage.mjs";
 
-export class IconLibraryPages extends Array {
+export class SymbolLibraryPages extends Array {
     constructor() {
         super();
     }
@@ -15,7 +15,7 @@ export class IconLibraryPages extends Array {
     fromData(pData) {
         if (Array.isArray(pData))
             for (const dataItem of pData) {
-                const item = (new IconLibraryPage()).fromData(dataItem);
+                const item = (new SymbolLibraryPage()).fromData(dataItem);
                 this.push(item);
             }        
         return this;

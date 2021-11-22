@@ -16,54 +16,58 @@ export class LogicImage {
     set name(pValue) { this.mName = String.verify(pValue); }
     get size() { return this.mSize; }
     set size(pValue) { this.mSize = Number.verifyAsInteger(pValue); }
-    get back() { return this.mBackPath; }
-    set back(pValue) { this.mBackPath = pValue; }
-    get icon() { return this.mIconPath; }
-    set icon(pValue) { this.mIconPath = String.verify(pValue); }
-    get iconSize() { return this.mIconSize; }
-    set iconSize(pValue) { this.mIconSize = pValue; }
-    get iconXOffset() { return this.miconXOffset; }
-    set iconXOffset(pValue) { this.miconXOffset = Number.verifyAsInteger(pValue); }
-    get iconYOffset() { return this.mIconYOffset; }
-    set iconYOffset(pValue) { this.mIconYOffset = Number.verifyAsInteger(pValue); }
-    get fore() { return this.mForePath; }
-    set fore(pValue) { this.mForePath = String.verify(pValue); }
+    get backPath() { return this.mBackPath; }
+    set backPath(pValue) { this.mBackPath = String.verify(pValue); }
+    get symbolPath() { return this.mSymbolPath; }
+    set symbolPath(pValue) { this.mSymbolPath = String.verify(pValue); }
+    get symbolSize() { return this.mSymbolSize; }
+    set symbolSize(pValue) { this.mSymbolSize = String.verify(pValue); }
+    get symbolXOffset() { return this.mSymbolXOffset; }
+    set symbolXOffset(pValue) { this.mSymbolXOffset = Number.verifyAsInteger(pValue); }
+    get symbolYOffset() { return this.mSymbolYOffset; }
+    set symbolYOffset(pValue) { this.mSymbolYOffset = Number.verifyAsInteger(pValue); }
+    get forePath() { return this.mForePath; }
+    set forePath(pValue) { this.mForePath = String.verify(pValue); }
+    get outputPath() { return this.mOutputPath; }
+    set outputPath(pValue) { this.mOutputPath = String.verify(pValue); }
 
     get imagePages() { return this.getImagePages(); }
 
-    constructor(pName, pSize, pBackPath, pIconPath, pIconSize, pIconXOffset, pIconYOffset, pForePath) {
+    constructor(pName, pSize, pBackPath, pSymbolPath, pSymbolSize, pSymbolXOffset, pSymbolYOffset, pForePath, pOutputPath) {
         this.name = pName;
         this.size = pSize;
-        this.back = pBackPath ? new FileSystemItem(FileSystemItemType.file, pBackPath) : null;
-        this.icon = pIconPath ? new FileSystemItem(FileSystemItemType.file, pIconPath) : null;
-        this.iconSize = pIconSize;
-        this.iconXOffset = pIconXOffset;
-        this.iconYOffset = pIconYOffset;
-        this.fore = pForePath ? new FileSystemItem(FileSystemItemType.file, pForePath) : null;
+        this.backPath = pBackPath;
+        this.symbolPath = pSymbolPath;
+        this.symbolSize = pSymbolSize;
+        this.symbolXOffset = pSymbolXOffset;
+        this.symbolYOffset = pSymbolYOffset;
+        this.forePath = pForePath;
+        this.outputPath = pOutputPath;
     }
 
     validate(pValidator) {
         pValidator.testNotEmpty("Name", this.name);
         pValidator.testNotEmpty("Size", this.size);
-        if (this.back)
-            if (!FileSystem.existsSync(this.back.path))
+        if (this.backPath)
+            if (!FileSystem.existsSync(this.backPath.path))
                 pValidator.addError("Back Image", "can't be found");
-        pValidator.testNotEmpty("Icon Path", this.icon);
-        if (this.icon)
-            if (!FileSystem.existsSync(this.icon.path))
-                pValidator.addError("Icon Image", "can't be found");
-        if (this.fore)
-            if (!FileSystem.existsSync(this.fore.path))
+        pValidator.testNotEmpty("Symbol Path", this.symbolPath);
+        if (this.symbolPath)
+            if (!FileSystem.existsSync(this.symbolPath.path))
+                pValidator.addError("Symbol Image", "can't be found");
+        if (this.forePath)
+            if (!FileSystem.existsSync(this.forePath.path))
                 pValidator.addError("Fore Image", "can't be found");
+        pValidator.testNotEmpty("Output Path", this.symbolPath);
     }
 
     getImagePages() {
         const imagePages = new Array();
-        if (this.back)
-            imagePages.push(new ImagePage(this.back));
-        imagePages.push(this.icon, this.iconXOffset, this.iconYOffset);
-        if (this.fore)
-            imagePages.push(new ImagePage(this.fore));        
+        if (this.backPath)
+            imagePages.push(new ImagePage(new FileSystemItem(FileSystemItemType.file, this.backPath)));
+        imagePages.push(new ImagePage(new FileSystemItem(FileSystemItemType.file, this.symbolPath), this.symbolXOffset, this.symbolYOffset));
+        if (this.forePath)
+            imagePages.push(new ImagePage(new FileSystemItem(FileSystemItemType.file, this.forePath)));        
         return imagePages;
     }
 

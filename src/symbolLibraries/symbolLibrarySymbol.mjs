@@ -1,11 +1,11 @@
 /**
- * @module "IconLibraryIcon" class
- * @description Represents one icon library icon
+ * @module "SymbolLibrarySymbol" class
+ * @description Represents one symbol from symbol library
  */
 
 "use strict"
 
-export class IconLibraryIcon {
+export class SymbolLibrarySymbol {
     get name() { return this.mName; }
     set name(pValue) { this.mName = String.verify(pValue); }
     get path() { return this.mPath; }

@@ -21,14 +21,14 @@ export class Application extends ConsoleApplication {
     }    
 
     async runLogic() {
-        const iconLibrariesPath = this.applyRootDirectoryPathToPath(this.settings.paths.iconLibraries.trim());
+        const symbolLibrariesPath = this.applyRootDirectoryPathToPath(this.settings.paths.symbolLibraries.trim());
         const profileName = this.args.get(ArgName.profile).trim();
         const profilesPath = this.applyRootDirectoryPathToPath(this.settings.paths.profiles.trim());
         const imageProcessor = (new ImageProcessorFactory()).create(this.settings.imageProcessor.type, this.settings.imageProcessor.path, this.rootDirectoryPath);
         const temporaryPath = this.applyRootDirectoryPathToPath(this.settings.paths.temporary);
         const outputPath = this.args.get(ArgName.outputDirectoryPath);
 
-        const logic = new Logic(this, iconLibrariesPath, profileName, profilesPath, imageProcessor, temporaryPath, outputPath);
+        const logic = new Logic(this, symbolLibrariesPath, profileName, profilesPath, imageProcessor, temporaryPath, outputPath);
 
         const __this = this;
         logic.onInitialise = (lEventArgs) => { __this.onLogicInitialise(lEventArgs); }

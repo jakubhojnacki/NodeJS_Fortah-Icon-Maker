@@ -6,30 +6,30 @@
 "use strict";
 
 export class PathsSettings {
-    get iconLibraries() { return this.mIconLibraries; }
-    set iconLibraries(pValue) { this.mIconLibraries = String.verify(pValue); }
+    get symbolLibraries() { return this.mSymbolLibraries; }
+    set symbolLibraries(pValue) { this.mSymbolLibraries = String.verify(pValue); }
     get profiles() { return this.mProfiles; }
     set profiles(pValue) { this.mProfiles = String.verify(pValue); }
     get temporary() { return this.mTemporary; }
     set temporary(pValue) { this.mTemporary = String.verify(pValue); }
 
-    constructor(pIconLibraries, pProfiles, pTemporary) {
-        this.iconLibraries = pIconLibraries;
+    constructor(pSymbolLibraries, pProfiles, pTemporary) {
+        this.symbolLibraries = pSymbolLibraries;
         this.profiles = pProfiles;
         this.temporary = pTemporary;
     }
 
     validate(pValidator) {
         pValidator.setComponent(PathsSettings.name);
-        pValidator.testNotEmpty("iconLibraries", this.iconLibraries);
-        pValidator.testNotEmpty("profiles", this.profiles);
-        pValidator.testNotEmpty("temporary", this.temporary);
+        pValidator.testNotEmpty("Symbol Libraries", this.symbolLibraries);
+        pValidator.testNotEmpty("Profiles", this.profiles);
+        pValidator.testNotEmpty("Temporary", this.temporary);
         pValidator.restoreComponent();
     }
 
     toData() {
         let data = {};
-        data.iconLibraries = this.iconLibraries;
+        data.symbolLibraries = this.symbolLibraries;
         data.profiles = this.profiles;
         data.temporary = this.temporary;
         return data;
@@ -37,7 +37,7 @@ export class PathsSettings {
 
     fromData(pData) {
         if (pData != null) {
-            this.iconLibraries = pData.iconLibraries;
+            this.symbolLibraries = pData.symbolLibraries;
             this.profiles = pData.profiles;
             this.temporary = pData.temporary;
         }

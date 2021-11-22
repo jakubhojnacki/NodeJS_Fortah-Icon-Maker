@@ -18,7 +18,7 @@ export class ImageProcessorSettings {
 
     validate(pValidator) {
         pValidator.setComponent(ImageProcessorSettings.name);
-        pValidator.testNotEmpty("type", this.type);
+        pValidator.testNotEmpty("Type", this.type);
         pValidator.restoreComponent();
     }
 

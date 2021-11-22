@@ -1,8 +1,8 @@
 {
     "paths": {
-        "iconLibraries": "{0}/iconLibraries",
-        "profiles": "{0}/profiles",
-        "temporary": "{0}/temp"
+        "symbolLibraries": "{Root}/symbolLibraries",
+        "profiles": "{Root}/profiles",
+        "temporary": "{Root}/temp"
     },
     "imageProcessor": {
         "type": "ImageMagickShell",
