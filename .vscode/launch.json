@@ -10,7 +10,7 @@
             ],
             "program": "${workspaceFolder}/src/main.mjs",
             "args": [
-                "-p", "windowsFilesBlue",
+                "-p", "windowsDirectories",
                 "-i", "imageMagickShell",
                 "-o", "/home/Temp",
                 "-de"
