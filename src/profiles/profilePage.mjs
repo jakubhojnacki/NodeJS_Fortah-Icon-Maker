@@ -30,4 +30,12 @@ export class ProfilePage {
         }
         return this;
     }
+    
+    validate(pValidator) {
+        pValidator.setComponent(ProfilePage.name);
+        pValidator.testNotEmpty("Size", this.size);
+        this.template.validate(pValidator);
+        this.symbol.validate(pValidator);
+        pValidator.restoreComponent();
+    }
 }

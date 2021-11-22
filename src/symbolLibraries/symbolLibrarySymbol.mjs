@@ -23,6 +23,13 @@ export class SymbolLibrarySymbol {
         }
         return this;
     }
+    
+    validate(pValidator) {
+        pValidator.setComponent(SymbolLibrarySymbol.name);
+        pValidator.testNotEmpty("Name", this.name);
+        pValidator.testNotEmpty("Path", this.path);
+        pValidator.restoreComponent();
+    }
 
     toString() {
         return this.name;

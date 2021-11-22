@@ -85,6 +85,8 @@
 			}
 		}
 	],
-	"symbolLibrary": "services"
+	"symbolLibrary": "services",
+    "outputFormat": "png",
+    "outputPath": "Types/Service Start"
 }
 

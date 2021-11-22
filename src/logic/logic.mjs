@@ -79,13 +79,13 @@ export class Logic {
     }
 
     async run() {
-        if (this.validate()) {
-            this.initialise();
-            this.prepareImages();
-            if (this.validateImages())
-                await this.processImages();
-            this.finalise();
-        }
+        if (this.validate())
+            if (this.initialise()) {
+                this.prepareImages();
+                if (this.validateImages())
+                    await this.processImages();
+                this.finalise();
+            }
 	}
 
     validate() {
@@ -106,12 +106,23 @@ export class Logic {
     }
 
     initialise() {
-        this.profile = new Profile(this.profilesPath, this.profileName);
-        this.symbolLibrary = new SymbolLibrary(this.symbolLibrariesPath, this.profile.symbolLibrary);
-        if (this.onInitialise) {
-            const count = this.symbolLibrary.symbols.length * this.profile.pages.length; 
-            this.onInitialise(new LogicEventArgs(this, count));
+        let result = true;
+        if (result) {
+            this.profile = new Profile(this.profilesPath, this.profileName);
+            result = this.profile.validate();
         }
+        if (result) {
+            this.symbolLibrary = new SymbolLibrary(this.symbolLibrariesPath, this.profile.symbolLibrary);
+            result = this.symbolLibrary.validate();
+        }
+        if (result)
+            FileSystemToolkit.createDirectoryIfDoesntExist(this.temporaryPath);
+        if (result)
+            if (this.onInitialise) {
+                const count = this.symbolLibrary.symbols.length * this.profile.pages.length; 
+                this.onInitialise(new LogicEventArgs(this, count));
+            }
+        return result;
     }
 
     prepareImages() {
@@ -137,7 +148,8 @@ export class Logic {
                         }
                     }
                     image.symbolPath = Path.join(symbolsPath, symbolPageToUse.path, symbol.path);
-                    image.outputPath = Path.join(this.outputPath, symbolPage.path, symbol.path);
+                    const outputFileName = `${symbol.name}.${this.profile.outputFormat}`;
+                    image.outputPath = Path.join(this.outputPath, symbolPage.path, this.profile.outputPath, outputFileName);
                     this.images.push(image);
                 }
             }
@@ -186,13 +198,10 @@ export class Logic {
         FileSystemToolkit.createDirectoryIfDoesntExist(outputDirectoryPath);
         const imagePages = pImage.imagePages;
         await this.imageProcessor.merge(imagePages, pImage.outputPath);
-        /*TODO - Uncomment
-        if (this.temporaryImagePath)
-            FileSystemToolkit.deleteFileIfExists(this.temporaryImagePath);
-        */
     }
 
     finalise() {
+        FileSystemToolkit.emptyDirectory(this.temporaryPath);
         if (this.onFinalise)
             this.onFinalise(new LogicEventArgs(this));
     }

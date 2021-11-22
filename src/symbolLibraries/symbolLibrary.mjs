@@ -10,6 +10,7 @@ import Path from "path";
 
 import { SymbolLibrarySymbols } from "../symbolLibraries/symbolLibrarySymbols.mjs";
 import { SymbolLibraryPages } from "../symbolLibraries/symbolLibraryPages.mjs";
+import { Validator } from "core-library";
 
 export class SymbolLibrary {
     get path() { return this.mPath; }
@@ -32,5 +33,14 @@ export class SymbolLibrary {
             this.symbols = (new SymbolLibrarySymbols()).fromData(pData.symbols);
         }
         return this;
+    }
+
+    validate() {
+        const validator = new Validator();
+        validator.setComponent(SymbolLibrary.name);
+        this.pages.validate(validator);
+        this.symbols.validate(validator);
+        validator.restoreComponent();
+        return validator.require();
     }
 }

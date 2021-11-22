@@ -85,5 +85,7 @@
 			}
 		}
     ],
-    "symbolLibrary": "directories"
+    "symbolLibrary": "directories",
+    "outputFormat": "png",
+    "outputPath": "Types/Windows Directories"
 }

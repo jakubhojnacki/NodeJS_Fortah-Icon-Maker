@@ -1,9 +1,9 @@
 {
     "paths": {
-        "symbolLibraries": "./symbolLibraries",
+        "symbolLibraries": "./res/symbolLibraries",
         "symbols": "/home/Multimedia/Icons",
-        "profiles": "./profiles",
-        "temporary": "./temp"
+        "profiles": "./res/profiles",
+        "temporary": "/home/Temp/__Temp"
     },
     "imageProcessor": {
         "type": "ImageMagickShell",

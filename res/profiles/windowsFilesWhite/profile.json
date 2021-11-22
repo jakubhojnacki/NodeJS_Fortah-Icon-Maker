@@ -17,6 +17,7 @@
 				"back": "0128b.png"
 			},
 			"symbol": {
+				"extension": "png",
 				"size": 96,
 				"xOffset": 8,
 				"yOffset": 24
@@ -78,5 +79,8 @@
 			}
 		}
 	],
-	"symbolLibrary": "files"
+	"symbolLibrary": "files",
+    "outputFormat": "png",
+    "outputPath": "Types/Windows Files White"
 }
+

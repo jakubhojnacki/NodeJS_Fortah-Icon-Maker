@@ -23,4 +23,11 @@ export class SymbolLibraryPage {
         }
         return this;
     }
+
+    validate(pValidator) {
+        pValidator.setComponent(SymbolLibraryPage.name);
+        pValidator.testNotEmpty("Size", this.size);
+        pValidator.testNotEmpty("Path", this.path);
+        pValidator.restoreComponent();
+    }
 }

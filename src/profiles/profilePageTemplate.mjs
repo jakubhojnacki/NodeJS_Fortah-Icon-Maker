@@ -23,4 +23,9 @@ export class ProfilePageTemplate {
         }
         return this;
     }    
+        
+    validate(pValidator) {
+        pValidator.setComponent(ProfilePageTemplate.name);
+        pValidator.restoreComponent();
+    }
 }

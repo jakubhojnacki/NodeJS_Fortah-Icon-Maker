@@ -3,8 +3,8 @@
 		{
 			"size": 256,
 			"template": {
-				"background": "0256b.png",
-				"foreground": "0256f.png"
+				"back": "0256b.png",
+				"fore": "0256f.png"
 			},
 			"symbol": {
 				"size": 192,
@@ -15,8 +15,8 @@
 		{
 			"size": 128,
 			"template": {
-				"background": "0128b.png",
-				"foreground": "0128f.png"
+				"back": "0128b.png",
+				"fore": "0128f.png"
 			},
 			"symbol": {
 				"size": 96,
@@ -27,8 +27,8 @@
 		{
 			"size": 64,
 			"template": {
-				"background": "0064b.png",
-				"foreground": "0064f.png"
+				"back": "0064b.png",
+				"fore": "0064f.png"
 			},
 			"symbol": {
 				"size": 48,
@@ -39,8 +39,8 @@
 		{
 			"size": 48,
 			"template": {
-				"background": "0048b.png",
-				"foreground": "0048f.png"
+				"back": "0048b.png",
+				"fore": "0048f.png"
 			},
 			"symbol": {
 				"size": 36,
@@ -51,8 +51,8 @@
 		{
 			"size": 32,
 			"template": {
-				"background": "0032b.png",
-				"foreground": "0032f.png"
+				"back": "0032b.png",
+				"fore": "0032f.png"
 			},
 			"symbol": {
 				"size": 24,
@@ -63,8 +63,8 @@
 		{
 			"size": 24,
 			"template": {
-				"background": "0024b.png",
-				"foreground": "0024f.png"
+				"back": "0024b.png",
+				"fore": "0024f.png"
 			},
 			"symbol": {
 				"size": 18,
@@ -75,8 +75,8 @@
 		{
 			"size": 16,
 			"template": {
-				"background": "0016b.png",
-				"foreground": "0016f.png"
+				"back": "0016b.png",
+				"fore": "0016f.png"
 			},
 			"symbol": {
 				"size": 12,
@@ -85,6 +85,8 @@
 			}
 		}
 	],
-	"symbolLibrary": "services"
+	"symbolLibrary": "services",
+    "outputFormat": "png",
+    "outputPath": "Types/Service Stop"
 }
 

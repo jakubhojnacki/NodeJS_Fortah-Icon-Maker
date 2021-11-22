@@ -20,4 +20,9 @@ export class SymbolLibrarySymbols extends Array {
             }        
         return this;
     }
+
+    validate(pValidator) {
+        for (const item of this)
+            item.validate(pValidator);
+    }    
 }

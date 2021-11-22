@@ -2,7 +2,7 @@
     "name": "icon-maker",
     "displayName": "Icon Maker",
     "description": "Makes icons - for folders and files - out of images",
-    "version": "3.2.0",
+    "version": "4.0.0",
     "author": "Jakub Hojnacki <jakubhojnacki@gmail.com>",
     "date": "November 2021",
     "type": "module",

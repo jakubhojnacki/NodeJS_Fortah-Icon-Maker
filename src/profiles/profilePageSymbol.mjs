@@ -26,5 +26,11 @@ export class ProfilePageSymbol {
             this.yOffset = pData.yOffset;
         }
         return this;
+    }        
+
+    validate(pValidator) {
+        pValidator.setComponent(ProfilePageSymbol.name);
+        pValidator.testNotEmpty("Size", this.size);
+        pValidator.restoreComponent();
     }
 }

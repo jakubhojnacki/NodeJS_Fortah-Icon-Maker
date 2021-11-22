@@ -21,6 +21,11 @@ export class ProfilePages extends Array {
         return this;
     }
 
+    validate(pValidator) {
+        for (const item of this)
+            item.validate(pValidator);
+    }
+
     get(pSize) {
         return this.find((lItem) => { return lItem.size === pSize; });
     }
