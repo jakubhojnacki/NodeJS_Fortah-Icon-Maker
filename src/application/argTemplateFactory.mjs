@@ -15,9 +15,8 @@ export class ArgTemplateFactory extends ArgTemplateFactoryBase {
 
     create() {
         const argTemplateArray = [
-            new ArgTemplate(["p", "profile"], ArgName.profile, "Name of a profile", DataType.string, true, true),
-            new ArgTemplate(["i", "imageProcessor"], ArgName.imageProcessor, "Type of image processor", DataType.string, true, true),
-            new ArgTemplate(["o", "outputDirectoryPath"], ArgName.outputDirectoryPath, "Output directory path", DataType.string, true, true)
+            new ArgTemplate([0, "profile"], ArgName.profile, "Name of a profile", DataType.string, true, true),
+            new ArgTemplate([1, "outputDirectoryPath"], ArgName.outputDirectoryPath, "Output directory path", DataType.string, true, true)
         ];
 
         let argTemplates = super.create();

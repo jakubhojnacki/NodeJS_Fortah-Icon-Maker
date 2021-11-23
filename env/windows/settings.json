@@ -1,8 +1,8 @@
 {
     "paths": {
-        "symbolLibraries": "./symbolLibraries",
+        "symbolLibraries": "./res/symbolLibraries",
         "symbols": "C:\\Multimedia\\Icons (PNG)",
-        "profiles": "./profiles",
+        "profiles": "./res/profiles",
         "temporary": "C:\\Temp\\__Temp"
     },
     "imageProcessor": {

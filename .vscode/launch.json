@@ -10,10 +10,8 @@
             ],
             "program": "${workspaceFolder}/src/main.mjs",
             "args": [
-                "-p", "windowsDirectories",
-                "-i", "imageMagickShell",
-                "-o", "/home/Temp",
-                "-de"
+                "serviceStart",
+                "C:\\Temp"
             ],
             "console": "integratedTerminal"
         }

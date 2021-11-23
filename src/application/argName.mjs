@@ -8,12 +8,10 @@ import { EnumItem } from "core-library";
 
 export class ArgName {
     static get profile() { return "Profile"; }
-    static get imageProcessor() { return "ImageProcessor"; }
     static get outputDirectoryPath() { return "OutputDirectoryPath"; }
 
     static get values() { return [
         new EnumItem(ArgName.profile),
-        new EnumItem(ArgName.imageProcessor),
         new EnumItem(ArgName.outputDirectoryPath)
     ]; }
 

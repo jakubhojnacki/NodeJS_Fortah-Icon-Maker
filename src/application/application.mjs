@@ -29,6 +29,9 @@ export class Application extends ConsoleApplication {
         const temporaryPath = this.applyRootDirectoryPathToPath(this.settings.paths.temporary);
         const outputPath = this.args.get(ArgName.outputDirectoryPath);
 
+        this.console.writeLine(`Profile Name: "${profileName}"`, 1);
+        this.console.writeLine(`Output Path: "${outputPath}"`, 1);
+
         const logic = new Logic(this, symbolLibrariesPath, symbolsPath, profileName, profilesPath, imageProcessor, temporaryPath, outputPath);
 
         const __this = this;
