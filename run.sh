@@ -2,7 +2,7 @@
 
 tty -s || exec konsole -e "$0" "$@"
 
-profileName="serviceStart"
+profileName="linuxDirectoriesBreezeOrange"
 outputPath="/home/Temp"
 
 node "./src/main.mjs" $profileName $outputPath

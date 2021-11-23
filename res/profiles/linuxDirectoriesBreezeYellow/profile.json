@@ -1,0 +1,73 @@
+{
+    "pages": [
+        {
+            "size": 256,
+            "template": {
+                "back": "0256b.png"
+            },
+            "symbol": {
+                "size": 128,
+                "xOffset": 64,
+                "yOffset": 96
+            }
+        },
+		{
+            "size": 128,
+            "template": {
+                "back": "0128b.png"
+            },
+			"symbol": {
+				"size": 64,
+				"xOffset": 32,
+				"yOffset": 48
+			}
+		},
+		{
+			"size": 64,
+			"template": {
+				"back": "0064b.png"
+			},
+			"symbol": {
+				"size": 32,
+				"xOffset": 16,
+				"yOffset": 24
+			}
+		},
+		{
+			"size": 48,
+			"template": {
+				"back": "0048b.png"
+			},
+			"symbol": {
+				"size": 24,
+				"xOffset": 12,
+				"yOffset": 18
+			}
+		},
+		{
+			"size": 32,
+			"template": {
+				"back": "0032b.png"
+			},
+			"symbol": {
+				"size": 16,
+				"xOffset": 8,
+				"yOffset": 12
+			}
+		},
+		{
+			"size": 16,
+			"template": {
+				"back": "0016b.png"
+			},
+			"symbol": {
+				"size": 8,
+				"xOffset": 4,
+				"yOffset": 6
+			}
+		}
+    ],
+    "symbolLibrary": "directories",
+    "outputFormat": "png",
+    "outputPath": "Types/Linux Directories Breeze Yellow"
+}
