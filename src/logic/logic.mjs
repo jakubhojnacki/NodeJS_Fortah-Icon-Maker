@@ -133,24 +133,26 @@ export class Logic {
                 const profilePage = this.profile.pages.get(symbolPage.size);
                 if (profilePage) {
                     const image = new LogicImage(symbol.name, symbolPage.size);
-                    if (profilePage.template.back)
-                        image.backPath = Path.join(this.profile.path, profilePage.template.back);
-                    if (profilePage.template.fore)
-                        image.forePath = Path.join(this.profile.path, profilePage.template.fore);
-                    let symbolPageToUse = symbolPage;
-                    if (profilePage.size != profilePage.symbol.size) {
-                        const symbolPageFound = this.findSymbolPage(symbol, symbolsPath);
-                        if (symbolPageFound) {
-                            symbolPageToUse = symbolPageFound;
-                            image.symbolSize = profilePage.symbol.size;
-                            image.symbolXOffset = profilePage.symbol.xOffset;
-                            image.symbolYOffset = profilePage.symbol.yOffset;
-                        }
-                    }
-                    image.symbolPath = Path.join(symbolsPath, symbolPageToUse.path, symbol.path);
                     const outputFileName = `${symbol.name}.${this.profile.outputFormat}`;
                     image.outputPath = Path.join(this.outputPath, symbolPage.path, this.profile.outputPath, outputFileName);
-                    this.images.push(image);
+                    if (!FileSystem.existsSync(image.outputPath)) {
+                        if (profilePage.template.back)
+                            image.backPath = Path.join(this.profile.path, profilePage.template.back);
+                        if (profilePage.template.fore)
+                            image.forePath = Path.join(this.profile.path, profilePage.template.fore);
+                        let symbolPageToUse = symbolPage;
+                        if (profilePage.size != profilePage.symbol.size) {
+                            const symbolPageFound = this.findSymbolPage(symbol, symbolsPath);
+                            if (symbolPageFound) {
+                                symbolPageToUse = symbolPageFound;
+                                image.symbolSize = profilePage.symbol.size;
+                                image.symbolXOffset = profilePage.symbol.xOffset;
+                                image.symbolYOffset = profilePage.symbol.yOffset;
+                            }
+                        }
+                        image.symbolPath = Path.join(symbolsPath, symbolPageToUse.path, symbol.path);
+                        this.images.push(image);
+                    }
                 }
             }
     }

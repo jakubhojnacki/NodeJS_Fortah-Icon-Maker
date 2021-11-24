@@ -10,8 +10,9 @@
             ],
             "program": "${workspaceFolder}/src/main.mjs",
             "args": [
-                "serviceStart",
-                "/home/Temp"
+                "windowsDirectories",
+                "C:\\Multimedia\\Icons (PNG)",
+                "-de"
             ],
             "console": "integratedTerminal"
         }

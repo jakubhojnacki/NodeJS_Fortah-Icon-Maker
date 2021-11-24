@@ -40,12 +40,16 @@
             "path": "Dynamics/Dynamics BC 15 04.png"
         },
         {
+            "name": "Android",
+            "path": "Applications/Android 01.png"
+        },
+        {
             "name": "Animation",
             "path": "Video/Film 04.png"
         },
         {
             "name": "Application",
-            "path": "System/Application 07.png"
+            "path": "System/Desktop 02.png"
         },
         {
             "name": "Archive",
@@ -61,7 +65,7 @@
         },
         {
             "name": "Azure",
-            "path": "Applications/Azure 01.png"
+            "path": "Applications/Azure 02.png"
         },
         {
             "name": "Backup",
@@ -70,6 +74,10 @@
         {
             "name": "Bin",
             "path": "Bins/03 Bin Empty.png"
+        },
+        {
+            "name": "Bitbucket",
+            "path": "Applications/Bitbucket 01.png"
         },
         {
             "name": "Book",
@@ -82,6 +90,10 @@
         {
             "name": "Bus",
             "path": "Transport/Bus 05.png"
+        },
+        {
+            "name": "Calibre",
+            "path": "Applications/Calibre 01.png"
         },
         {
             "name": "Car",
@@ -144,12 +156,20 @@
             "path": "Hardware/Component 07.png"
         },
         {
+            "name": "Docker",
+            "path": "Applications/Docker 01.png"
+        },
+        {
             "name": "Document",
             "path": "Office/Document 04.png"
         },
         {
             "name": "Download",
             "path": "Symbols/Arrow 01.png"
+        },
+        {
+            "name": "Dropbox",
+            "path": "Applications/Dropbox 01.png"
         },
         {
             "name": "DVD",
@@ -236,16 +256,8 @@
             "path": "Dynamics/Dynamics NAV 2018 01.png"
         },
         {
-            "name": "Electron 01",
+            "name": "Electron",
             "path": "Applications/Electron 01.png"
-        },
-        {
-            "name": "Electron 02",
-            "path": "Applications/Electron 02.png"
-        },
-        {
-            "name": "Electron 03",
-            "path": "Applications/Electron 03.png"
         },
         {
             "name": "Environment",
@@ -358,6 +370,10 @@
         {
             "name": "Link",
             "path": "Symbols/Link 01.png"
+        },
+        {
+            "name": "Linux",
+            "path": "Applications/Linux 02.png"
         },
         {
             "name": "Logon",
@@ -570,6 +586,10 @@
         {
             "name": "Snippet",
             "path": "Office/Notebook 02.png"
+        },
+        {
+            "name": "Speed Dialo",
+            "path": "System/Speed Dial 01.png"
         },
         {
             "name": "SQL",
