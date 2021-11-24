@@ -276,6 +276,10 @@
             "path": "Flags/France Flag.png"
         },
         {
+            "name": "FTP",
+            "path": "Internet and Network/FTP 01.png"
+        },
+        {
             "name": "Fun",
             "path": "Miscellaneous/Halloween 01.png"
         },
