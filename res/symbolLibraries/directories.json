@@ -408,6 +408,10 @@
             "path": "System/Start Menu 04.png"
         },
         {
+            "name": "Microsoft",
+            "path": "Applications/Microsoft 01.png"
+        },
+        {
             "name": "Miscellaneous",
             "path": "Miscellaneous/Case 08.png"
         },
@@ -592,7 +596,7 @@
             "path": "Office/Notebook 02.png"
         },
         {
-            "name": "Speed Dialo",
+            "name": "Speed Dial",
             "path": "System/Speed Dial 01.png"
         },
         {
