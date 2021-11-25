@@ -36,6 +36,10 @@
             "path": "Applications/Access 01.png"
         },
         {
+            "name": "Administration",
+            "path": "Security/Shield 03.png"
+        },
+        {
             "name": "AL",
             "path": "Dynamics/Dynamics BC 15 04.png"
         },
@@ -56,6 +60,10 @@
             "path": "Security/Safe 09.png"
         },
         {
+            "name": "Asset",
+            "path": "Logistics/Box 13.png"
+        },
+        {
             "name": "Assorted",
             "path": "Development/Development 02.png"
         },
@@ -70,6 +78,10 @@
         {
             "name": "Backup",
             "path": "Storage/Storage 05.png"
+        },
+        {
+            "name": "Bacowa",
+            "path": "Places/Hut 01.png"
         },
         {
             "name": "Bin",
@@ -124,6 +136,10 @@
             "path": "Places/Building 11.png"
         },
         {
+            "name": "Concept",
+            "path": "Miscellaneous/Board 01.png"
+        },        
+        {
             "name": "Construction",
             "path": "Symbols/Construction 01.png"
         },
@@ -176,75 +192,31 @@
             "path": "Storage/Optical Disk 15.png"
         },
         {
-            "name": "Dynamics 365 01",
-            "path": "Dynamics/Dynamics 365 01.png"
+            "name": "Dynamics 365",
+            "path": "Dynamics/Dynamics 365.png"
         },
         {
-            "name": "Dynamics 365 02",
-            "path": "Dynamics/Dynamics 365 02.png"
-        },
-        {
-            "name": "Dynamics 365 03",
-            "path": "Dynamics/Dynamics 365 03.png"
-        },
-        {
-            "name": "Dynamics 365 04",
-            "path": "Dynamics/Dynamics 365 04.png"
-        },
-        {
-            "name": "Dynamics 365 05",
-            "path": "Dynamics/Dynamics 365 05.png"
-        },
-        {
-            "name": "Dynamics 365 06",
-            "path": "Dynamics/Dynamics 365 06.png"
-        },
-        {
-            "name": "Dynamics 365 07",
-            "path": "Dynamics/Dynamics 365 07.png"
-        },
-        {
-            "name": "Dynamics 365 08",
-            "path": "Dynamics/Dynamics 365 08.png"
-        },
-        {
-            "name": "Dynamics BC 14 01",
+            "name": "Dynamics BC 14",
             "path": "Dynamics/Dynamics BC 14 02.png"
         },
         {
-            "name": "Dynamics BC 14 02",
-            "path": "Dynamics/Dynamics BC 14 07.png"
-        },
-        {
-            "name": "Dynamics BC 14 03",
-            "path": "Dynamics/Dynamics BC 14 09.png"
-        },
-        {
-            "name": "Dynamics BC 14 04",
-            "path": "Dynamics/Dynamics BC 14 11.png"
-        },
-        {
-            "name": "Dynamics BC 14 05",
-            "path": "Dynamics/Dynamics BC 14 13.png"
-        },
-        {
-            "name": "Dynamics BC 15 01",
+            "name": "Dynamics BC",
             "path": "Dynamics/Dynamics BC 15 01.png"
         },
         {
-            "name": "Dynamics BC 15 02",
-            "path": "Dynamics/Dynamics BC 15 02.png"
-        },
-        {
-            "name": "Dynamics BC 15 03",
-            "path": "Dynamics/Dynamics BC 15 03.png"
-        },
-        {
-            "name": "Dynamics BC 15 04",
+            "name": "Dynamics BC 15 Application",
             "path": "Dynamics/Dynamics BC 15 04.png"
         },
         {
-            "name": "Dynamics BC 15 05",
+            "name": "Dynamics BC 15 Licence",
+            "path": "Dynamics/Dynamics BC 15 03.png"
+        },
+        {
+            "name": "Dynamics BC 15 Tool",
+            "path": "Dynamics/Dynamics BC 15 04.png"
+        },
+        {
+            "name": "Dynamics BC 15 Admin",
             "path": "Dynamics/Dynamics BC 15 05.png"
         },
         {
@@ -262,6 +234,10 @@
         {
             "name": "Environment",
             "path": "Development/Development 09.png"
+        },
+        {
+            "name": "Event",
+            "path": "CRM/Team 01.png"
         },
         {
             "name": "Favourite",
@@ -312,6 +288,10 @@
             "path": "Hardware/Server 01.png"
         },
         {
+            "name": "HTML",
+            "path": "Development/HTML 01.png"
+        },
+        {
             "name": "Icon",
             "path": "Graphics/Icon 04.png"
         },
@@ -360,6 +340,10 @@
             "path": "Hardware/Laptop 02.png"
         },
         {
+            "name": "Library",
+            "path": "Development/Development 04.png"
+        },
+        {
             "name": "Licence",
             "path": "Security/Certificate 13.png"
         },
@@ -377,7 +361,7 @@
         },
         {
             "name": "Linux",
-            "path": "Applications/Linux 02.png"
+            "path": "System/Linux 02.png"
         },
         {
             "name": "Logon",
@@ -398,6 +382,10 @@
         {
             "name": "Map",
             "path": "Navigation/Map 11.png"
+        },
+        {
+            "name": "Material",
+            "path": "Miscellaneous/Bricks 01.png"
         },
         {
             "name": "Media",
@@ -532,6 +520,10 @@
             "path": "Miscellaneous/Cone 02.png"
         },
         {
+            "name": "Prototype",
+            "path": "Settings and Tools/Tool 02.png"            
+        },
+        {
             "name": "Qt",
             "path": "Applications/Qt 01.png"
         },
@@ -546,6 +538,10 @@
         {
             "name": "Repository",
             "path": "Office/Archive 05.png"
+        },
+        {
+            "name": "Retail",
+            "path": "Business/Basket 02.png"
         },
         {
             "name": "Rubik",
