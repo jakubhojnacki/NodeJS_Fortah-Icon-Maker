@@ -456,6 +456,10 @@
             "path": "Archiving/ZIP 11.png"
         },
         {
+            "name": "Pause",
+            "path": "Symbols/Switch 02.png"
+        },
+        {
             "name": "Pdf",
             "path": "Postscript/PDF 02.png"
         },
@@ -600,8 +604,16 @@
             "path": "Development/Database 03.png"
         },
         {
+            "name": "Start",
+            "path": "Symbols/Switch 01.png"
+        },
+        {
             "name": "Start Menu",
             "path": "System/Start Menu 04.png"
+        },
+        {
+            "name": "Stop",
+            "path": "Symbols/Switch 04.png"
         },
         {
             "name": "Storage",
