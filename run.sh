@@ -2,7 +2,7 @@
 
 tty -s || exec konsole -e "$0" "$@"
 
-profileName="linuxDirectoriesBreezeOrange"
+profileName="linuxDirectoriesBreezeLightBlue"
 outputPath="/home/Multimedia/Icons"
 
 node "./src/main.mjs" $profileName $outputPath

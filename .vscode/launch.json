@@ -11,7 +11,7 @@
             "program": "${workspaceFolder}/src/main.mjs",
             "args": [
                 "serviceStart",
-                "C:\\Multimedia\\Icons (PNG)"
+                "/home/Temp"
             ],
             "console": "integratedTerminal"
         }
