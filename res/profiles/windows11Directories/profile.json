@@ -1,0 +1,84 @@
+{
+    "pages": [
+        {
+            "size": 256,
+            "template": {
+                "back": "0256b.png"
+            },
+            "symbol": {
+                "size": 128,
+                "xOffset": 96,
+                "yOffset": 80
+            }
+        },
+		{
+            "size": 128,
+            "template": {
+                "back": "0128b.png"
+            },
+			"symbol": {
+				"size": 64,
+				"xOffset": 48,
+				"yOffset": 40
+			}
+		},
+		{
+			"size": 64,
+			"template": {
+				"back": "0064b.png"
+			},
+			"symbol": {
+				"size": 32,
+				"xOffset": 24,
+				"yOffset": 20
+			}
+		},
+		{
+			"size": 48,
+			"template": {
+				"back": "0048b.png"
+			},
+			"symbol": {
+				"size": 24,
+				"xOffset": 18,
+				"yOffset": 15
+			}
+		},
+		{
+			"size": 32,
+			"template": {
+				"back": "0032b.png"
+			},
+			"symbol": {
+				"size": 16,
+				"xOffset": 12,
+				"yOffset": 10
+			}
+		},
+		{
+			"size": 24,
+			"template": {
+				"back": "0024b.png"
+			},
+			"symbol": {
+				"size": 12,
+				"xOffset": 9,
+				"yOffset": 8
+			}
+		},
+		{
+			"size": 16,
+			"template": {
+				"back": "0016b.png"
+			},
+			"symbol": {
+				"size": 8,
+				"xOffset": 6,
+				"yOffset": 5
+			}
+		}
+    ],
+    "symbolLibrary": "directories",
+    "outputFormat": "png",
+    "outputPath": "Types/Windows 11 Directories"
+}

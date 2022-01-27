@@ -9,7 +9,7 @@ import FileSystem from "fs";
 import Path from "path";
 
 import { ProfilePages } from "../profiles/profilePages.mjs";
-import { Validator } from "core-library";
+import { Validator } from "fortah-core-library";
 
 export class Profile {
     get path() { return this.mPath; }

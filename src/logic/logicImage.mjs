@@ -7,9 +7,9 @@
 
 import FileSystem from "fs";
 
-import { FileSystemItem } from "file-system-library";
-import { FileSystemItemType } from "file-system-library";
-import { ImagePage } from "image-library";
+import { FileSystemItem } from "fortah-file-system-library";
+import { FileSystemItemType } from "fortah-file-system-library";
+import { ImagePage } from "fortah-image-library";
 
 export class LogicImage {
     get name() { return this.mName; }

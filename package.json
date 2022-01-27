@@ -2,7 +2,7 @@
     "name": "icon-maker",
     "displayName": "Icon Maker",
     "description": "Makes icons - for folders and files - out of images",
-    "version": "4.0.0",
+    "version": "4.1.0",
     "author": "Jakub Hojnacki <jakubhojnacki@gmail.com>",
     "date": "November 2021",
     "type": "module",
@@ -13,9 +13,9 @@
         "url": "git+https://github.com/jakubhojnacki/directory-date-finder.git"
     },
     "dependencies": {
-        "console-library": "file:../../Libraries/Console Library",
-        "core-library": "file:../../Libraries/Core Library",
-        "file-system-library": "file:../../Libraries/File System Library",
-        "image-library": "file:../../Libraries/Image Library"
+        "fortah-console-library": "file:../FortahConsoleLibrary",
+        "fortah-core-library": "file:../FortahCoreLibrary",
+        "fortah-file-system-library": "file:../FortahFileSystemLibrary",
+        "fortah-image-library": "file:../FortahImageLibrary"
     }
 }

@@ -6,17 +6,15 @@
 import FileSystem from "fs";
 import Path from "path";
 
-import { FileSystemItem } from "file-system-library";
-import { FileSystemItemType } from "file-system-library";
-import { FileSystemToolkit } from "file-system-library";
+import { FileSystemItem } from "fortah-file-system-library";
+import { FileSystemItemType } from "fortah-file-system-library";
+import { FileSystemToolkit } from "fortah-file-system-library";
 import { SymbolLibrary } from "../symbolLibraries/symbolLibrary.mjs";
-import { ImagePage } from "image-library";
 import { LogicEventArgs } from "../logic/logicEventArgs.mjs";
 import { LogicImageEventArgs } from "../logic/logicImageEventArgs.mjs";
 import { LogicImage } from "../logic/logicImage.mjs";
 import { Profile } from "../profiles/profile.mjs";
-import { Validator } from "core-library";
-import { timeStamp } from "console";
+import { Validator } from "fortah-core-library";
 
 export class Logic {
     get application() { return this.mApplication; }

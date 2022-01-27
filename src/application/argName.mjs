@@ -3,8 +3,8 @@
  * @description Enumerator with arg names
  */
 
-import { Enum } from "core-library";
-import { EnumItem } from "core-library";
+import { Enum } from "fortah-core-library";
+import { EnumItem } from "fortah-core-library";
 
 export class ArgName {
     static get profile() { return "Profile"; }

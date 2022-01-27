@@ -10,7 +10,7 @@
             ],
             "program": "${workspaceFolder}/src/main.mjs",
             "args": [
-                "serviceStart",
+                "windows11Directories",
                 "C:\\Multimedia\\Icons (PNG)"
             ],
             "console": "integratedTerminal"

@@ -5,9 +5,9 @@
 
 import { ArgName } from "../application/argName.mjs";
 import { ArgTemplateFactory } from "../application/argTemplateFactory.mjs";
-import { ConsoleApplication } from "console-library";
-import { ConsoleProgress } from "console-library";
-import { ImageProcessorFactory } from "image-library";
+import { ConsoleApplication } from "fortah-console-library";
+import { ConsoleProgress } from "fortah-console-library";
+import { ImageProcessorFactory } from "fortah-image-library";
 import { Logic } from "../logic/logic.mjs";
 import { Settings } from "../settings/settings.mjs";
 

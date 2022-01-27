@@ -7,7 +7,7 @@
 
 import { PathsSettings } from "../settings/pathsSettings.mjs";
 import { ImageProcessorSettings } from "../settings/imageProcessorSettings.mjs";
-import { SettingsBase } from "core-library";
+import { SettingsBase } from "fortah-core-library";
 
 export class Settings extends SettingsBase {
     get paths() { return this.mPaths; }

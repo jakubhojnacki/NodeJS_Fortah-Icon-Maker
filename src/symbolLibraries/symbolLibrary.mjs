@@ -10,7 +10,7 @@ import Path from "path";
 
 import { SymbolLibrarySymbols } from "../symbolLibraries/symbolLibrarySymbols.mjs";
 import { SymbolLibraryPages } from "../symbolLibraries/symbolLibraryPages.mjs";
-import { Validator } from "core-library";
+import { Validator } from "fortah-core-library";
 
 export class SymbolLibrary {
     get path() { return this.mPath; }
