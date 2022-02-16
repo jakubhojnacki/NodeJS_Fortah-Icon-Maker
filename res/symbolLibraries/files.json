@@ -30,230 +30,230 @@
             "path": "0016"
         }
     ],
-	"symbols": [
-		{
+    "symbols": [
+        {
             "name": "Archive",
             "path": "Archiving/ZIP 10.png"
         },
-		{
-			"name": "Audio",
+        {
+            "name": "Audio",
             "path": "Music/Sound 07.png"
         },
-		{
-			"name": "Audio Playlist",
+        {
+            "name": "Audio Playlist",
             "path": "Music/Disk 03.png"
         },
-		{
-			"name": "Backup",
+        {
+            "name": "Backup",
             "path": "Storage/Storage 05.png"
         },
-		{
-			"name": "Certificate",
+        {
+            "name": "Certificate",
             "path": "Security/Certificate 14.png"
         },
-		{
-			"name": "Command",
-            "path": "System/Shell 04.png"
+        {
+            "name": "Command",
+            "path": "Console/Console 04.png"
         },
-		{
-			"name": "Configuration",
-            "path": "Settings and Tools/Tools 12.png"
+        {
+            "name": "Configuration",
+            "path": "Tools/Tools 12.png"
         },
-		{
-			"name": "CPlusPlus",
+        {
+            "name": "CPlusPlus",
             "path": "Development/CPlusPlus 01.png"
         },
-		{
-			"name": "CSS",
+        {
+            "name": "CSS",
             "path": "Development/CSS 01.png"
         },
-		{
-			"name": "CSV",
+        {
+            "name": "CSV",
             "path": "Development/CSV 01.png"
         },
-		{
+        {
             "name": "Cursor",
             "path": "Hardware/Mouse 04.png"
         },
-		{
+        {
             "name": "Database",
             "path": "Development/Database 03.png"
         },
-		{
+        {
             "name": "Dynamics 365 BC AL",
             "path": "Dynamics/Dynamics BC 15 01.png"
         },
-		{
+        {
             "name": "Dynamics 365 BC Application",
             "path": "Dynamics/Dynamics BC 15 04.png"
         },
-		{
+        {
             "name": "Dynamics Licence",
             "path": "Dynamics/Dynamics BC 15 05.png"
         },
-		{
+        {
             "name": "Dynamics NAV Backup",
             "path": "Dynamics/Dynamics NAV 2018 02.png"
         },
-		{
+        {
             "name": "Dynamics NAV Database",
             "path": "Dynamics/Dynamics NAV 2018 05.png"
         },
-		{
+        {
             "name": "Dynamics NAV Licence",
             "path": "Dynamics/Dynamics NAV 2018 04.png"
         },
-		{
+        {
             "name": "Dynamics NAV Package",
             "path": "Dynamics/Dynamics NAV 2018 03.png"
         },
-		{
+        {
             "name": "Dynamics NAV Source",
             "path": "Dynamics/Dynamics NAV 2018 01.png"
         },
-		{
+        {
             "name": "Font",
             "path": "Symbols/Font 01.png"
         },
-		{
+        {
             "name": "Git",
             "path": "Applications/Git 01.png"
         },
-		{
+        {
             "name": "Help",
             "path": "System/Help 01.png"
         },
-		{
+        {
             "name": "HTML",
             "path": "Development/HTML 01.png"
         },
-		{
+        {
             "name": "Icon",
             "path": "Graphics/Icon 04.png"
         },
-		{
+        {
             "name": "Image",
             "path": "Graphics/Picture 15.png"
         },
-		{
+        {
             "name": "Installation",
-            "path": "Settings and Tools/Setup 01.png"
+            "path": "Configuration/Installer 07.png"
         },
-		{
+        {
             "name": "JavaScript",
             "path": "Development/JavaScript 01.png"
         },
-		{
+        {
             "name": "JSON",
             "path": "Development/JSON 01.png"
         },
-		{
+        {
             "name": "KeePass",
             "path": "Applications/Kee Pass 01.png"
         },
-		{
+        {
             "name": "Library",
-            "path": "Settings and Tools/Gear 02.png"
+            "path": "Configuration/Configuration 02.png"
         },
-		{
+        {
             "name": "Link",
             "path": "Symbols/Link 01.png"
         },
-		{
+        {
             "name": "Log",
             "path": "Office/Notebook 11.png"
         },
-		{
+        {
             "name": "Markdown",
             "path": "Development/Markdown 03.png"
         },
-		{
+        {
             "name": "Microsoft Access",
             "path": "Applications/Access 04.png"
         },
-		{
+        {
             "name": "Microsoft Excel",
             "path": "Applications/Excel 04.png"
         },
-		{
+        {
             "name": "Microsoft OneNote",
             "path": "Applications/OneNote 04.png"
         },
-		{
+        {
             "name": "Microsoft Outlook",
             "path": "Applications/Outlook 04.png"
         },
-		{
+        {
             "name": "Microsoft PowerPoint",
             "path": "Applications/PowerPoint 04.png"
         },
-		{
+        {
             "name": "Microsoft Visio",
             "path": "Applications/Visio 03.png"
         },
-		{
+        {
             "name": "Microsoft Word",
             "path": "Applications/Word 04.png"
         },
-		{
+        {
             "name": "Microsoft Word Template",
             "path": "Applications/Word 04.png"
         },
-		{
+        {
             "name": "Password",
             "path": "Security/Lock 11.png"
         },
-		{
+        {
             "name": "PDF",
             "path": "Postscript/PDF 02.png"
         },
-		{
+        {
             "name": "PowerShell",
             "path": "Applications/PowerShell 01.png"
         },
-		{
+        {
             "name": "Remote",
-            "path": "Internet and Network/Remote Desktop 02.png"
+            "path": "Internet/Remote Desktop 02.png"
         },
-		{
+        {
             "name": "Script",
             "path": "Development/Script 04.png"
         },
-		{
+        {
             "name": "SQL",
             "path": "Development/Database 03.png"
         },
-		{
+        {
             "name": "Temporary",
-            "path": "Bins/10 Bin.png"
+            "path": "Bins/Bin 10.png"
         },
-		{
+        {
             "name": "Text",
             "path": "Applications/Notepad 01.png"
         },
-		{
+        {
             "name": "TypeScript",
             "path": "Development/TypeScript 01.png"
         },
-		{
+        {
             "name": "Video",
             "path": "Video/Reel 01.png"
         },
-		{
+        {
             "name": "Visio",
             "path": "Applications/Visio 03.png"
         },
-		{
+        {
             "name": "Web Link",
-            "path": "Internet and Network/Communication 07.png"
+            "path": "Internet/Communication 07.png"
         },
-		{
+        {
             "name": "XML",
             "path": "Development/Structure 01.png"
         },
-		{
+        {
             "name": "XSLT",
             "path": "Development/Structure 02.png"
         }
-	]
+    ]
 }

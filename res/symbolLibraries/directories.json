@@ -125,11 +125,11 @@
         },
         {
             "name": "Command",
-            "path": "System/Shell 01.png"
+            "path": "Console/Console 01.png"
         },
         {
             "name": "Communication",
-            "path": "Internet and Network/Communication 02.png"
+            "path": "Internet/Communication 02.png"
         },
         {
             "name": "Company",
@@ -253,7 +253,7 @@
         },
         {
             "name": "FTP",
-            "path": "Internet and Network/FTP 01.png"
+            "path": "Internet/FTP 01.png"
         },
         {
             "name": "Fun",
@@ -285,7 +285,7 @@
         },
         {
             "name": "Host",
-            "path": "Hardware/Server 01.png"
+            "path": "Computers/Server 01.png"
         },
         {
             "name": "HTML",
@@ -297,7 +297,7 @@
         },
         {
             "name": "IIS",
-            "path": "Internet and Network/Web Server 01.png"
+            "path": "Internet/Web Server 01.png"
         },
         {
             "name": "Important",
@@ -305,19 +305,19 @@
         },
         {
             "name": "Inetpub",
-            "path": "Internet and Network/Web Server 01.png"
+            "path": "Internet/Web Server 01.png"
         },
         {
             "name": "Install",
-            "path": "Settings and Tools/Setup 01.png"
+            "path": "Configuration/Installer 07.png"
         },
         {
             "name": "Internet",
-            "path": "Internet and Network/Globe 06.png"
+            "path": "Internet/Internet 06.png"
         },
         {
             "name": "IT",
-            "path": "Hardware/Laptop 02.png"
+            "path": "Computers/Laptop 02.png"
         },
         {
             "name": "JavaScript",
@@ -337,7 +337,7 @@
         },
         {
             "name": "Laptop",
-            "path": "Hardware/Laptop 02.png"
+            "path": "Computers/Laptop 02.png"
         },
         {
             "name": "Library",
@@ -361,7 +361,7 @@
         },
         {
             "name": "Linux",
-            "path": "System/Linux 02.png"
+            "path": "Operating Systems/Linux 02.png"
         },
         {
             "name": "Logon",
@@ -425,7 +425,7 @@
         },
         {
             "name": "Network",
-            "path": "Internet and Network/Network 03.png"
+            "path": "Network/Network 03.png"
         },
         {
             "name": "NodeJS",
@@ -465,7 +465,7 @@
         },
         {
             "name": "Performance",
-            "path": "Performance/Graph 01.png"
+            "path": "Diagnostics/Graph 01.png"
         },
         {
             "name": "Phone",
@@ -505,11 +505,11 @@
         },
         {
             "name": "Printing",
-            "path": "Hardware/Printer 06.png"
+            "path": "Hardware/Printer 06 01.png"
         },
         {
             "name": "Procedures",
-            "path": "Settings and Tools/Gear 28.png"
+            "path": "Configuration/Configuration 28.png"
         },
         {
             "name": "Program Files",
@@ -525,7 +525,7 @@
         },
         {
             "name": "Prototype",
-            "path": "Settings and Tools/Tool 02.png"            
+            "path": "Tools/Tool 02.png"            
         },
         {
             "name": "Qt",
@@ -537,7 +537,7 @@
         },
         {
             "name": "Remote",
-            "path": "Internet and Network/Remote Desktop 01.png"
+            "path": "Internet/Remote Desktop 01.png"
         },
         {
             "name": "Repository",
@@ -561,7 +561,7 @@
         },
         {
             "name": "Searching",
-            "path": "System/Search 09.png"
+            "path": "Search/Search 09.png"
         },
         {
             "name": "Security",
@@ -569,15 +569,15 @@
         },
         {
             "name": "Server",
-            "path": "Hardware/Server 07.png"
+            "path": "Computers/Server 07.png"
         },
         {
             "name": "Service",
-            "path": "Settings and Tools/Gear 02.png"
+            "path": "Configuration/Configuration 02.png"
         },
         {
             "name": "Setup",
-            "path": "Settings and Tools/Setup 01.png"
+            "path": "Configuration/Installer 07.png"
         },
         {
             "name": "SharePoint",
@@ -585,7 +585,7 @@
         },
         {
             "name": "Shell",
-            "path": "System/Shell 01.png"
+            "path": "Console/Console 01.png"
         },
         {
             "name": "Shopping",
@@ -657,7 +657,7 @@
         },
         {
             "name": "Terminal",
-            "path": "Internet and Network/Communication 07.png"
+            "path": "Internet/Communication 07.png"
         },
         {
             "name": "Text",
@@ -673,7 +673,7 @@
         },
         {
             "name": "Tool",
-            "path": "Settings and Tools/Tools 12.png"
+            "path": "Tools/Tools 12.png"
         },
         {
             "name": "Train",
@@ -705,7 +705,7 @@
         },
         {
             "name": "Utility",
-            "path": "Settings and Tools/Tools 12.png"
+            "path": "Tools/Tools 12.png"
         },
         {
             "name": "Video",
@@ -733,16 +733,20 @@
         },
         {
             "name": "Web",
-            "path": "Internet and Network/Globe 01.png"
+            "path": "Internet/Internet 01.png"
         },
         {
             "name": "Website",
-            "path": "Internet and Network/Web Site 02.png"
+            "path": "Internet/Web Site 02.png"
         },
         {
             "name": "Windows",
-            "path": "System/Windows 08.png"
+            "path": "Operating Systems/Windows 08.png"
         },
+        {
+            "name": "Windows 11",
+            "path": "Operating Systems/Windows 10.png"
+        },        
         {
             "name": "Work",
             "path": "Places/Factory 01.png"

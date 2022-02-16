@@ -1,7 +1,7 @@
 @echo off
 
-set ProfileName="windowsDirectories"
-set OutputPath="C:\\Multimedia\\Icons (PNG)"
+set ProfileName="windowsFilesMiddle"
+set OutputPath="C:\\Temp"
 
 node .\src\main.mjs %ProfileName% %OutputPath%
 
